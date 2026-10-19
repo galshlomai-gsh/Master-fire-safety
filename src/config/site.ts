@@ -23,8 +23,8 @@ export const site = {
     name: 'T&T Fire Safety',
     wordmark: 'T&T',
     descriptor: 'FIRE SAFETY',
-    /** Fire mark option A (design p9). Philip wants to compare both options before deciding. */
-    fireMarkApproved: false,
+    /** Fire mark option A (design p9), chosen Oct 2026. */
+    fireMarkApproved: true,
   },
   /**
    * Operating company. Philip wants T&T presented as an independent brand, so these appear

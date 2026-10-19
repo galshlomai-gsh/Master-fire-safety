@@ -492,6 +492,7 @@ button, input, select, textarea { font: inherit; }
   .logo .mark { font-size: 22px; }
   .logo .desc { font-size: 9.5px; letter-spacing: .19em; }
   .logo .rule { height: 18px; }
+  .logo .firemark { width: 16px; height: 16px; }
 
   .sec { padding: 56px 0; }
   .sec-int { padding: 40px 0; }

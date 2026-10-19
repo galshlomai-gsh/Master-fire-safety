@@ -28,7 +28,7 @@ npm run qa:serve     # serve the build locally (in another terminal: npm run qa:
 - Certify Services Ltd appears only in the footer small print and the legal pages (trading disclosure). It is not in the schema or the body copy.
 - No unlicensed photos. Real photos go into `src/config/images.ts`.
 - `reportTurnaround` stays `null` until Philip confirms 3–5 working days is consistently achievable.
-- `brand.fireMarkApproved = false` keeps the current wordmark until Philip chooses.
+- Logo: wordmark + fire mark A (`brand.fireMarkApproved = true`); the favicon, touch icon and share image use the flame. Brand spelling is T&T.
 
 ## Tracking (GTM-ready)
 The GTM container `GTM-K5HWQDK9` (Certify Services Ltd) is the default; `PUBLIC_GTM_ID` overrides it. Events pushed to `dataLayer`:
