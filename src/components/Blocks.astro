@@ -57,8 +57,8 @@ const isWarm = (b: Block) => 'warm' in b && b.warm;
         </div>
         {confirmedCredentials.length > 0 && (
           <div class="credlist">
-            <p class="eyebrow">Professional credentials</p>
-            <ul>{confirmedCredentials.map((c) => <li>{c.label}<span>{c.holder}</span></li>)}</ul>
+            <p class="eyebrow">Competence &amp; cover</p>
+            <ul>{confirmedCredentials.map((c) => <li>{c.label}<span>{c.detail}</span></li>)}</ul>
           </div>
         )}
       </div>

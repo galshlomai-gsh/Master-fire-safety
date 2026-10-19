@@ -37,13 +37,13 @@ const legal = site.legal;
       </div>
     </div>
     <div class="ftr-bot">
-      <p>
+      <p class="legalline">
         © {year} {site.brand.name}.
         {legal.companyName
-          ? ` ${legal.companyName}${legal.companyNumber ? `, company no. ${legal.companyNumber}` : ''}${legal.registeredAddress ? `, ${legal.registeredAddress}` : ''}.`
+          ? ` ${site.brand.name} is a trading name of ${legal.companyName}, registered in ${legal.registeredIn}, company no. ${legal.companyNumber}. Registered office: ${legal.registeredAddress}.`
           : ' Company details to confirm.'}
       </p>
-      <div class="lnks"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a></div>
+      <div class="lnks"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="#" data-consent-reset>Cookie settings</a></div>
     </div>
   </div>
 </footer>

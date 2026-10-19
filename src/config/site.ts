@@ -1,12 +1,12 @@
 /**
  * Single source of truth for brand, contact and trust details.
- * Anything marked CONFIRM is waiting on Philip — see QUESTIONS-FOR-PHILIP.md.
+ * Updated with Philip's answers of Oct 2026; open items are listed in QUESTIONS-FOR-PHILIP.md.
  */
 
 export type Credential = {
   label: string;
-  holder: string;
-  /** Only `confirmed` credentials are ever rendered. */
+  detail: string;
+  /** Only `confirmed` items are ever rendered. */
   status: 'confirmed' | 'pending';
 };
 
@@ -19,49 +19,59 @@ export type Review = {
 };
 
 export const site = {
-  // CONFIRM: T&T standalone vs Certify. Change these and the logo follows.
   brand: {
     name: 'T&T Fire Safety',
     wordmark: 'T&T',
     descriptor: 'FIRE SAFETY',
-    /** Fire mark option A (design p9) is NOT approved. Flip to true only after sign-off. */
+    /** Fire mark option A (design p9). Philip wants to compare both options before deciding. */
     fireMarkApproved: false,
   },
+  /**
+   * Operating company. Philip wants T&T presented as an independent brand, so these appear
+   * only where the law requires them: the footer small print and the legal pages
+   * (Companies Act 2006 trading disclosures). Not in schema, headings or body copy.
+   */
   legal: {
-    // CONFIRM: trading entity. Philip's company is Certify Services Ltd; T&T may trade through it.
-    companyName: null as string | null,
-    companyNumber: null as string | null,
-    registeredAddress: null as string | null,
+    companyName: 'Certify Services Ltd' as string | null,
+    companyNumber: '13558383' as string | null,
+    registeredIn: 'England and Wales',
+    registeredAddress: '2nd Floor Parkgates, Bury New Road, Prestwich, Manchester M25 0TL' as string | null,
   },
+  domain: 'tntfiresafety.co.uk',
   phone: {
     display: '020 8066 2499',
     tel: '+442080662499',
   },
-  /** CONFIRM: enquiries@ address. While null, the site shows "address to confirm". */
-  email: null as string | null,
+  /** Branded address agreed with Philip. Must exist (domain + mailbox/forwarder) before launch. */
+  email: 'hello@tntfiresafety.co.uk' as string | null,
   hours: {
-    display: 'Monday–Friday, 8am–6pm',
-    schema: [{ days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '18:00' }],
+    display: 'Mon–Thu 8:30am–6pm, Fri 8:30am–3pm',
+    schema: [
+      { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '08:30', closes: '18:00' },
+      { days: ['Friday'], opens: '08:30', closes: '15:00' },
+    ],
   },
-  /** Base used for LocalBusiness schema. Address withheld until confirmed (service-area business). */
+  /** Service-area business: no street address published. */
   base: {
     locality: 'London',
     region: 'Greater London',
-    postcodeDistrict: 'NW2',
     country: 'GB',
   },
-  coverageLine: 'Fire risk assessments and related fire-safety services across England, Wales and Scotland.',
+  coverageLine: 'Fire risk assessments and related fire-safety services across London and the Home Counties.',
+  coverageShort: 'London and the Home Counties',
+  /** Not yet confirmed as consistently achievable. Set e.g. '3–5 working days' to publish it. */
+  reportTurnaround: null as string | null,
 
   /**
-   * Credentials. HARD RULE: nothing pending is published.
-   * FireQual Level 5, IFE registration and BS 8674:2025 alignment appear in the design
-   * but are unconfirmed — kept here as slots only.
+   * Trust points confirmed by Philip (Oct 2026). No individual assessors are named.
+   * BS 8674:2025 is framed as the standard for individual assessor competence, never as a
+   * company accreditation. No company-level accreditations are held.
    */
   credentials: [
-    { label: 'FPA Level 3 Fire Risk Assessment', holder: 'Philip Roberts', status: 'confirmed' },
-    { label: 'FireQual Level 5 Certificate in Advanced Fire Risk Assessment', holder: 'CONFIRM: who holds this', status: 'pending' },
-    { label: 'IFE Registered Fire Risk Assessor', holder: 'CONFIRM: who holds this', status: 'pending' },
-    { label: 'Competency aligned with BS 8674:2025 (Intermediate / Advanced)', holder: 'CONFIRM', status: 'pending' },
+    { label: 'IFSM members', detail: 'All our fire risk assessors are members of the Institute of Fire Safety Managers.', status: 'confirmed' },
+    { label: 'BS 8674:2025 competence framework', detail: 'Assessor competence is matched to the premises using the British Standard for individual fire risk assessors.', status: 'confirmed' },
+    { label: 'Professional indemnity insurance', detail: '£500,000 per claim.', status: 'confirmed' },
+    { label: 'Public liability insurance', detail: '£2 million.', status: 'confirmed' },
   ] as Credential[],
 
   /** HARD RULE: real reviews only. While empty, the reviews section does not render. */
@@ -69,7 +79,8 @@ export const site = {
   reviewsSource: { name: 'Google', url: null as string | null },
 
   tracking: {
-    gtmId: (import.meta.env.PUBLIC_GTM_ID as string | undefined) || '',
+    /** Certify Services Ltd container for the fire safety site (Gal has Publish access). */
+    gtmId: (import.meta.env.PUBLIC_GTM_ID as string | undefined) || 'GTM-K5HWQDK9',
   },
 } as const;
 

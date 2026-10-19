@@ -21,13 +21,9 @@ export function orgSchema(siteUrl: URL) {
       '@type': 'PostalAddress',
       addressLocality: site.base.locality,
       addressRegion: site.base.region,
-      postalCode: site.base.postcodeDistrict,
       addressCountry: site.base.country,
     },
     areaServed: [
-      { '@type': 'Country', name: 'England' },
-      { '@type': 'Country', name: 'Wales' },
-      { '@type': 'Country', name: 'Scotland' },
       ...navAreas.map((a) => ({ '@type': 'AdministrativeArea', name: a.name })),
     ],
     openingHoursSpecification: site.hours.schema.map((h) => ({
@@ -49,7 +45,7 @@ export function serviceSchema(siteUrl: URL, o: { name: string; serviceType: stri
     description: o.description,
     url: abs(siteUrl, o.path),
     provider: { '@id': abs(siteUrl, '/#business') },
-    areaServed: o.area ? { '@type': 'AdministrativeArea', name: o.area } : ['England', 'Wales', 'Scotland'].map((n) => ({ '@type': 'Country', name: n })),
+    areaServed: o.area ? { '@type': 'AdministrativeArea', name: o.area } : navAreas.filter((a) => !('parent' in a)).map((a) => ({ '@type': 'AdministrativeArea', name: a.name })),
   };
 }
 

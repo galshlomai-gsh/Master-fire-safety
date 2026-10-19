@@ -16,9 +16,14 @@ export function getStaticPaths() {
 }
 const { a } = Astro.props as { a: Area };
 const path = `/areas/${a.slug}`;
-const crumbs = [{ name: 'Areas', href: '/areas' }, { name: a.name, href: path }];
+const crumbs = [
+  { name: 'Areas', href: '/areas' },
+  ...(a.parent === 'greater-london' ? [{ name: 'Greater London', href: '/areas/greater-london' }] : []),
+  { name: a.name, href: path },
+];
+const children = navAreas.filter((n) => n.parent === a.slug);
 const nearby = a.nearby.map((s) => navAreas.find((n) => n.slug === s)).filter(Boolean) as typeof navAreas;
-const lawName = a.nation === 'Scotland' ? 'Fire safety law in Scotland' : a.nation === 'Wales' ? 'Fire safety law in Wales' : 'Fire safety law in England';
+const lawName = 'Fire safety law in England';
 ---
 <BaseLayout
   title={a.metaTitle}
@@ -28,7 +33,7 @@ const lawName = a.nation === 'Scotland' ? 'Fire safety law in Scotland' : a.nati
   schema={[serviceSchema(Astro.site!, { name: `Fire risk assessments in ${a.name}`, serviceType: 'Fire risk assessment', description: a.metaDescription, path, area: a.name })]}
 >
   <Hero variant="text-only" title={`Fire risk assessments in ${a.name}`} sub={a.heroSub} crumbs={crumbs}>
-    <p slot="meta" class="meta-line">Fire safety enforced locally by <b>{a.enforcer.name}</b> · {a.nation === 'Scotland' ? 'Fire (Scotland) Act 2005' : 'Regulatory Reform (Fire Safety) Order 2005'}</p>
+    <p slot="meta" class="meta-line">Fire safety enforced locally by <b>{a.enforcer.name}</b> · Regulatory Reform (Fire Safety) Order 2005</p>
   </Hero>
 
   <section class="sec-int">
@@ -39,6 +44,12 @@ const lawName = a.nation === 'Scotland' ? 'Fire safety law in Scotland' : a.nati
         <ul class="linkrow" style="max-width:none;margin-top:12px">
           {a.places.map((p) => <li style="font-size:15.5px;color:var(--ink)">{p}</li>)}
         </ul>
+        {children.length > 0 && (
+          <>
+            <h2>London boroughs we focus on</h2>
+            <ul class="regions" style="margin-top:12px">{children.map((c) => <li><a href={c.href}>{c.name}<span class="ar" aria-hidden="true">→</span></a></li>)}</ul>
+          </>
+        )}
         <h2>{a.housingTitle}</h2>
         {a.housing.map((p) => <p set:html={p} />)}
       </div>

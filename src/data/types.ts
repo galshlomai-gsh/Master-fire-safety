@@ -1,4 +1,3 @@
-import type { ImageKey } from '../config/images';
 
 export type FAQ = { q: string; a: string }; // `a` may contain simple inline HTML (links, <p>)
 export type Item = { title: string; text: string };
@@ -19,7 +18,7 @@ export type Service = {
   formValue: string; // quote form <option> value
   h1: string;
   heroSub: string;
-  image: ImageKey;
+  image: string; // image slot key (see src/config/images.ts)
   metaTitle: string;
   metaDescription: string;
   introTitle: string;
@@ -41,7 +40,7 @@ export type Sector = {
   propertyType: string; // quote form property type value
   h1: string;
   heroSub: string;
-  image: ImageKey | null; // null → labelled placeholder
+  image: string | null; // image slot key; null → illustration
   imageLabel: string; // placeholder label / what real photo is needed
   metaTitle: string;
   metaDescription: string;
@@ -62,7 +61,9 @@ export type Sector = {
 export type Area = {
   slug: string;
   name: string;
-  nation: 'England' | 'Wales' | 'Scotland';
+  nation: 'England';
+  /** London boroughs set parent: 'greater-london' and are served at /areas/{slug} */
+  parent?: string;
   metaTitle: string;
   metaDescription: string;
   heroSub: string;

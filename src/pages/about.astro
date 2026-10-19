@@ -7,21 +7,21 @@ import OtherServices from '../components/OtherServices.astro';
 import { confirmedCredentials, site } from '../config/site';
 const crumbs = [{ name: 'About', href: '/about' }];
 const principles = [
-  { title: 'The report is the deliverable', text: 'Significant findings and actions set out by priority, written so a landlord, agent or contractor can act on them.' },
-  { title: 'Independent of remedial work', text: 'The assessment is not a sales tool. You are not obliged to use us for any follow-on work it identifies.' },
+  { title: 'Prompt, responsive scheduling', text: 'We work around your building, residents and deadlines, and keep you updated from enquiry to report.' },
+  { title: 'Clear reports, practical actions', text: 'Significant findings and actions set out by priority, written so a landlord, agent or contractor can act on them.' },
+  { title: 'Remedial works if you want them', text: 'We can undertake or arrange the works an assessment identifies, quoted separately. You are never obliged to use us.' },
   { title: 'Non-destructive and honest about limits', text: 'We assess what is accessible and say plainly where concealed construction needs further investigation.' },
   { title: 'Competence matched to the building', text: 'If a building is outside what we can assess competently, we will tell you before we quote.' },
   { title: 'Scope and price agreed in writing', text: 'No surprises on the day. You know what is covered and what it costs before we visit.' },
-  { title: 'Help after the visit', text: 'Questions about the findings or priorities? We explain them, by phone or in writing.' },
 ];
 ---
 <BaseLayout
   title="About T&T Fire Safety | Fire Risk Assessors"
-  description="T&T Fire Safety carries out fire risk assessments and related fire-safety services for landlords, managing agents and businesses across England, Wales and Scotland."
+  description="T&T Fire Safety carries out fire risk assessments and related fire-safety services for landlords, managing agents and businesses across London and the Home Counties."
   active="about"
   crumbs={crumbs}
 >
-  <Hero title="About T&T Fire Safety" sub="Fire risk assessments and related fire-safety services for landlords, managing agents and businesses across England, Wales and Scotland." image="alarmPanel" crumbs={crumbs} />
+  <Hero title="About T&T Fire Safety" sub="Fire risk assessments and related fire-safety services for landlords, managing agents and businesses across London and the Home Counties." image="alarmPanel" crumbs={crumbs} />
 
   <section class="sec-int reveal">
     <div class="wrap">
@@ -34,12 +34,12 @@ const principles = [
     <div class="wrap">
       <div>
         <h2>Who carries out your assessment</h2>
-        <p>Assessments are carried out by qualified fire risk assessors, with competency appropriate to the type and complexity of the premises.</p>
+        <p>T&amp;T works through a network of competent fire risk assessors, engineers and contractors. All our fire risk assessors are members of the Institute of Fire Safety Managers (IFSM), and each assessment is matched to an assessor whose competence suits the premises, using the framework in BS 8674:2025, the British Standard for individual fire risk assessors.</p>
       </div>
       {confirmedCredentials.length > 0 && (
         <div class="credlist">
-          <p class="eyebrow">Professional credentials</p>
-          <ul>{confirmedCredentials.map((c) => <li>{c.label}<span>{c.holder}</span></li>)}</ul>
+          <p class="eyebrow">Competence &amp; cover</p>
+          <ul>{confirmedCredentials.map((c) => <li>{c.label}<span>{c.detail}</span></li>)}</ul>
         </div>
       )}
     </div>

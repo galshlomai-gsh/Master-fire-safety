@@ -1,46 +1,164 @@
 ---
-/** Privacy, terms and cookies. DRAFTS: need the trading entity and a solicitor/DPO review before launch. */
+/**
+ * Privacy policy, website terms and cookie policy, written for the site as built:
+ * quote form → Vercel function → Resend email; GTM (GA4 + Google Ads, enhanced conversions)
+ * behind Google Consent Mode v2. Philip reviews before publication; pages stay noindex until
+ * `legalApproved` is set.
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import { site, emailDisplay } from '../config/site';
+import { site } from '../config/site';
 
 export function getStaticPaths() {
   return [{ params: { legal: 'privacy' } }, { params: { legal: 'terms' } }, { params: { legal: 'cookies' } }];
 }
 const { legal } = Astro.params as { legal: 'privacy' | 'terms' | 'cookies' };
-const entity = site.legal.companyName ?? `${site.brand.name} (trading entity to be confirmed)`;
-const contact = site.email ?? emailDisplay;
+const legalApproved = false;
+const updated = '19 October 2026';
+const L = site.legal;
+const brand = site.brand.name;
+const who = `${brand} is a trading name of ${L.companyName}, a company registered in ${L.registeredIn} (company number ${L.companyNumber}), registered office ${L.registeredAddress}`;
+const contact = `${site.email ? `<a href="mailto:${site.email}">${site.email}</a> or ` : ''}${site.phone.display}`;
+
 const pages = {
   privacy: {
-    title: 'Privacy notice',
+    title: 'Privacy policy',
+    description: `How ${brand} collects and uses personal information from enquiries, calls and this website.`,
     body: `
-<p><strong>Draft. To be confirmed before launch.</strong></p>
-<h2>Who we are</h2><p>${entity} is the data controller for personal information collected through this website. Contact: ${site.phone.display}, ${contact}.</p>
-<h2>What we collect</h2><p>When you request a quote we collect your name, phone number, email address, the property postcode, the property type, the service you need and any details you add. We also collect basic usage data through analytics cookies if you accept them (see our <a href="/cookies">cookie notice</a>).</p>
-<h2>Why we use it</h2><p>To respond to your enquiry, prepare a quote and, if you go ahead, deliver the service (lawful basis: steps prior to entering a contract, and legitimate interests). We do not sell your data.</p>
-<h2>Who we share it with</h2><p>Our email delivery provider and website host, which process data on our behalf. We may share information where the law requires it.</p>
-<h2>How long we keep it</h2><p>Enquiries that do not become work are deleted after 24 months. Records relating to work carried out are kept for as long as we need them for legal and insurance purposes.</p>
-<h2>Your rights</h2><p>You can ask for a copy of your data, ask us to correct or delete it, or object to how we use it. You can complain to the Information Commissioner’s Office (ico.org.uk).</p>`,
+<h2>Who we are</h2>
+<p>${who}. ${L.companyName} is the data controller for the personal information described in this policy. In this policy, “we”, “us” and “our” mean ${L.companyName} trading as ${brand}.</p>
+<p>Questions about this policy or your information: ${contact}.</p>
+
+<h2>Information we collect</h2>
+<h3>When you request a quote</h3>
+<p>The quote form asks for your name, phone number, email address, the property postcode, the property type, the service you need and any extra details you choose to add. We also record the page you sent the form from. A hidden field is used to filter out automated spam.</p>
+<h3>When you call or email us</h3>
+<p>We keep the details you give us so that we can quote, book and carry out the work: usually your name, contact details, the property address and information about the building.</p>
+<h3>When you use the website</h3>
+<p>Our hosting provider records standard technical information (such as IP address, browser type and the pages requested) to keep the site secure and working. If you accept analytics and advertising cookies, we also collect information about how you use the site and whether you arrived from one of our adverts. See our <a href="/cookies">cookie policy</a>.</p>
+
+<h2>How and why we use it</h2>
+<table>
+<thead><tr><th>Purpose</th><th>Lawful basis</th></tr></thead>
+<tbody>
+<tr><td>Replying to your enquiry and preparing a quote</td><td>Steps taken at your request before entering into a contract, and our legitimate interest in responding to enquiries</td></tr>
+<tr><td>Booking and carrying out assessments, inspections, servicing or remedial works</td><td>Performance of a contract</td></tr>
+<tr><td>Keeping records of work carried out and invoices</td><td>Legal obligation (tax and accounting) and our legitimate interest in defending claims</td></tr>
+<tr><td>Measuring how the website is used and which adverts lead to enquiries</td><td>Your consent, given through the cookie banner</td></tr>
+<tr><td>Measuring advert conversions with Google Ads, including enhanced conversions (see below)</td><td>Your consent, given through the cookie banner</td></tr>
+<tr><td>Keeping the website secure and preventing spam</td><td>Our legitimate interest in running a secure website</td></tr>
+</tbody>
+</table>
+<p>We do not sell your information, and we do not use it for unrelated marketing.</p>
+
+<h2>Enhanced conversions</h2>
+<p>If you have accepted advertising cookies and you submit the quote form, the email address and phone number you entered may be converted into a one-way hashed code in your browser and shared with Google, so that Google Ads can tell us which adverts led to enquiries without us seeing your Google account. Google matches the hashed code against signed-in Google accounts and does not receive your details in readable form. If you reject advertising cookies, this does not happen.</p>
+
+<h2>Who we share it with</h2>
+<p>We use these service providers, who process information on our behalf and only on our instructions:</p>
+<ul>
+<li><strong>Vercel Inc.</strong>: website hosting and the server that receives the quote form.</li>
+<li><strong>Resend</strong>: delivering quote form submissions to our inbox by email.</li>
+<li><strong>Our email provider</strong>: storing the emails we send and receive.</li>
+<li><strong>Google</strong> (Google Tag Manager, Google Analytics 4 and Google Ads): website analytics and advertising measurement, only if you give consent.</li>
+</ul>
+<p>Where we need to, we may also share information with the fire risk assessors, engineers and contractors in our network who carry out the work you have booked, with our professional advisers and insurers, or where the law requires it.</p>
+
+<h2>Transfers outside the UK</h2>
+<p>Some of these providers process data in the United States or elsewhere outside the UK. Where they do, the transfer is covered by a recognised safeguard, such as the UK Extension to the EU–US Data Privacy Framework or the UK International Data Transfer Addendum to the standard contractual clauses.</p>
+
+<h2>How long we keep it</h2>
+<ul>
+<li>Enquiries that do not lead to work: deleted within 24 months of our last contact.</li>
+<li>Records of work carried out, reports and invoices: kept for 6 years after the work, so that we can meet tax obligations and deal with any claims.</li>
+<li>Google Analytics data: kept for 14 months.</li>
+</ul>
+
+<h2>Your rights</h2>
+<p>You have the right to ask for a copy of your information, to have it corrected or deleted, to restrict or object to how we use it, and to ask for it to be transferred to someone else. Where we rely on consent, you can withdraw it at any time; for cookies, use the cookie settings link in the footer. To exercise any of these rights, contact us at ${contact}.</p>
+<p>If you are unhappy with how we have handled your information, you can complain to the Information Commissioner’s Office: <a href="https://ico.org.uk/make-a-complaint/" rel="noopener" target="_blank">ico.org.uk/make-a-complaint</a>, 0303 123 1113. We would appreciate the chance to deal with your concern first.</p>
+
+<h2>Changes to this policy</h2>
+<p>We will update this page if the way we use information changes. Last updated: ${updated}.</p>`,
   },
   terms: {
-    title: 'Website terms',
+    title: 'Website terms of use',
+    description: `The terms that apply when you use the ${brand} website.`,
     body: `
-<p><strong>Draft. To be confirmed before launch.</strong></p>
-<p>This website is operated by ${entity}. The information on it, including our guides, is general information and not legal advice. Legislation and guidance change; check the current position for your premises or ask us.</p>
-<p>Quotes are confirmed in writing and set out the scope of the work. Our terms of business for assessments and servicing are provided with each quote.</p>
-<p>We link to official sources such as legislation.gov.uk and GOV.UK. We are not responsible for the content of external websites.</p>`,
+<h2>About us</h2>
+<p>This website is operated by ${L.companyName}. ${who}. Contact: ${contact}.</p>
+
+<h2>Using this website</h2>
+<p>By using this website you accept these terms. If you do not accept them, please do not use the site. We may update these terms from time to time; the version on this page applies when you use the site.</p>
+
+<h2>Information on this site</h2>
+<p>Our guides and pages give general information about fire safety law and practice in England. They are not legal advice and do not replace a fire risk assessment of your own premises. Legislation, guidance and council licensing schemes change, and while we try to keep the site accurate and up to date, we do not guarantee that it is complete or current. Check the current position for your premises, or ask us.</p>
+
+<h2>Quotes and services</h2>
+<p>Submitting the quote form or calling us does not create a contract. We confirm the scope and price of any work in writing, and the services we provide are governed by the terms we send with the quote. Remedial works are quoted separately from assessments.</p>
+
+<h2>Intellectual property</h2>
+<p>The content, design and illustrations on this website belong to us or our licensors. You may view and print pages for your own use, but you may not copy, republish or use them commercially without our written permission.</p>
+
+<h2>Links to other websites</h2>
+<p>We link to official sources such as legislation.gov.uk, GOV.UK, council websites and fire and rescue services. We are not responsible for the content of websites we do not control.</p>
+
+<h2>Our liability</h2>
+<p>We provide this website free of charge and, to the extent the law allows, we are not liable for any loss arising from use of, or reliance on, the information on it. Nothing in these terms limits or excludes liability that cannot be limited or excluded by law, including liability for death or personal injury caused by negligence, or for fraud.</p>
+
+<h2>Law</h2>
+<p>These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction over any dispute about them.</p>
+<p>Last updated: ${updated}.</p>`,
   },
   cookies: {
-    title: 'Cookie notice',
+    title: 'Cookie policy',
+    description: `Which cookies and similar technologies the ${brand} website uses, and how to change your choice.`,
     body: `
-<p><strong>Draft. To be confirmed before launch.</strong></p>
-<p>We use a small number of cookies. Strictly necessary cookies keep the site working. If you consent, analytics and advertising cookies (Google Analytics and Google Ads, loaded through Google Tag Manager) help us understand which pages and adverts lead to enquiries.</p>
-<p>Consent is managed through Google Consent Mode: analytics and advertising storage stay denied until you accept. You can change your choice at any time by clearing cookies for this site.</p>`,
+<p>Cookies are small files that a website stores on your device. We also use your browser’s local storage, which works in a similar way. This policy explains what we use and why. It applies alongside our <a href="/privacy">privacy policy</a>.</p>
+
+<h2>Your choice</h2>
+<p>When you first visit, a banner asks whether you accept analytics and advertising cookies. Until you accept, they are not set. We use Google Consent Mode: while consent is refused, Google’s tags may still send basic, cookieless signals (for example, that a page was viewed) without storing or reading identifiers on your device. You can change your choice at any time with the <a href="#" data-consent-reset>cookie settings</a> link, which also appears in the footer.</p>
+
+<h2>Strictly necessary</h2>
+<table>
+<thead><tr><th>Name</th><th>Type</th><th>Purpose</th><th>Kept for</th></tr></thead>
+<tbody>
+<tr><td>tt_consent</td><td>Local storage</td><td>Remembers whether you accepted or rejected analytics and advertising cookies</td><td>Until you clear it or change your choice</td></tr>
+</tbody>
+</table>
+
+<h2>Analytics (only with your consent)</h2>
+<table>
+<thead><tr><th>Name</th><th>Provider</th><th>Purpose</th><th>Kept for</th></tr></thead>
+<tbody>
+<tr><td>_ga</td><td>Google Analytics</td><td>Distinguishes visitors so we can count visits and see which pages are used</td><td>2 years</td></tr>
+<tr><td>_ga_&lt;ID&gt;</td><td>Google Analytics</td><td>Keeps track of the current visit</td><td>2 years</td></tr>
+</tbody>
+</table>
+
+<h2>Advertising (only with your consent)</h2>
+<table>
+<thead><tr><th>Name</th><th>Provider</th><th>Purpose</th><th>Kept for</th></tr></thead>
+<tbody>
+<tr><td>_gcl_au</td><td>Google Ads</td><td>Links enquiries and calls from the website to the Google advert that led to them</td><td>90 days</td></tr>
+<tr><td>_gcl_aw, _gcl_dc</td><td>Google Ads</td><td>Store the advert click that brought you to the site</td><td>90 days</td></tr>
+</tbody>
+</table>
+<p>These tags are loaded through Google Tag Manager, which does not itself set cookies. Google may also set cookies on its own domains (such as google.com) if you are signed in to a Google account; those are covered by Google’s own policy: <a href="https://policies.google.com/technologies/cookies" rel="noopener" target="_blank">policies.google.com/technologies/cookies</a>.</p>
+
+<h2>Managing cookies in your browser</h2>
+<p>You can also block or delete cookies in your browser settings. Blocking strictly necessary storage may mean the banner reappears on each visit.</p>
+<p>Last updated: ${updated}.</p>`,
   },
 } as const;
 const p = pages[legal];
 ---
-<BaseLayout title={`${p.title} | ${site.brand.name}`} description={`${p.title} for ${site.brand.name}: how we handle enquiries, personal data and cookies on this website. Draft pending confirmation.`} crumbs={[{ name: p.title, href: `/${legal}` }]} noindex>
+<BaseLayout title={`${p.title} | ${brand}`} description={p.description} crumbs={[{ name: p.title, href: `/${legal}` }]} noindex={!legalApproved}>
   <Hero variant="text-only" title={p.title} crumbs={[{ name: p.title, href: `/${legal}` }]} cta={null} showCall={false} />
-  <section class="sec-int"><div class="wrap"><div class="prose" set:html={p.body} /></div></section>
+  <section class="sec-int">
+    <div class="wrap">
+      {!legalApproved && <p class="note" style="margin-bottom:28px">Draft for review before publication.</p>}
+      <div class="prose" set:html={p.body} />
+    </div>
+  </section>
 </BaseLayout>

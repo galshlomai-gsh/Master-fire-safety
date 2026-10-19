@@ -30,7 +30,7 @@ export const sectors: Sector[] = [
     ],
     contextTitle: 'What the law expects of a block’s Responsible Person',
     context: [
-      'In England and Wales the common parts of a block of flats are covered by the Regulatory Reform (Fire Safety) Order 2005. Since the Fire Safety Act 2021, that explicitly includes the building’s structure, external walls (including windows and balconies) and the flat entrance doors that open onto the common parts.',
+      'In England the common parts of a block of flats are covered by the Regulatory Reform (Fire Safety) Order 2005. Since the Fire Safety Act 2021, that explicitly includes the building’s structure, external walls (including windows and balconies) and the flat entrance doors that open onto the common parts.',
       'In England, the Fire Safety (England) Regulations 2022 add duties that scale with height: fire-safety instructions and fire door information for residents in every block with two or more flats; quarterly checks of communal fire doors and annual best-endeavours checks of flat entrance doors in blocks over 11 metres; and further duties for high-rise buildings. Our assessment records whether those arrangements are in place.',
     ],
     services: ['fra', 'doors', 'lighting', 'aov', 'alarms'],

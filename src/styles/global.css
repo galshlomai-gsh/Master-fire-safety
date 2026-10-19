@@ -286,7 +286,10 @@ button, input, select, textarea { font: inherit; }
   color: #fff; background-color: var(--red); position: relative; overflow: hidden; padding: 88px 0;
 }
 .sec-red .bgimg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 22% 74%; }
-.sec-red::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgba(150,20,27,.26) 0%, rgba(150,20,27,.14) 34%, rgba(150,20,27,0) 56%), linear-gradient(rgba(201,35,44,.66), rgba(201,35,44,.66)); z-index: 1; }
+.sec-red::before { content: ""; position: absolute; inset: 0; z-index: 1; background:
+  radial-gradient(1200px 520px at 18% 30%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
+  linear-gradient(to right, rgba(150,20,27,.30) 0%, rgba(150,20,27,0) 60%),
+  repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 1px, transparent 1px 14px); }
 .sec-red > .wrap { position: relative; z-index: 2; }
 .quote-grid { display: grid; grid-template-columns: 47% 53%; gap: 64px; align-items: center; }
 .sec-red .qh { color: #fff; font-size: 44px; line-height: 1.06; font-weight: 800; text-transform: uppercase; letter-spacing: .01em; text-shadow: 0 1px 3px rgba(110,10,16,.52); }
@@ -373,7 +376,8 @@ button, input, select, textarea { font: inherit; }
 .ftr .blurb { margin-top: 20px; font-size: 14.5px; color: #9AA2A8; max-width: 30ch; line-height: 1.6; }
 .ftr .pending { color: #8C9298; }
 .ftr-bot { margin-top: 52px; border-top: 1px solid var(--line-dk); padding: 20px 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 13.5px; color: var(--meta); }
-.ftr-bot .lnks { display: flex; gap: 22px; }
+.ftr-bot .legalline { font-size: 12.5px; line-height: 1.55; max-width: 78ch; }
+.ftr-bot .lnks { display: flex; gap: 22px; flex: none; }
 .ftr-bot .lnks a { font-size: 15px; }
 
 /* ── Mobile bottom bar ── */

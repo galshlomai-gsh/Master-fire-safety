@@ -11,9 +11,9 @@ const b = site.brand;
 <a href={href} class:list={['logo', { rev: reversed }]} aria-label={`${b.name}: home`}>
   <span class="mark" aria-hidden="true">{b.wordmark}</span>
   {b.fireMarkApproved ? (
-    <svg class="firemark" viewBox="0 0 32 32" aria-hidden="true">
-      <rect width="32" height="32" fill="#C9232C" />
-      <path d="M16 5 l5.5 7.5 v9 L16 27 l-5.5-5.5 v-6 l3-3.5 v4 l2.5-3.5 z" fill="#fff" />
+    <svg class="firemark" viewBox="0 0 100 100" aria-hidden="true">
+      <rect width="100" height="100" fill="#C9232C" />
+      <path d="M50 86 31 67V47l8-10 4-7 3 17 12-33 12 22v30z" fill="#fff" />
     </svg>
   ) : (
     <span class="rule" aria-hidden="true"></span>

@@ -27,7 +27,7 @@ const crumbs = [{ name: 'Services', href: '/services' }, { name: s.name, href: s
   crumbs={crumbs}
   schema={[serviceSchema(Astro.site!, { name: s.name, serviceType: s.schemaServiceType, description: s.metaDescription, path: serviceUrl(s) })]}
 >
-  <Hero title={s.h1} sub={s.heroSub} image={s.image} crumbs={crumbs} />
+  <Hero title={s.h1} sub={s.heroSub} image={s.image} art={s.key} crumbs={crumbs} />
 
   <Grid3 introTitle={s.introTitle} intro={s.intro} title={s.gridTitle} items={s.grid} note={s.gridNote} />
 
@@ -45,5 +45,5 @@ const crumbs = [{ name: 'Services', href: '/services' }, { name: s.name, href: s
 
   <GuideCards slugs={s.relatedGuides} title="Guides for responsible persons" />
 
-  <AreasList title={`${s.name} across the UK`} text="We work across England, Wales and Scotland. Choose your area for local licensing and fire-safety information." warm />
+  <AreasList title={`${s.name} in London & the Home Counties`} text="Choose your area for local licensing and fire-safety information." warm />
 </BaseLayout>

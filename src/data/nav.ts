@@ -18,18 +18,21 @@ export const navSectors = [
   { slug: 'industrial-warehousing', name: 'Industrial & Warehousing' },
 ].map((s) => ({ ...s, href: `/sectors/${s.slug}` }));
 
-export const navAreas = [
+/** Confirmed coverage (Philip, Oct 2026): London first, then the Home Counties he can reach. */
+export const navAreas: { slug: string; name: string; parent?: string; href: string }[] = [
   { slug: 'greater-london', name: 'Greater London' },
+  { slug: 'barnet', name: 'Barnet', parent: 'greater-london' },
+  { slug: 'brent', name: 'Brent', parent: 'greater-london' },
+  { slug: 'camden', name: 'Camden', parent: 'greater-london' },
+  { slug: 'harrow', name: 'Harrow', parent: 'greater-london' },
+  { slug: 'haringey', name: 'Haringey', parent: 'greater-london' },
+  { slug: 'islington', name: 'Islington', parent: 'greater-london' },
+  { slug: 'hertfordshire', name: 'Hertfordshire' },
+  { slug: 'essex', name: 'Essex' },
   { slug: 'kent', name: 'Kent' },
   { slug: 'surrey', name: 'Surrey' },
-  { slug: 'essex', name: 'Essex' },
-  { slug: 'hertfordshire', name: 'Hertfordshire' },
   { slug: 'berkshire', name: 'Berkshire' },
-  { slug: 'hampshire', name: 'Hampshire' },
-  { slug: 'west-midlands', name: 'West Midlands' },
-  { slug: 'greater-manchester', name: 'Greater Manchester' },
-  { slug: 'west-yorkshire', name: 'West Yorkshire' },
-  { slug: 'south-wales', name: 'South Wales' },
+  { slug: 'buckinghamshire', name: 'Buckinghamshire' },
 ].map((a) => ({ ...a, href: `/areas/${a.slug}` }));
 
 export const propertyTypes = [

@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
-import { images, type ImageKey } from '../config/images';
+import { images, legacyImageKey, type ImageKey } from '../config/images';
+import PlanArt, { type Art } from './PlanArt.astro';
 import { site } from '../config/site';
 import type { Crumb } from '../lib/schema';
 
@@ -8,14 +9,17 @@ interface Props {
   title: string;
   sub?: string;
   variant?: 'home' | 'int' | 'text-only';
-  image?: ImageKey | null;
+  image?: string | null;
   imageLabel?: string;
+  art?: Art;
   crumbs?: Crumb[]; // excluding Home; last item = current page
   cta?: { label: string; href: string } | null;
   showCall?: boolean;
 }
-const { title, sub, variant = 'int', image = null, imageLabel = 'Photo to come', crumbs = [], cta = { label: 'Get a Free Quote', href: '#quote' }, showCall = true } = Astro.props;
-const img = image ? images[image] : null;
+const { title, sub, variant = 'int', image = null, imageLabel, art, crumbs = [], cta = { label: 'Get a Free Quote', href: '#quote' }, showCall = true } = Astro.props;
+const key: ImageKey | null = image ? ((image in images ? image : legacyImageKey[image]) as ImageKey) ?? null : null;
+const img = key ? images[key] : null;
+const artVariant: Art = art ?? img?.art ?? 'fra';
 ---
 <section class:list={['hero', { int: variant !== 'home', 'text-only': variant === 'text-only' }]}>
   <div class="hero-grid">
@@ -58,7 +62,7 @@ const img = image ? images[image] : null;
             style={`object-position:${img.position ?? '50% 50%'}`}
           />
         ) : (
-          <div class="ph" role="img" aria-label={imageLabel}><span>{imageLabel}</span></div>
+          <PlanArt variant={artVariant} label={imageLabel} />
         )}
       </div>
     )}
