@@ -2,7 +2,7 @@
   {
     "name": "sitemap lists pages",
     "pass": true,
-    "detail": "43 URLs"
+    "detail": "42 URLs"
   },
   {
     "name": "page /",
@@ -21,11 +21,6 @@
   },
   {
     "name": "page /areas/berkshire",
-    "pass": true,
-    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
-  },
-  {
-    "name": "page /areas/central-scotland",
     "pass": true,
     "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
   },
@@ -232,7 +227,7 @@
   {
     "name": "all internal links resolve",
     "pass": true,
-    "detail": "43 unique links"
+    "detail": "42 unique links"
   },
   {
     "name": "home schema: ProfessionalService + FAQPage",

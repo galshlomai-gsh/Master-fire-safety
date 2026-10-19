@@ -650,7 +650,7 @@ export const areas: Area[] = [
       { label: 'Bradford Council: do I need an HMO licence?', url: 'https://www.bradford.gov.uk/housing/houses-in-multiple-occupation/do-i-need-a-hmo-licence/' },
       { label: 'Kirklees Council: houses in multiple occupation', url: 'https://www.kirklees.gov.uk/beta/housing/houses-in-multiple-occupation.aspx' },
     ],
-    nearby: ['greater-manchester', 'west-midlands', 'central-scotland'],
+    nearby: ['greater-manchester', 'west-midlands'],
   },
 
   // ───────────────────────────── South Wales ─────────────────────────────
@@ -721,72 +721,4 @@ export const areas: Area[] = [
     nearby: ['west-midlands', 'berkshire'],
   },
 
-  // ───────────────────────────── Central Scotland ─────────────────────────────
-  {
-    slug: 'central-scotland',
-    name: 'Central Scotland',
-    nation: 'Scotland',
-    metaTitle: 'Fire Risk Assessments in Central Scotland | T&T Fire Safety',
-    metaDescription:
-      'Fire safety risk assessments in Glasgow, Edinburgh, Stirling and Central Scotland for HMOs, tenements and businesses under Scottish law. Call 020 8066 2499.',
-    heroSub:
-      'Fire safety risk assessments and servicing in Glasgow, Edinburgh, Stirling, Falkirk, Livingston, Paisley, Motherwell and Hamilton.',
-    intro: [
-      'T&T Fire Safety carries out fire safety risk assessments across Central Scotland, from Glasgow and Renfrewshire in the west to Edinburgh and West Lothian in the east, for HMO landlords, letting agents, factors, short-term let hosts and businesses. The council areas we cover are listed below.',
-      'Scotland has its own fire safety law and a single national fire service. The Scottish Fire and Rescue Service carries out fire safety audits and enforcement across the whole country, and we work to the Fire (Scotland) Act 2005, not the Fire Safety Order that applies in England and Wales.',
-    ],
-    places: [
-      'Glasgow', 'Edinburgh', 'Stirling', 'Falkirk', 'North Lanarkshire', 'South Lanarkshire', 'West Lothian',
-      'Clackmannanshire', 'Renfrewshire', 'East Dunbartonshire',
-    ],
-    housingTitle: 'Tenements, flatshares and multi-storey blocks',
-    housing: [
-      'Tenements define much of the housing here. Across Scotland they made up about 24% of all dwellings in 2019, and Glasgow alone has over 77,000 pre-1919 homes, about a quarter of its stock. In one council sample survey a third of tenement buildings had no factor, which often means nobody is clearly managing the common close and stair. Scottish Government analysis puts the chance of a fire death per incident at 2.1% in tenements against 3.5% in purpose-built low-rise flats, but in a tenement the shared stair is still the only way out for every flat above the fire.',
-      'Edinburgh is a city of flats: 56% of residents live in one, against 28% across Scotland, and 23% of households rent privately. Glasgow built more than 230 multi-storey blocks between 1955 and 1975; some, such as the Wyndford towers in Maryhill, are being demolished. Under the Housing (Cladding Remediation) (Scotland) Act 2024, flatted buildings of 11 metres and over with cladding, built or refurbished between June 1992 and June 2022, can be assessed and entered on the Cladding Assurance Register.',
-    ],
-    licensingTitle: 'HMO licensing in Scotland',
-    licensing: [
-      'Scotland does not have additional or selective licensing. Instead, under Part 5 of the Housing (Scotland) Act 2006, every HMO needs a licence from the local council: any property that is the only or main home of three or more people from three or more families who share a toilet, bathroom or kitchen. That threshold is far lower than England’s mandatory test, so an ordinary three-person flatshare usually counts. Operating an HMO without a licence can lead to a fine of up to £50,000.',
-      `The numbers vary widely. At 31 March 2025 Scotland had 15,449 HMO licences in force, and the City of Edinburgh holds 44% of them. In 2024 Edinburgh had 6,325, Glasgow 3,364 and Stirling 763, while Falkirk had just 28, most held by the council, NHS Forth Valley or housing associations. Glasgow City Council is tightening its licence conditions, and ${ext('https://consultationhub.edinburgh.gov.uk/sfc/house-in-multiple-occupation-conditions', 'the City of Edinburgh Council')} has consulted on its own. Each council sets and updates its own conditions and fees, so check with the council that will issue your licence.`,
-    ],
-    lawTitle: 'The Fire (Scotland) Act 2005 and duty holders',
-    law: [
-      'The Regulatory Reform (Fire Safety) Order 2005 does not apply in Scotland. Duties come from Part 3 of the Fire (Scotland) Act 2005 and the Fire Safety (Scotland) Regulations 2006. Instead of a “responsible person”, Scottish law places duties on the “duty holder”: the employer, or anyone with control of relevant premises, who must carry out a fire safety risk assessment and keep it under review. Licensed HMOs, workplaces, care homes and short-term lets are all relevant premises. A written record is required where there are five or more employees, where the premises are licensed or registered, or where an alterations notice requires it.',
-      'The common parts of ordinary blocks of flats and tenements (the close, stair and landings) are excluded from Part 3 by section 78(4) of the Act, so a fire safety risk assessment of them is not a legal requirement. We still recommend one, as Scottish Government guidance does for high-rise domestic blocks, because it gives owners and factors a clear list of what needs fixing. SFRS enforces fire safety independently of council licensing.',
-    ],
-    enforcer: { name: 'Scottish Fire and Rescue Service', url: 'https://www.firescotland.gov.uk/' },
-    faqs: [
-      {
-        q: 'Is a fire risk assessment in Scotland the same as in England?',
-        a: 'No. Scotland uses the Fire (Scotland) Act 2005 and the Fire Safety (Scotland) Regulations 2006, and the duty is called a fire safety risk assessment. It is enforced by the Scottish Fire and Rescue Service, and unlike in England and Wales a written record is only required in certain cases.',
-      },
-      {
-        q: 'Which fire service enforces fire safety in Glasgow?',
-        a: 'The Scottish Fire and Rescue Service, a single national service since 2013. It enforces mainly through fire safety audits and can serve enforcement, prohibition and alterations notices, with appeals to the sheriff.',
-      },
-      {
-        q: 'How many people make an HMO in Edinburgh?',
-        a: 'Three or more people from three or more families who share a toilet, bathroom or kitchen and live there as their only or main home. The test is the same across Scotland, so many Edinburgh and Glasgow flatshares need a licence.',
-      },
-      {
-        q: 'What alarms must a Glasgow tenement flat have?',
-        a: 'Since February 2022 every Scottish home needs interlinked smoke alarms in the living room and every hallway and landing, a heat alarm in the kitchen, and a carbon monoxide detector where there is a fixed carbon-fuelled appliance or flue. See our <a href="/services/fire-alarm-servicing-installation">fire alarm servicing</a> page.',
-      },
-    ],
-    sources: [
-      { label: 'Fire (Scotland) Act 2005, Part 3 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/asp/2005/5/part/3' },
-      { label: 'Fire Safety (Scotland) Regulations 2006 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/ssi/2006/456' },
-      { label: 'Scottish Government: practical fire safety guidance for existing high-rise domestic buildings', url: 'https://www.gov.scot/publications/practical-fire-safety-guidance-existing-high-rise-domestic-buildings-updated-march-2021/pages/8/' },
-      { label: 'Housing (Scotland) Act 2006, s.125', url: 'https://www.legislation.gov.uk/asp/2006/1/section/125' },
-      { label: 'mygov.scot: HMO licence', url: 'https://www.mygov.scot/landlord-hmo-licence' },
-      { label: 'Scottish Government: housing statistics 2025, HMOs', url: 'https://www.gov.scot/publications/housing-statistics-2025-key-trends-summary/pages/houses-in-multiple-occupation-hmo/' },
-      { label: 'Falkirk Council: report on houses in multiple occupation', url: 'https://www.falkirk.gov.uk/news/council/report-to-executive-on-houses-in-multiple-occupation-hmos' },
-      { label: 'Glasgow City Council: plan to safeguard pre-1919 tenements', url: 'https://www.glasgow.gov.uk/article/2877/Plan-to-safeguard-pre-1919-tenements-in-Glasgow' },
-      { label: 'City of Edinburgh Council: Census 2022', url: 'https://www.edinburgh.gov.uk/strategy-performance-research/census-2022/4' },
-      { label: 'Scottish Government: fire fatalities beyond the dwelling of fire origin', url: 'https://www.gov.scot/publications/fire-fatalities-beyond-dwelling-fire-origin-scotland/pages/7/' },
-      { label: 'Scottish Government: tolerable standard guidance on fire and CO detection', url: 'https://www.gov.scot/publications/tolerable-standard-guidance-satisfactory-fire-carbon-monoxide-detection/' },
-      { label: 'Scottish Government: cladding remediation', url: 'https://www.gov.scot/policies/building-standards/cladding/' },
-    ],
-    nearby: ['west-yorkshire', 'greater-manchester'],
-  },
 ];

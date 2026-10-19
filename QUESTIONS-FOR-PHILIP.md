@@ -38,12 +38,11 @@ Everything below is a slot in the site config (`src/config/site.ts`, `src/config
 17. Access to your **GTM container (Certify Services Ltd)**, and the GA4 and Google Ads accounts, so we can wire `generate_lead` and `phone_click` as conversions.
 
 ## Areas
-18. Which of the 12 regions can you **actually cover today**, and where do you want the most work? The proposal suggests starting with priority London boroughs (Harrow, Barnet, Brent and so on) as separate pages.
-19. Is **Central Scotland** realistic? Scotland uses different law (the Fire (Scotland) Act 2005), and the copy reflects that. If you won't travel there, we should drop it.
+18. Which of the 11 regions can you **actually cover today**, and where do you want the most work? The proposal suggests starting with priority London boroughs (Harrow, Barnet, Brent and so on) as separate pages.
 
 ## Reviews
-20. **Review source**: is there a Google Business Profile for T&T (or Certify) with reviews we can show? If not, should we set one up and start asking every completed job for a review? The reviews section stays hidden until real reviews exist.
-21. Any **testimonials or case studies** from Certify clients that relate to fire risk work and that the client agrees can be published?
+19. **Review source**: is there a Google Business Profile for T&T (or Certify) with reviews we can show? If not, should we set one up and start asking every completed job for a review? The reviews section stays hidden until real reviews exist.
+20. Any **testimonials or case studies** from Certify clients that relate to fire risk work and that the client agrees can be published?
 
 ## Legal sign-off
-22. The **privacy, terms and cookie** pages are drafts. Who signs them off? The data controller name depends on question 1.
+21. The **privacy, terms and cookie** pages are drafts. Who signs them off? The data controller name depends on question 1.

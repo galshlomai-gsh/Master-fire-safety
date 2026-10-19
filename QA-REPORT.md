@@ -98,7 +98,7 @@ Full-page screenshots of all 44 pages at 1440 and 390 are in `qa/report/screens/
 |---|---|---|---|---|
 | Home | 100 | 100 | 100 | 100* |
 | /quote | 99 | 100 | 100 | 100* |
-| /areas/central-scotland | 99 | 100 | 100 | 100* |
+| /areas/central-scotland (since removed) | 99 | 100 | 100 | 100* |
 | /services/fire-risk-assessments | 99 | 100 | 100 | 100* |
 | /sectors/blocks-of-flats | 100 | 100 | 100 | 100* |
 | /guides/fire-risk-assessment-cost | 99 | 100 | 100 | 100* |

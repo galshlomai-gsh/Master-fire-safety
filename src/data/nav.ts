@@ -30,7 +30,6 @@ export const navAreas = [
   { slug: 'greater-manchester', name: 'Greater Manchester' },
   { slug: 'west-yorkshire', name: 'West Yorkshire' },
   { slug: 'south-wales', name: 'South Wales' },
-  { slug: 'central-scotland', name: 'Central Scotland' },
 ].map((a) => ({ ...a, href: `/areas/${a.slug}` }));
 
 export const propertyTypes = [

@@ -76,7 +76,7 @@ ${CTA('Not sure if your building is covered?', 'Tell us the address, what it is 
   <li><strong>Still recommended:</strong> Scottish Government guidance recommends an assessment for high-rise domestic blocks as good practice, and whoever controls the common areas must keep firefighter facilities in efficient working order${c(13)}.</li>
   <li><strong>Records:</strong> a written record is only required where there are five or more employees, the premises need a licence or registration, or an alterations notice requires it${c(14)}.</li>
 </ul>
-<p>Short-term let hosts in Scotland need a licence, and Scottish Fire and Rescue Service guidance explains the Part 3 duties, including fire risk assessment, that can apply to them${c(15)}. We cover Scotland from our <a href="/areas/central-scotland">Central Scotland</a> service area.</p>
+<p>Short-term let hosts in Scotland need a licence, and Scottish Fire and Rescue Service guidance explains the Part 3 duties, including fire risk assessment, that can apply to them${c(15)}.</p>
 
 <h2>Wales: the law is changing</h2>
 <p>For now the Fire Safety Order, as amended, applies in Wales, including the October 2023 recording duty${c(10)}. The Building Safety (Wales) Act 2026 received Royal Assent on 27 April 2026. Once its fire safety provisions are brought into force, multi-occupied residential buildings and many HMOs will move to a new regime run by “accountable persons”${c(16)}. Until then, the Order still applies to their common parts. We also cover South Wales.</p>
@@ -368,7 +368,7 @@ ${CTA('Is your assessment more than a year old, or has something changed?', 'Sen
 <p>If you need the door checks carried out, see our <a href="/services/fire-door-inspections">fire door inspection service</a>.</p>
 
 <h2>Scotland</h2>
-<p>In Scotland, regulation 3 of the Fire Safety (Scotland) Regulations 2006 uses very similar wording: the assessment must be reviewed regularly to keep it up to date, and particularly where it may no longer be valid or there has been a significant change${c(9)}. Again, no fixed interval is set. The main difference is recording: in Scotland a written record is only required where there are five or more employees, the premises need a licence or registration, or an alterations notice requires one${c(10)}. Even where it is not required, keeping a dated record of each review is sensible. See our <a href="/areas/central-scotland">Central Scotland</a> page.</p>
+<p>In Scotland, regulation 3 of the Fire Safety (Scotland) Regulations 2006 uses very similar wording: the assessment must be reviewed regularly to keep it up to date, and particularly where it may no longer be valid or there has been a significant change${c(9)}. Again, no fixed interval is set. The main difference is recording: in Scotland a written record is only required where there are five or more employees, the premises need a licence or registration, or an alterations notice requires one${c(10)}. Even where it is not required, keeping a dated record of each review is sensible.</p>
 
 <h2>What a good review includes</h2>
 <ul>
@@ -573,7 +573,7 @@ ${CTA('Got a letter with a deadline?', 'Send us a copy and the property address.
 <p>Our <a href="/services/fire-risk-assessments">fire risk assessment service</a> produces a written report with a prioritised action plan you can send back to the council, fire service or insurer.</p>
 
 <h2>Scotland</h2>
-<p>In Scotland the Scottish Fire and Rescue Service enforces Part 3 of the Fire (Scotland) Act 2005, mainly through fire safety audits${c(13)}. It can serve enforcement notices (giving at least 28 days to comply), prohibition notices and alterations notices. Appeals go to the sheriff within 21 days, and failing to comply with a notice is an offence${c(14)}. HMO licensing is run by councils and applies where the accommodation is the only or main residence of three or more people from three or more families who share facilities${c(15)}. Operating an unlicensed HMO carries a maximum fine of £50,000${c(16)}. See our <a href="/areas/central-scotland">Central Scotland</a> page.</p>
+<p>In Scotland the Scottish Fire and Rescue Service enforces Part 3 of the Fire (Scotland) Act 2005, mainly through fire safety audits${c(13)}. It can serve enforcement notices (giving at least 28 days to comply), prohibition notices and alterations notices. Appeals go to the sheriff within 21 days, and failing to comply with a notice is an offence${c(14)}. HMO licensing is run by councils and applies where the accommodation is the only or main residence of three or more people from three or more families who share facilities${c(15)}. Operating an unlicensed HMO carries a maximum fine of £50,000${c(16)}.</p>
 
 <h2>Wales</h2>
 <p>The Fire Safety Order notices described above apply in Wales. Council housing enforcement also applies, but the June 2026 HHSRS reform described above is for England. Mandatory HMO licensing in Wales covers HMOs of three or more storeys occupied by five or more people in two or more households, and Welsh councils make wide use of additional licensing${c(17)}. The Building Safety (Wales) Act 2026 will change the regime for blocks of flats and many HMOs once it is brought into force${c(18)}. See our <a href="/areas/south-wales">South Wales</a> page.</p>
