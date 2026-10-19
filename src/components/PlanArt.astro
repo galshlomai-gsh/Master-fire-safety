@@ -1,0 +1,109 @@
+---
+/**
+ * Original line illustration used in heroes until Philip's real photographs arrive
+ * (the design's stock photos are unlicensed). A fire plan: compartments, a protected
+ * corridor, escape route to a final exit, and the elements each service deals with.
+ */
+export type Art = 'fra' | 'doors' | 'alarms' | 'lighting' | 'aov' | 'building';
+interface Props { variant?: Art; label?: string }
+const { variant = 'fra', label = 'Illustration of a fire plan with the escape route marked' } = Astro.props;
+const rooms = [
+  [60, 60, 160, 210], [220, 60, 160, 210], [380, 60, 160, 210],
+  [60, 330, 160, 210], [220, 330, 160, 210],
+];
+const doorsTop = [140, 300, 460];
+const doorsBottom = [140, 300];
+const hi = (k: Art) => variant === k;
+---
+<svg class="planart" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label={label}>
+  <defs>
+    <pattern id="pa-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" fill="none" stroke="rgba(255,255,255,.045)" stroke-width="1" />
+    </pattern>
+    <marker id="pa-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#E03A34" />
+    </marker>
+    <radialGradient id="pa-glow"><stop offset="0" stop-color="#FFE9A8" stop-opacity=".55" /><stop offset="1" stop-color="#FFE9A8" stop-opacity="0" /></radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="#22272C" />
+  <rect width="600" height="600" fill="url(#pa-grid)" />
+
+  {variant === 'building' ? (
+    <g>
+      <rect x="150" y="70" width="300" height="490" fill="none" stroke="rgba(255,255,255,.42)" stroke-width="3" />
+      {Array.from({ length: 7 }).map((_, i) => <line x1="150" x2="450" y1={140 + i * 60} y2={140 + i * 60} stroke="rgba(255,255,255,.18)" stroke-width="1.5" />)}
+      {Array.from({ length: 8 }).map((_, f) => [175, 225, 345, 395].map((x) => (
+        <rect x={x} y={88 + f * 60} width="32" height="30" fill="none" stroke="rgba(255,255,255,.26)" stroke-width="1.5" />
+      )))}
+      <rect x="275" y="70" width="50" height="490" fill="rgba(224,58,52,.10)" stroke="#E03A34" stroke-width="2" />
+      {Array.from({ length: 16 }).map((_, i) => <line x1="280" x2="320" y1={90 + i * 29} y2={78 + i * 29} stroke="rgba(224,58,52,.55)" stroke-width="1.2" />)}
+      <rect x="282" y="56" width="36" height="14" fill="#E03A34" />
+      <path d="M300 520V96" stroke="#E03A34" stroke-width="3" stroke-dasharray="10 8" marker-start="url(#pa-arrow)" fill="none" transform="rotate(180 300 308)" />
+      <rect x="282" y="540" width="36" height="20" fill="#2FA36B" />
+      <text x="300" y="554" text-anchor="middle" font-family="Archivo, sans-serif" font-size="9" font-weight="700" fill="#fff">EXIT</text>
+    </g>
+  ) : (
+    <g>
+      {rooms.map(([x, y, w, h]) => <rect x={x} y={y} width={w} height={h} fill="none" stroke="rgba(255,255,255,.34)" stroke-width="2.5" />)}
+      <rect x="380" y="330" width="160" height="210" fill="none" stroke={hi('aov') ? '#E03A34' : 'rgba(255,255,255,.34)'} stroke-width={hi('aov') ? 3 : 2.5} />
+      {Array.from({ length: 9 }).map((_, i) => <line x1="400" x2="520" y1={350 + i * 20} y2={350 + i * 20} stroke={hi('aov') ? 'rgba(224,58,52,.5)' : 'rgba(255,255,255,.16)'} stroke-width="1.5" />)}
+      <text x="460" y="530" text-anchor="middle" font-family="Archivo, sans-serif" font-size="10" font-weight="600" letter-spacing="2" fill="rgba(255,255,255,.4)">STAIR</text>
+      <line x1="60" x2="540" y1="270" y2="270" stroke="rgba(255,255,255,.34)" stroke-width="2.5" />
+      <line x1="60" x2="540" y1="330" y2="330" stroke="rgba(255,255,255,.34)" stroke-width="2.5" />
+      <rect x="57" y="283" width="8" height="34" fill="#22272C" />
+      <rect x="20" y="288" width="34" height="24" fill="#2FA36B" />
+      <text x="37" y="304" text-anchor="middle" font-family="Archivo, sans-serif" font-size="8.5" font-weight="700" fill="#fff">EXIT</text>
+      {doorsTop.map((x) => (
+        <g>
+          <rect x={x - 15} y="266" width="30" height="8" fill="#22272C" />
+          <path d={`M${x - 15} 270 A30 30 0 0 1 ${x + 15} 240`} fill="none" stroke={hi('doors') ? '#E03A34' : 'rgba(255,255,255,.3)'} stroke-width={hi('doors') ? 2.5 : 1.5} />
+          <line x1={x - 15} y1="270" x2={x + 15} y2="240" stroke={hi('doors') ? '#E03A34' : 'rgba(255,255,255,.4)'} stroke-width={hi('doors') ? 3.5 : 2} />
+        </g>
+      ))}
+      {doorsBottom.map((x) => (
+        <g>
+          <rect x={x - 15} y="326" width="30" height="8" fill="#22272C" />
+          <path d={`M${x - 15} 330 A30 30 0 0 0 ${x + 15} 360`} fill="none" stroke={hi('doors') ? '#E03A34' : 'rgba(255,255,255,.3)'} stroke-width={hi('doors') ? 2.5 : 1.5} />
+          <line x1={x - 15} y1="330" x2={x + 15} y2="360" stroke={hi('doors') ? '#E03A34' : 'rgba(255,255,255,.4)'} stroke-width={hi('doors') ? 3.5 : 2} />
+        </g>
+      ))}
+      <rect x="376" y="345" width="8" height="30" fill="#22272C" />
+      <path d="M380 345 A30 30 0 0 0 410 375" fill="none" stroke={hi('doors') || hi('aov') ? '#E03A34' : 'rgba(255,255,255,.3)'} stroke-width="2" />
+
+      <path d="M460 300H80" stroke="#E03A34" stroke-width="3.5" stroke-dasharray="12 9" fill="none" marker-end="url(#pa-arrow)" />
+
+      {hi('alarms') && (
+        <g>
+          {[[140, 165], [300, 165], [460, 165], [140, 435], [300, 435], [200, 300], [400, 300], [460, 470]].map(([x, y]) => (
+            <g><circle cx={x} cy={y} r="14" fill="rgba(224,58,52,.14)" /><circle cx={x} cy={y} r="6" fill="none" stroke="#E03A34" stroke-width="2.5" /></g>
+          ))}
+          <rect x="72" y="244" width="14" height="14" fill="#E03A34" />
+          <rect x="504" y="300" width="14" height="14" fill="#E03A34" />
+        </g>
+      )}
+      {hi('lighting') && (
+        <g>
+          {[120, 240, 360, 480].map((x) => <g><circle cx={x} cy="300" r="34" fill="url(#pa-glow)" /><rect x={x - 11} y="294" width="22" height="12" fill="#FFE9A8" stroke="#E03A34" stroke-width="1.5" /></g>)}
+          <circle cx="460" cy="380" r="30" fill="url(#pa-glow)" /><rect x="449" y="374" width="22" height="12" fill="#FFE9A8" stroke="#E03A34" stroke-width="1.5" />
+        </g>
+      )}
+      {hi('aov') && (
+        <g>
+          <rect x="425" y="336" width="70" height="10" fill="#E03A34" />
+          {[440, 460, 480].map((x) => <path d={`M${x} 420V362`} stroke="#E03A34" stroke-width="2.5" marker-end="url(#pa-arrow)" />)}
+        </g>
+      )}
+      {hi('fra') && (
+        <g>
+          {[[140, 165], [460, 165], [300, 435]].map(([x, y]) => (
+            <g><path d={`M${x} ${y - 13} L${x + 13} ${y + 10} H${x - 13} Z`} fill="none" stroke="#E03A34" stroke-width="2.5" /><line x1={x} x2={x} y1={y - 4} y2={y + 3} stroke="#E03A34" stroke-width="2.5" /></g>
+          ))}
+          <rect x="300" y="190" width="58" height="58" fill="none" stroke="rgba(255,255,255,.22)" stroke-dasharray="4 4" />
+        </g>
+      )}
+    </g>
+  )}
+</svg>
+<style>
+  .planart { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+</style>

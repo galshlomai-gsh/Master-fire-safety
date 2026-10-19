@@ -15,7 +15,7 @@ npm run qa:serve     # serve the build locally (in another terminal: npm run qa:
 | What | File |
 |---|---|
 | Brand, phone, email, hours, credentials, reviews, GTM | `src/config/site.ts` |
-| Photos (with "needs real photo" flags) | `src/config/images.ts`, `src/assets/img/` |
+| Hero images (line illustrations until real photos arrive) | `src/config/images.ts`, `src/components/PlanArt.astro` |
 | Service, sector, area and guide content | `src/data/{services,sectors,sectors.extra,areas,guides}.ts` |
 | Design tokens and components CSS | `src/styles/global.css` |
 | Quote form handler (email via Resend) | `src/pages/api/quote.ts` |
@@ -24,12 +24,14 @@ npm run qa:serve     # serve the build locally (in another terminal: npm run qa:
 
 ## Trust rules built into the code
 - `site.reviews` is empty, so the reviews section does not render.
-- Only credentials with `status: 'confirmed'` render. FireQual, IFE and BS 8674 are `pending`.
-- `site.email = null` renders as "address to confirm".
-- `brand.fireMarkApproved = false` keeps the current wordmark and a neutral favicon.
+- Trust points are only those Philip confirmed: assessors are IFSM members; competence follows BS 8674:2025 (individual assessor standard, not a company accreditation); PI £500k per claim; PL £2m. No individual assessors are named.
+- Certify Services Ltd appears only in the footer small print and the legal pages (trading disclosure). It is not in the schema or the body copy.
+- No unlicensed photos. Real photos go into `src/config/images.ts`.
+- `reportTurnaround` stays `null` until Philip confirms 3–5 working days is consistently achievable.
+- Logo: wordmark + fire mark A (`brand.fireMarkApproved = true`); the favicon, touch icon and share image use the flame. Brand spelling is T&T.
 
 ## Tracking (GTM-ready)
-Set `PUBLIC_GTM_ID` (Certify Services Ltd container). Events pushed to `dataLayer`:
+The GTM container `GTM-K5HWQDK9` (Certify Services Ltd) is the default; `PUBLIC_GTM_ID` overrides it. Events pushed to `dataLayer`:
 - `generate_lead`: successful quote submit. Fields: `form_id`, `service`, `property_type`, `page_path`, `lead_id`, and `user_data.email` / `user_data.phone_number` for enhanced conversions. No-JS submits fire it on `/thank-you?nojs=1`.
 - `phone_click`: any `tel:` link. Fields: `phone_number`, `link_location` (header, hero, mobile-bar, cta-band…), `page_path`.
 - `form_start` and `cta_click` (analysis only), plus `consent_update`.

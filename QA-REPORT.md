@@ -111,3 +111,15 @@ The Vercel preview was **not deployed**. The Vercel connector returned `403 forb
 1. In Vercel, go to Add New → Project and import `galshlomai-gsh/Master-fire-safety`. Framework: Astro (auto-detected); Node 22.
 2. Set **Production Branch** to something unused (e.g. `production`) so nothing goes live. Pushes to `claude/tt-fire-safety-website-123ei3` then create **preview** deployments.
 3. Optional env vars (Preview): `PUBLIC_GTM_ID`, `RESEND_API_KEY`, `QUOTE_TO_EMAIL`, `QUOTE_FROM_EMAIL`. Leave `ALLOW_INDEXING` unset.
+
+---
+
+## Update after Philip's answers (Oct 2026)
+
+These changes supersede the relevant points above:
+- **Photos**: all design photos removed, because Philip holds no licences for them; this includes the corridor, fire door, smoke detector and the cropped alarm-panel shot. Heroes now show original line illustrations (`PlanArt`): a fire plan with the escape route, highlighting each service's element, and a block elevation with a protected stair for blocks of flats. The red quote band uses a CSS texture instead of the smoke-detector photo. Real photos from Philip (no people) slot into `src/config/images.ts`.
+- **Trust strip and credentials band**: "All our assessors are IFSM members, with competence matched to the premises under BS 8674:2025", plus PI £500,000 per claim and PL £2 million. No individual names or qualifications.
+- **Coverage**: London first, with borough pages for Barnet, Brent, Camden, Harrow, Haringey and Islington, plus Hertfordshire and the accessible parts of Essex, Kent, Surrey, Berkshire and Buckinghamshire. Hampshire, the West Midlands, Greater Manchester, West Yorkshire, South Wales and Central Scotland pages are removed. All "England, Wales and Scotland" copy now reads "London and the Home Counties".
+- **Footer**: trading disclosure "T&T Fire Safety is a trading name of Certify Services Ltd…", shown in small print only.
+- **Legal pages**: full privacy, terms and cookie drafts written for the real setup (Vercel, Resend, GTM, GA4, Google Ads enhanced conversions, Consent Mode). A "Cookie settings" link in the footer reopens the consent banner.
+- **Hours**: Mon–Thu 8:30am–6pm, Fri 8:30am–3pm (also in the schema). GTM container `GTM-K5HWQDK9` is wired in by default.

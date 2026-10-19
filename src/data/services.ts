@@ -11,11 +11,11 @@ export const services: Service[] = [
     image: 'alarmPanel',
     metaTitle: 'Fire Risk Assessments for Landlords & Businesses | T&T Fire Safety',
     metaDescription:
-      'On-site fire risk assessments for flats, HMOs, offices, shops and care premises across England, Wales and Scotland, with a prioritised action plan. Free quote.',
+      'On-site fire risk assessments for flats, HMOs, offices, shops and care premises across London and the Home Counties, with a prioritised action plan. Free quote.',
     introTitle: 'Fire Risk Assessments for Residential & Commercial Premises',
     intro: [
-      'T&T Fire Safety carries out fire risk assessments for landlords, managing agents, businesses and organisations across England, Wales and Scotland.',
-      'The assessment considers the fire hazards, people at risk and fire-safety measures in place. Significant findings and required actions are recorded in the report.',
+      'T&T Fire Safety carries out fire risk assessments for landlords, managing agents, businesses and organisations across Greater London and the surrounding counties.',
+      'The assessment considers the fire hazards, people at risk and fire-safety measures in place. We offer prompt appointments and a thorough inspection, and you receive a clear written report with practical, prioritised recommendations.',
     ],
     gridTitle: 'What we assess',
     grid: [
@@ -40,7 +40,7 @@ export const services: Service[] = [
         kind: 'credentials',
         title: 'Qualified fire risk assessors',
         paragraphs: [
-          'Assessments are carried out by qualified fire risk assessors, with competency appropriate to the type and complexity of the premises.',
+          'Our fire risk assessors are members of the Institute of Fire Safety Managers (IFSM). We match assessor competence to the type and complexity of the premises, using the BS 8674:2025 framework for individual fire risk assessors.',
           'If a building is outside what we can assess competently, we will tell you before we quote.',
         ],
       },
@@ -52,7 +52,7 @@ export const services: Service[] = [
       { q: 'How often should the assessment be reviewed?', a: 'There is no single interval that applies to every building. The assessment must be kept up to date and reviewed whenever there is a significant change, such as alterations, a change of use or occupancy, or a fire or near miss. See our guide on <a href="/guides/how-often-should-a-fire-risk-assessment-be-reviewed">how often to review a fire risk assessment</a>.' },
       { q: 'What do you need from us before the visit?', a: 'Access to the premises and, where held, the fire-safety records: alarm and emergency lighting logs, servicing records, evacuation arrangements and the previous assessment.' },
       { q: 'Do you need access to individual flats or units?', a: 'Not for an assessment of communal areas. Where the agreed scope includes individual dwellings or tenanted units, access is arranged with you in advance.' },
-      { q: 'Do you carry out the remedial work identified?', a: 'The assessment and report are independent of any remedial work. Where required we can assist with related fire-safety services, but you are not obliged to use T&T for follow-on work.' },
+      { q: 'Do you carry out the remedial work identified?', a: 'The assessment and report are independent of any remedial work. Where works are needed, we can undertake or arrange them, quoted separately from the assessment. You are not obliged to use T&T for them.' },
     ],
     relatedGuides: ['do-i-need-a-fire-risk-assessment', 'fire-risk-assessment-cost', 'what-happens-during-a-fire-risk-assessment'],
     schemaServiceType: 'Fire risk assessment',
@@ -104,7 +104,7 @@ export const services: Service[] = [
       { q: 'How many doors do you inspect?', a: 'The number is agreed before the visit. It may cover every fire door in the building or a defined sample, depending on the purpose of the inspection.' },
       { q: 'Is this the same as a fire risk assessment?', a: 'No. A fire risk assessment considers the premises as a whole. A fire door inspection examines the condition and operation of the doors themselves and records each one individually.' },
       { q: 'Do you need access to flat entrance doors?', a: 'Inspecting a flat entrance door requires access arranged with the resident. Where access is not available, the door is recorded as not inspected, and the attempt is noted so you have a record of the steps taken.' },
-      { q: 'Do you repair the defects you find?', a: 'The inspection and report are the deliverable. Where remedial work is required we can advise on the next steps and, where appropriate, assist with it.' },
+      { q: 'Do you repair the defects you find?', a: 'The inspection and report are the deliverable. Where remedial work is needed, such as adjusting closers, replacing seals or repairing doors, we can undertake or arrange it, quoted separately from the inspection. You are not obliged to use us for it.' },
       { q: 'How is the report presented?', a: 'Each door is listed with its location and reference, the defects identified and the recommended action, so the schedule can be worked through and priced.' },
       { q: 'Can the inspection be carried out in occupied buildings?', a: 'Yes. Communal doors are inspected without disruption to residents. Doors within occupied units are inspected by arrangement.' },
     ],

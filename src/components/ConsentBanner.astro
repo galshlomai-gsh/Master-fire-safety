@@ -21,6 +21,13 @@
     var KEY = 'tt_consent', el = document.getElementById('consent'), v = null;
     try { v = localStorage.getItem(KEY); } catch (e) {}
     if (!v && el) el.hidden = false;
+    document.addEventListener('click', function (e) {
+      var r = e.target.closest && e.target.closest('[data-consent-reset]');
+      if (!r || !el) return;
+      e.preventDefault();
+      el.hidden = false;
+      var first = el.querySelector('button'); if (first) first.focus();
+    });
     document.querySelectorAll('[data-consent]').forEach(function (b) {
       b.addEventListener('click', function () {
         var c = b.getAttribute('data-consent');

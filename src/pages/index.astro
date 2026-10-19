@@ -12,10 +12,10 @@ import { serviceSchema } from '../lib/schema';
 import type { FAQ as F } from '../data/types';
 
 const trust = [
-  { title: 'Qualified fire risk assessors', text: 'Recognised fire risk assessment qualifications, with competency appropriate to the type and complexity of the premises.' },
+  { title: 'Qualified fire risk assessors', text: 'All our assessors are IFSM members, with competence matched to the premises under BS 8674:2025.' },
   { title: 'Prioritised reporting', text: 'Significant findings and recommended actions set out by priority.' },
   { title: 'Single sites & portfolios', text: 'Consistent assessment and reporting for individual properties and multi-site portfolios.' },
-  { title: 'Post-assessment guidance', text: 'Guidance on findings, priorities and the next steps required.' },
+  { title: 'Guidance & remedial works', text: 'Clear next steps after the report, and remedial works quoted separately if you need them.' },
 ];
 
 const faqs: F[] = [
@@ -29,15 +29,16 @@ const faqs: F[] = [
 ---
 <BaseLayout
   title="Fire Risk Assessments for Landlords & Businesses | T&T Fire Safety"
-  description="Fire risk assessments for landlords, managing agents and businesses across England, Wales and Scotland. Written report and prioritised action plan. Free quote."
+  description="Fire risk assessments for landlords, managing agents and businesses across London and the Home Counties. Clear written report and practical action plan. Free quote."
   active="home"
   schema={[serviceSchema(Astro.site!, { name: 'Fire risk assessments', serviceType: 'Fire risk assessment', description: 'On-site fire risk assessments with written reports and prioritised action plans.', path: '/services/fire-risk-assessments' })]}
 >
   <Hero
     variant="home"
     title="Fire risk assessments for landlords, managing agents & businesses"
-    sub="On-site fire risk assessments with written reports and prioritised action plans across England, Wales and Scotland."
+    sub="On-site fire risk assessments with clear written reports and practical, prioritised action plans across London and the Home Counties."
     image="corridor"
+    art="fra"
   />
 
   <section class="sec-features reveal" aria-label="Why T&T">

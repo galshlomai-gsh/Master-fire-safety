@@ -1,56 +1,36 @@
 /**
- * Image registry. Every photo on the site comes from here so swapping in real photography
- * is a one-line change per image. Anything with needsRealPhoto: true is a placeholder.
+ * Image registry. Philip holds no licences for the photos in his design mock (Oct 2026),
+ * so every slot currently renders an original line illustration (PlanArt) instead.
+ * To add a real or properly licensed photo: put the file in src/assets/img/, import it here,
+ * set `src`, and give it a real `alt`. No photos of Philip or his colleagues.
  */
 import type { ImageMetadata } from 'astro';
-import corridor from '../assets/img/corridor.jpg';
-import fireDoor from '../assets/img/fire-door.jpg';
-import alarmPanel from '../assets/img/alarm-panel.jpg';
-import smokeDetector from '../assets/img/smoke-detector.jpg';
+import type { Art } from '../components/PlanArt.astro';
 
 export type SiteImage = {
-  src: ImageMetadata | null; // null renders a labelled placeholder panel
+  src: ImageMetadata | null; // null → render the PlanArt illustration
+  art: Art;
   alt: string;
-  position?: string; // CSS background/object position
-  needsRealPhoto: boolean;
-  note: string;
+  position?: string;
+  wanted: string; // the real photo Philip has agreed to supply
 };
 
-export const images = {
-  corridor: {
-    src: corridor,
-    alt: 'Protected escape corridor with fire exit signage and extinguishers',
-    position: '52% 50%',
-    needsRealPhoto: true,
-    note: 'From Philip’s design mock. Unbranded, licence unknown: confirm or replace with a real job photo.',
-  },
-  fireDoor: {
-    src: fireDoor,
-    alt: 'Pair of fire exit doors with push-bar signage',
-    position: '50% 44%',
-    needsRealPhoto: true,
-    note: 'From Philip’s design mock. Unbranded, licence unknown: confirm or replace.',
-  },
-  alarmPanel: {
-    src: alarmPanel,
-    alt: 'Assessor completing a fire risk assessment checklist beside a fire alarm panel and extinguishers',
-    position: '40% 50%',
-    needsRealPhoto: true,
-    note: 'Cropped from the design mock to remove the T&T-branded hi-vis vest (the team does not wear branded clothing). Likely AI-generated; replace with a real photo.',
-  },
-  smokeDetector: {
-    src: smokeDetector,
-    alt: '',
-    position: '22% 74%',
-    needsRealPhoto: false,
-    note: 'Decorative background for the red quote section (as designed). Licence to confirm.',
-  },
-  blocksOfFlats: {
-    src: null,
-    alt: 'Purpose-built block of flats',
-    needsRealPhoto: true,
-    note: 'The design photo carries a Dreamstime watermark (unlicensed comp), so it cannot be used. Needs a licensed or real photo.',
-  },
-} satisfies Record<string, SiteImage>;
+export type ImageKey = 'fra' | 'doors' | 'alarms' | 'lighting' | 'aov' | 'building';
 
-export type ImageKey = keyof typeof images;
+export const images: Record<ImageKey, SiteImage> = {
+  fra: { src: null, art: 'fra', alt: '', wanted: 'Communal corridor or stair with fire doors and signage' },
+  doors: { src: null, art: 'doors', alt: '', wanted: 'Pair of communal fire doors, closers and signage visible' },
+  alarms: { src: null, art: 'alarms', alt: '', wanted: 'Fire alarm control panel on a wall' },
+  lighting: { src: null, art: 'lighting', alt: '', wanted: 'Escape corridor with emergency luminaires and exit sign' },
+  aov: { src: null, art: 'aov', alt: '', wanted: 'AOV / smoke vent at the head of a stair' },
+  building: { src: null, art: 'building', alt: '', wanted: 'Exterior of a purpose-built block of flats (client permission)' },
+};
+
+/** Map older content keys (from the design phase) to the current slots. */
+export const legacyImageKey: Record<string, ImageKey> = {
+  alarmPanel: 'alarms',
+  fireDoor: 'doors',
+  corridor: 'lighting',
+  smokeDetector: 'alarms',
+  blocksOfFlats: 'building',
+};

@@ -1,0 +1,92 @@
+<title>T&amp;T Logo Options</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: two option columns, each showing the lockup on light, on dark, at small sizes and in a phone header */
+:root{
+  --bg:#F6F5F3; --panel:#FFFFFF; --fg:#1C2024; --muted:#5B646C; --line:#E4E1DC;
+  --red:#C9232C; --char:#1C2024; --rule:#E4E1DC;
+  --head:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#16191D;--panel:#1E2226;--fg:#ECEAE7;--muted:#A6ADB3;--line:#2E3338;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#16191D;--panel:#1E2226;--fg:#ECEAE7;--muted:#A6ADB3;--line:#2E3338;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16.5px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 56px;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--head);margin:0;letter-spacing:-.015em;text-wrap:balance}
+h1{font-size:clamp(26px,4vw,36px)}
+h2{font-size:21px}
+.lede{color:var(--muted);max-width:66ch;margin:8px 0 0}
+.eyebrow{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin:0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:20px}
+.opt{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:22px;display:grid;gap:16px;min-width:0}
+.opt p{margin:0;color:var(--muted);font-size:15.5px}
+.tile{border-radius:4px;padding:26px 22px;display:flex;align-items:center;justify-content:center;min-height:96px}
+.tile.light{background:#fff;border:1px solid #E4E1DC}
+.tile.dark{background:#1C2024}
+/* logo lockup (same metrics as the site header) */
+.logo{display:inline-flex;align-items:center;gap:12px;line-height:1;font-family:var(--head)}
+.logo .mark{font-weight:700;font-size:31px;letter-spacing:-.045em;color:#C9232C}
+.logo .rule{width:1px;height:26px;background:#E4E1DC}
+.logo .fm{width:22px;height:22px;flex:none}
+.logo .desc{font-weight:600;font-size:12.5px;letter-spacing:.2em;color:#1C2024}
+.logo.rev .mark{color:#fff}.logo.rev .rule{background:rgba(255,255,255,.24)}.logo.rev .desc{color:#fff}
+.logo.mredrev .mark{color:#E03A34}
+.sizes{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.sizes figure{margin:0;display:grid;gap:6px;justify-items:center;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.fav{display:grid;place-items:center;background:#C9232C;color:#fff;font-family:var(--head);font-weight:700;letter-spacing:-.04em;border-radius:3px}
+.phone{width:min(100%,320px);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;margin-inline:auto}
+.phone .bar{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #E4E1DC}
+.phone .logo{gap:8px}.phone .logo .mark{font-size:22px}.phone .logo .desc{font-size:9.5px;letter-spacing:.19em}.phone .logo .rule{height:18px}.phone .logo .fm{width:16px;height:16px}
+.phone .ic{display:flex;gap:6px}.phone .ic span{width:34px;height:34px;border-radius:4px;border:1px solid #E4E1DC;display:block}.phone .ic span:first-child{background:#C9232C;border-color:#C9232C}
+.phone .hero{background:#1C2024;color:#fff;font-family:var(--head);font-weight:700;text-transform:uppercase;font-size:19px;line-height:1.15;padding:20px 14px 26px}
+.verdict{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:4px;padding:18px 22px}
+.verdict p{margin:6px 0 0;color:var(--muted);max-width:72ch}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">T&amp;T Fire Safety · brand</p>
+    <h1>Logo options</h1>
+    <p class="lede">Both options use the same T&amp;T wordmark and the same header height. Option 2 swaps the thin divider for the solid flame mark (option A from the design pack). The flame is redrawn here as clean vector artwork.</p>
+  </header>
+
+  <div class="opts">
+    <section class="opt" aria-labelledby="o1">
+      <h2 id="o1">Option 1 · Current wordmark</h2>
+      <div class="tile light"><span class="logo"><span class="mark">T&amp;T</span><span class="rule"></span><span class="desc">FIRE SAFETY</span></span></div>
+      <div class="tile dark"><span class="logo rev"><span class="mark">T&amp;T</span><span class="rule"></span><span class="desc">FIRE SAFETY</span></span></div>
+      <div class="sizes">
+        <figure><span class="fav" style="width:48px;height:48px;font-size:19px">T&amp;T</span>48px</figure>
+        <figure><span class="fav" style="width:32px;height:32px;font-size:12.5px">T&amp;T</span>32px</figure>
+        <figure><span class="fav" style="width:16px;height:16px;font-size:6.5px">T&amp;T</span>16px</figure>
+      </div>
+      <div class="phone" aria-label="Phone header preview">
+        <div class="bar"><span class="logo"><span class="mark">T&amp;T</span><span class="rule"></span><span class="desc">FIRE SAFETY</span></span><span class="ic"><span></span><span></span></span></div>
+        <div class="hero">Fire risk assessments for landlords, managing agents &amp; businesses</div>
+      </div>
+      <p>Typographic and quiet. The favicon has to use the letters, which blur at 16px in a browser tab.</p>
+    </section>
+
+    <section class="opt" aria-labelledby="o2">
+      <h2 id="o2">Option 2 · Wordmark + flame</h2>
+      <div class="tile light"><span class="logo"><span class="mark">T&amp;T</span><svg class="fm" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#C9232C"/><path d="M50 86 31 67V47l8-10 4-7 3 17 12-33 12 22v30z" fill="#fff"/></svg><span class="desc">FIRE SAFETY</span></span></div>
+      <div class="tile dark"><span class="logo rev mredrev"><span class="mark">T&amp;T</span><svg class="fm" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#C9232C"/><path d="M50 86 31 67V47l8-10 4-7 3 17 12-33 12 22v30z" fill="#fff"/></svg><span class="desc">FIRE SAFETY</span></span></div>
+      <div class="sizes">
+        <figure><svg width="48" height="48" viewBox="0 0 100 100" role="img" aria-label="Flame mark at 48 pixels"><rect width="100" height="100" fill="#C9232C"/><path d="M50 86 31 67V47l8-10 4-7 3 17 12-33 12 22v30z" fill="#fff"/></svg>48px</figure>
+        <figure><svg width="32" height="32" viewBox="0 0 100 100" role="img" aria-label="Flame mark at 32 pixels"><rect width="100" height="100" fill="#C9232C"/><path d="M50 86 31 67V47l8-10 4-7 3 17 12-33 12 22v30z" fill="#fff"/></svg>32px</figure>
+        <figure><svg width="16" height="16" viewBox="0 0 100 100" role="img" aria-label="Flame mark at 16 pixels"><rect width="100" height="100" fill="#C9232C"/><path d="M50 86 31 67V47l8-10 4-7 3 17 12-33 12 22v30z" fill="#fff"/></svg>16px</figure>
+      </div>
+      <div class="phone" aria-label="Phone header preview">
+        <div class="bar"><span class="logo"><span class="mark">T&amp;T</span><svg class="fm" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#C9232C"/><path d="M50 86 31 67V47l8-10 4-7 3 17 12-33 12 22v30z" fill="#fff"/></svg><span class="desc">FIRE SAFETY</span></span><span class="ic"><span></span><span></span></span></div>
+        <div class="hero">Fire risk assessments for landlords, managing agents &amp; businesses</div>
+      </div>
+      <p>Reads as fire safety at a glance, and the flame still holds as a favicon and Google Business profile image at 16px.</p>
+    </section>
+  </div>
+
+  <div class="verdict">
+    <h2>Recommendation: Option 2</h2>
+    <p>The flame makes T&amp;T recognisable as fire safety in Google results, browser tabs and a future Business Profile, and it separates the brand visually from Certify. It adds no width or height to the header. Switching between the two is a one-line change on the site.</p>
+  </div>
+</div>

@@ -15,16 +15,16 @@ export const guides: Guide[] = [
     title: 'Do I Need a Fire Risk Assessment?',
     metaTitle: 'Do I Need a Fire Risk Assessment? UK Guide',
     metaDescription:
-      'Find out if the law requires a fire risk assessment for your flats, HMO, holiday let or business in England, Wales or Scotland. Get a free quote today.',
+      'Find out if the law requires a fire risk assessment for your flats, HMO, holiday let or business in England. Get a free quote today.',
     summary:
-      'Who legally needs a fire risk assessment in England, Wales and Scotland: employers, landlords, managing agents, HMOs, blocks of flats and holiday lets.',
+      'Who legally needs a fire risk assessment in England: employers, landlords, managing agents, HMOs, blocks of flats and holiday lets.',
     readingMinutes: 7,
     updated: '2026-10-19',
     service: 'fra',
     body: `
-<p><strong>Short answer:</strong> in England and Wales, almost every premises that is not a single private home needs a fire risk assessment, and since 1 October 2023 it must be written down in full. That includes workplaces, holiday lets, HMOs and the common parts of blocks of flats. Scotland has its own law: businesses and licensed HMOs need one, but the common parts of ordinary blocks of flats are excluded.</p>
+<p><strong>Short answer:</strong> in England, almost every premises that is not a single private home needs a fire risk assessment, and since 1 October 2023 it must be written down in full. That includes workplaces, holiday lets, HMOs and the common parts of blocks of flats. Scotland and Wales have their own rules, summarised briefly at the end.</p>
 
-<h2>The legal test in England and Wales</h2>
+<h2>The legal test in England</h2>
 <p>The Regulatory Reform (Fire Safety) Order 2005, usually called the Fire Safety Order or FSO, applies in England and Wales${c(1)}. Home Office guidance says it applies to “virtually all premises” other than single private dwellings such as houses, bungalows and individual flats${c(2)}. Where the Order applies, the responsible person must make a “suitable and sufficient” assessment of the fire risks under article 9${c(3)}.</p>
 <p>So there are two questions to answer. Is your building covered? And are you the responsible person for it?</p>
 
@@ -64,22 +64,12 @@ export const guides: Guide[] = [
 <p>Self-catering holiday lets are covered by the Fire Safety Order, so the person letting them must carry out a fire risk assessment${c(6)}. The government booklet for small paying guest accommodation is aimed at premises on the ground floor, or ground and first floor, with no more than 10 guests and no more than four bedrooms on the first floor${c(9)}. For anything larger or more complex, GOV.UK points to the fuller sleeping accommodation guide${c(6)}.</p>
 
 <h2>It has to be written down</h2>
-<p>Before October 2023, a written record was only needed in some cases, such as where five or more people were employed. Since 1 October 2023, every responsible person in England must make a record of the assessment, and it must cover all the findings, not just the “significant” ones${c(4)}. The same applies in Wales${c(10)}. The record must also identify who carried out the assessment, meaning the name of the individual and/or organisation${c(4)}. A verbal “we walked round and it looked fine” no longer meets the law.</p>
+<p>Before October 2023, a written record was only needed in some cases, such as where five or more people were employed. Since 1 October 2023, every responsible person in England must make a record of the assessment, and it must cover all the findings, not just the “significant” ones${c(4)}. The record must also identify who carried out the assessment, meaning the name of the individual and/or organisation${c(4)}. A verbal “we walked round and it looked fine” no longer meets the law.</p>
 
 ${CTA('Not sure if your building is covered?', 'Tell us the address, what it is used for and who lives or works there, and we will tell you plainly whether you need an assessment and what it should cover.')}
 
-<h2>Scotland: a different Act</h2>
-<p>The Fire Safety Order does not apply in Scotland. Duties come from Part 3 of the Fire (Scotland) Act 2005 and the Fire Safety (Scotland) Regulations 2006${c(11)}. Employers (section 53) and anyone with control of relevant premises (section 54) must carry out a fire safety risk assessment${c(11)}.</p>
-<ul>
-  <li><strong>Covered:</strong> non-domestic premises, HMOs that need a licence under the Housing (Scotland) Act 2006, and premises providing a care home service${c(12)}.</li>
-  <li><strong>Not covered:</strong> domestic premises, and the common parts of private dwellings such as the stairs and corridors of an ordinary block of flats, which section 78(4) expressly excludes${c(12)}.</li>
-  <li><strong>Still recommended:</strong> Scottish Government guidance recommends an assessment for high-rise domestic blocks as good practice, and whoever controls the common areas must keep firefighter facilities in efficient working order${c(13)}.</li>
-  <li><strong>Records:</strong> a written record is only required where there are five or more employees, the premises need a licence or registration, or an alterations notice requires it${c(14)}.</li>
-</ul>
-<p>Short-term let hosts in Scotland need a licence, and Scottish Fire and Rescue Service guidance explains the Part 3 duties, including fire risk assessment, that can apply to them${c(15)}.</p>
-
-<h2>Wales: the law is changing</h2>
-<p>For now the Fire Safety Order, as amended, applies in Wales, including the October 2023 recording duty${c(10)}. The Building Safety (Wales) Act 2026 received Royal Assent on 27 April 2026. Once its fire safety provisions are brought into force, multi-occupied residential buildings and many HMOs will move to a new regime run by “accountable persons”${c(16)}. Until then, the Order still applies to their common parts. We also cover South Wales.</p>
+<h2>Scotland and Wales</h2>
+<p>This guide is written for premises in England. The rules differ elsewhere. In Scotland the Fire Safety Order does not apply: duties come from Part 3 of the Fire (Scotland) Act 2005 and the Fire Safety (Scotland) Regulations 2006${c(11)}. They cover non-domestic premises, licensed HMOs and care homes, but exclude the common parts of ordinary blocks of flats${c(12)}, although Scottish Government guidance recommends an assessment for high-rise domestic blocks${c(13)}. A written record is only required in some cases${c(14)}, and short-term let hosts have their own duties${c(15)}. In Wales the Fire Safety Order still applies for now, including the October 2023 recording duty${c(10)}, but the Building Safety (Wales) Act 2026 will move multi-occupied residential buildings and many HMOs to a new regime once its fire safety provisions are in force${c(16)}.</p>
 
 <h2>What happens if you don’t have one?</h2>
 <p>The local fire and rescue authority enforces the Order. It can inspect, serve notices requiring improvements and, where the risk is serious, restrict or prohibit use of the premises${c(17)}. Failing to comply is a criminal offence: on conviction in the Crown Court the penalty can be an unlimited fine and up to two years’ imprisonment, and the magistrates’ court can also impose an unlimited fine${c(17)}. Insurers, lenders and councils often ask to see an assessment too. If you have already had a letter, read our guide to <a href="/guides/council-and-insurer-fire-safety-letters">council and insurer fire safety letters</a>.</p>
@@ -221,7 +211,7 @@ ${DISCLAIMER}
 <p><strong>Short answer:</strong> there is no official or fixed price for a fire risk assessment. The cost depends mainly on the size and layout of the building, how it is used, whether people sleep there and how much needs to be inspected. The reliable way to compare is a fixed written quote based on your actual building.</p>
 
 <h2>Why there is no standard price</h2>
-<p>The law requires a “suitable and sufficient” assessment${c(1)}. It does not set a price, a format or a time on site. We have not found any government-published price list for fire risk assessments in England, Wales or Scotland. Figures you see online are commercial prices from individual firms, usually for a narrowly defined building, and they rarely say what is included.</p>
+<p>The law requires a “suitable and sufficient” assessment${c(1)}. It does not set a price, a format or a time on site. We have not found any government-published price list for fire risk assessments in the UK. Figures you see online are commercial prices from individual firms, usually for a narrowly defined building, and they rarely say what is included.</p>
 <p>Two quotes for the “same” assessment can differ because one includes a proper walk-round of every floor, a sample of flat entrance doors and a full written action plan, and the other does not. Ask what you are getting before you compare the number.</p>
 
 <h2>What drives the cost</h2>
@@ -266,13 +256,13 @@ ${CTA('Want a price you can rely on?', 'Send us the address, the type of buildin
 <p>The real cost of a poor assessment usually appears later: an enforcement notice, a council asking for a fresh report, an insurer querying a claim, or works ordered that a proper assessment would have scoped correctly the first time. Failing to comply with the Fire Safety Order can lead to an unlimited fine and, in serious cases, up to two years’ imprisonment${c(8)}.</p>
 
 <h2>Competence: what the law says now</h2>
-<p>Under article 18 of the Fire Safety Order, the responsible person must appoint one or more competent persons to help them, and GOV.UK recommends choosing an assessor with third-party certification${c(7)}${c(9)}. A specific duty to use a competent assessor (article 9A) was added by the Building Safety Act 2022, but it has not been brought into force in England or Wales${c(10)}. The government consulted from March to June 2026 on making certification compulsory, so that assessors’ competence is independently checked by a UKAS-accredited body${c(11)}. Until that becomes law, it is up to you to check.</p>
+<p>Under article 18 of the Fire Safety Order, the responsible person must appoint one or more competent persons to help them, and GOV.UK recommends choosing an assessor with third-party certification${c(7)}${c(9)}. A specific duty to use a competent assessor (article 9A) was added by the Building Safety Act 2022, but it has not been brought into force in England${c(10)}. The government consulted from March to June 2026 on making certification compulsory, so that assessors’ competence is independently checked by a UKAS-accredited body${c(11)}. Until that becomes law, it is up to you to check.</p>
 <p>Useful reference points when choosing an assessor:</p>
 <ul>
   <li>The Fire Sector Federation’s “A guide to choosing a competent fire risk assessor”, which explains company certification, person certification and professional registration${c(12)}.</li>
   <li>BS 8674:2025, a voluntary BSI code of practice setting out a competence framework for individual fire risk assessors at three levels by building complexity${c(13)}.</li>
 </ul>
-<p>Ask any assessor: what experience do you have with this type of building, which method do you work to, what will the report include, and what will you not inspect?</p>
+<p>Our own assessors are members of the Institute of Fire Safety Managers (IFSM), and we use the BS 8674:2025 framework to match assessor competence to the building. Whoever you choose, ask: what experience do you have with this type of building, which method do you work to, what will the report include, and what will you not inspect?</p>
 
 <h2>How to get an accurate quote</h2>
 <p>The more we know, the firmer the quote. Useful details are the address, what the building is used for, the number of floors and flats or units, rough floor area, which fire safety systems are installed, the date of the last assessment and any deadline you are working to. If a fire door survey, alarm service or emergency lighting test is also due, we can quote for <a href="/services/fire-door-inspections">fire door inspections</a> and other services at the same time. Request a quote through our <a href="/services/fire-risk-assessments">fire risk assessment</a> page or check <a href="/areas">the areas we cover</a>. For landlords, see also <a href="/sectors/landlords-hmos">landlords and HMOs</a>.</p>
@@ -281,7 +271,7 @@ ${DISCLAIMER}
 `,
     faqs: [
       { q: 'Is the fire risk assessment price a one-off cost?', a: 'The assessment itself is a one-off charge, but it needs to be reviewed regularly and whenever something significant changes. A review of a sound, recent assessment is usually quicker than a first assessment.' },
-      { q: 'Does the quote include fixing the problems found?', a: 'No. The assessment identifies what needs doing and prioritises it. Remedial work, such as fire door repairs or alarm upgrades, is priced separately, and you can use any competent contractor.' },
+      { q: 'Does the quote include fixing the problems found?', a: 'No. The assessment identifies what needs doing and prioritises it. Remedial work, such as fire door repairs or alarm upgrades, is quoted separately. We can undertake or arrange it if you wish, but you are not obliged to use us and can use any competent contractor.' },
       { q: 'Can a managing agent recharge the cost to leaseholders?', a: 'That depends on the terms of the leases and the service charge rules, not on fire safety law. Check the lease or take advice before assuming it can or cannot be recharged.' },
       { q: 'Why do quotes vary so much between firms?', a: 'Usually because the scope is different: time on site, how many areas are inspected, whether flat entrance doors are sampled and how detailed the report is. Ask each firm to set out exactly what is included.' },
     ],
@@ -318,7 +308,7 @@ ${DISCLAIMER}
 <p><strong>Short answer:</strong> the law says a fire risk assessment must be reviewed regularly to keep it up to date, and straight away if there is reason to think it is no longer valid or there has been a significant change. No statute sets a fixed annual interval. In practice, many assessors, us included, suggest a formal review at least once a year for most premises, and more often where the risk is higher.</p>
 
 <h2>What the law actually says</h2>
-<p>In England and Wales, article 9(3) of the Fire Safety Order requires the responsible person to review the assessment “regularly so as to keep it up to date”, and in particular if:${c(1)}</p>
+<p>In England, article 9(3) of the Fire Safety Order requires the responsible person to review the assessment “regularly so as to keep it up to date”, and in particular if:${c(1)}</p>
 <ul>
   <li>there is reason to suspect that it is no longer valid; or</li>
   <li>there has been a significant change in the matters to which it relates.</li>
@@ -368,7 +358,7 @@ ${CTA('Is your assessment more than a year old, or has something changed?', 'Sen
 <p>If you need the door checks carried out, see our <a href="/services/fire-door-inspections">fire door inspection service</a>.</p>
 
 <h2>Scotland</h2>
-<p>In Scotland, regulation 3 of the Fire Safety (Scotland) Regulations 2006 uses very similar wording: the assessment must be reviewed regularly to keep it up to date, and particularly where it may no longer be valid or there has been a significant change${c(9)}. Again, no fixed interval is set. The main difference is recording: in Scotland a written record is only required where there are five or more employees, the premises need a licence or registration, or an alterations notice requires one${c(10)}. Even where it is not required, keeping a dated record of each review is sensible.</p>
+<p>Scotland has its own legislation, but the position on reviews is similar: the Fire Safety (Scotland) Regulations 2006 also require regular review with no fixed interval${c(9)}, and a written record is only required in some cases${c(10)}.</p>
 
 <h2>What a good review includes</h2>
 <ul>
@@ -386,7 +376,7 @@ ${DISCLAIMER}
       { q: 'Who is allowed to carry out the review?', a: 'The responsible person must make sure it is done. You can do it yourself if you are competent, or appoint someone who is. If the original assessor is no longer available, a different competent assessor can review it.' },
       { q: 'My insurer says the assessment must be annual. Is that the law?', a: 'Not under fire safety legislation. An insurer can make an annual review a condition of your policy, though, and breaching a policy condition can affect cover, so follow it.' },
       { q: 'Does a new tenant moving in count as a significant change?', a: 'Not usually on its own. It can be, if the new occupier changes how the building is used, brings in higher-risk activities or includes people who would need help to escape.' },
-      { q: 'What happens to the assessment if I sell the building or change managing agent?', a: 'In England and Wales, an outgoing responsible person must pass relevant fire safety information, including the assessment records, to the incoming one. The new responsible person should then check whether a review is needed.' },
+      { q: 'What happens to the assessment if I sell the building or change managing agent?', a: 'In England, an outgoing responsible person must pass relevant fire safety information, including the assessment records, to the incoming one. The new responsible person should then check whether a review is needed.' },
     ],
     sources: [
       { label: 'Fire Safety Order, article 9: risk assessment (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/uksi/2005/1541/article/9' },
@@ -483,8 +473,7 @@ ${CTA('Over 11 metres and behind on your door checks?', 'We can carry out fire d
 <p>The 2022 regulations do not replace the fire risk assessment, and the door and equipment checks are not a review of it. Your assessment should still be reviewed regularly and after significant changes (see <a href="/guides/how-often-should-a-fire-risk-assessment-be-reviewed">how often to review</a>). Separately, the Fire Safety Order requires fire safety facilities and equipment, such as fire alarms, emergency lighting and smoke ventilation, to be subject to a suitable system of maintenance and kept in efficient working order and good repair${c(10)}. If your building has smoke vents, see our <a href="/services/aov-smoke-control-servicing">AOV and smoke control servicing</a>. Our <a href="/sectors/blocks-of-flats">blocks of flats page</a> sets out how we work with managing agents.</p>
 
 <h2>Wales and Scotland</h2>
-<p><strong>Wales:</strong> the 2022 regulations do not apply. The Fire Safety Order, as amended by the Fire Safety Act 2021, still covers the common parts, structure, external walls and flat entrance doors of blocks of flats. The Building Safety (Wales) Act 2026 received Royal Assent on 27 April 2026 and will introduce a new regime for multi-occupied residential buildings once its provisions are brought into force${c(11)}. See our <a href="/areas/south-wales">South Wales</a> page.</p>
-<p><strong>Scotland:</strong> neither the Fire Safety Order nor the 2022 regulations apply. Part 3 of the Fire (Scotland) Act 2005 generally excludes the common parts of ordinary blocks of flats, though Scottish Government guidance recommends a fire risk assessment for high-rise domestic buildings as good practice${c(12)}${c(13)}.</p>
+<p>The 2022 regulations apply in England only. In Wales the Fire Safety Order still covers the common parts, structure, external walls and flat entrance doors of blocks of flats, and the Building Safety (Wales) Act 2026 will introduce a new regime for multi-occupied residential buildings once its provisions are in force${c(11)}. In Scotland, Part 3 of the Fire (Scotland) Act 2005 generally excludes the common parts of ordinary blocks of flats, though Scottish Government guidance recommends a fire risk assessment for high-rise domestic buildings${c(12)}${c(13)}.</p>
 
 ${DISCLAIMER}
 `,
@@ -531,8 +520,7 @@ ${DISCLAIMER}
   <thead><tr><th>Sender</th><th>Usual legal basis</th><th>What the letter often asks for</th></tr></thead>
   <tbody>
     <tr><td>Council (private sector housing or HMO licensing team)</td><td>Housing Act 2004: hazard rating, licensing and HMO management rules</td><td>An inspection, works, licence conditions, a fire risk assessment, alarm or door certificates</td></tr>
-    <tr><td>Fire and rescue service</td><td>Regulatory Reform (Fire Safety) Order 2005 (England and Wales)</td><td>An audit, information, works, or a formal notice</td></tr>
-    <tr><td>Scottish Fire and Rescue Service</td><td>Fire (Scotland) Act 2005, Part 3</td><td>A fire safety audit or formal notice</td></tr>
+    <tr><td>Fire and rescue service</td><td>Regulatory Reform (Fire Safety) Order 2005</td><td>An audit, information, works, or a formal notice</td></tr>
     <tr><td>Insurer, lender, freeholder or managing agent</td><td>The policy, mortgage, lease or management contract</td><td>A current fire risk assessment, maintenance records or completed actions</td></tr>
   </tbody>
 </table>
@@ -547,7 +535,7 @@ ${DISCLAIMER}
 <p>Government guidance says that, for offences committed on or after 1 May 2026, councils in England can impose civil penalties of up to £40,000 (previously £30,000) for offences including failing to comply with an improvement notice, licensing offences and breaching the HMO management regulations. A new lower tier of penalties of up to £7,000 applies to certain breaches${c(6)}. Separately, councils can impose penalties of up to £5,000 under the smoke and carbon monoxide alarm rules${c(7)}.</p>
 
 <h2>Letters from the fire and rescue service</h2>
-<p>In England and Wales the local fire and rescue authority is the main enforcing authority for the Fire Safety Order. It can inspect premises and serve notices${c(8)}. Fire services often start informally, for example with a letter or report after an audit listing the deficiencies they found and what they expect you to do. Treat that seriously: it is often the step before a formal notice. The formal notices are:</p>
+<p>In England the local fire and rescue authority is the main enforcing authority for the Fire Safety Order. It can inspect premises and serve notices${c(8)}. Fire services often start informally, for example with a letter or report after an audit listing the deficiencies they found and what they expect you to do. Treat that seriously: it is often the step before a formal notice. The formal notices are:</p>
 <ul>
   <li><strong>Alterations notice (article 29):</strong> served where premises pose a serious risk, or would if their use changed. While it is in force you must tell the fire service before making changes that could significantly increase the risk${c(9)}.</li>
   <li><strong>Enforcement notice (article 30):</strong> served where the fire service believes you have failed to comply with the Order. It must say what the failure is and give you at least 28 days to put it right${c(9)}.</li>
@@ -572,11 +560,8 @@ ${CTA('Got a letter with a deadline?', 'Send us a copy and the property address.
 </ol>
 <p>Our <a href="/services/fire-risk-assessments">fire risk assessment service</a> produces a written report with a prioritised action plan you can send back to the council, fire service or insurer.</p>
 
-<h2>Scotland</h2>
-<p>In Scotland the Scottish Fire and Rescue Service enforces Part 3 of the Fire (Scotland) Act 2005, mainly through fire safety audits${c(13)}. It can serve enforcement notices (giving at least 28 days to comply), prohibition notices and alterations notices. Appeals go to the sheriff within 21 days, and failing to comply with a notice is an offence${c(14)}. HMO licensing is run by councils and applies where the accommodation is the only or main residence of three or more people from three or more families who share facilities${c(15)}. Operating an unlicensed HMO carries a maximum fine of £50,000${c(16)}.</p>
-
-<h2>Wales</h2>
-<p>The Fire Safety Order notices described above apply in Wales. Council housing enforcement also applies, but the June 2026 HHSRS reform described above is for England. Mandatory HMO licensing in Wales covers HMOs of three or more storeys occupied by five or more people in two or more households, and Welsh councils make wide use of additional licensing${c(17)}. The Building Safety (Wales) Act 2026 will change the regime for blocks of flats and many HMOs once it is brought into force${c(18)}. See our <a href="/areas/south-wales">South Wales</a> page.</p>
+<h2>Scotland and Wales</h2>
+<p>This guide is written for England. In Scotland the Scottish Fire and Rescue Service enforces Part 3 of the Fire (Scotland) Act 2005 through fire safety audits and its own notices${c(13)}${c(14)}, and HMO licensing and penalties follow Scottish housing law${c(15)}${c(16)}. In Wales the Fire Safety Order notices described above apply, but HMO licensing thresholds differ${c(17)} and the Building Safety (Wales) Act 2026 will change the regime for blocks of flats and many HMOs once it is in force${c(18)}.</p>
 
 ${DISCLAIMER}
 `,

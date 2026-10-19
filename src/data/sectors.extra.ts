@@ -12,7 +12,7 @@ export const extraSectors: Sector[] = [
     imageLabel: 'Photo needed: shared hallway and staircase in a converted HMO',
     metaTitle: 'HMO Fire Risk Assessments for Landlords | T&T Fire Safety',
     metaDescription:
-      'Fire risk assessments for HMOs and rented property in England, Wales and Scotland. For landlords, letting agents and licence holders. Free quote.',
+      'Fire risk assessments for HMOs and rented property across London and the Home Counties. For landlords, letting agents and licence holders. Free quote.',
     introTitle: 'Fire Risk Assessments for HMOs & Rented Property',
     intro: [
       'T&T Fire Safety carries out fire risk assessments for houses in multiple occupation, shared houses and converted buildings let as flats. We work for private landlords, letting and managing agents, HMO licence holders and housing providers.',
@@ -30,15 +30,14 @@ export const extraSectors: Sector[] = [
     contextTitle: 'Who is responsible, and what the law expects',
     context: [
       'In England, the landlord or the person managing the property usually carries the fire safety duties. HMOs occupied by five or more people forming two or more households need a mandatory licence under the Housing Act 2004, and councils can add additional and selective licensing schemes. The HMO Management Regulations 2006 require the manager to keep escape routes clear and fire alarms and fire-fighting equipment in good working order, whether or not the HMO is licensed. Councils use the LACORS fire safety guidance as their benchmark. For offences committed from 1 May 2026, government guidance sets the maximum civil penalty for HMO licensing and management offences at £40,000. The Smoke and Carbon Monoxide Alarm (England) Regulations 2015, as amended, also apply to every private and social let.',
-      'In Wales, mandatory licensing covers HMOs of three or more storeys with five or more people in two or more households, and many councils run additional licensing. Under the Renting Homes (Wales) Act 2016, every rented home needs mains-powered, interlinked smoke alarms on each storey. The Building Safety (Wales) Act 2026 will bring in a new fire safety regime for HMOs once it is commenced. In Scotland, an HMO licence is needed where three or more people from three or more families share facilities. Licensed HMOs are relevant premises under Part 3 of the Fire (Scotland) Act 2005, so they need a fire safety risk assessment, enforced by the Scottish Fire and Rescue Service.',
     ],
     services: ['fra', 'doors', 'alarms', 'lighting'],
     ctaTitle: 'HMO licence renewal or a council inspection coming up? Get your assessment booked.',
     faqs: [
-      { q: 'Does my HMO need a fire risk assessment?', a: 'In most cases, yes. Councils expect one for licensed HMOs, and the fire safety duties under the Fire Safety Order cover the shared parts of many rented buildings. In Scotland, licensed HMOs are relevant premises under the Fire (Scotland) Act 2005. Our guide on <a href="/guides/do-i-need-a-fire-risk-assessment">whether you need a fire risk assessment</a> explains the rules in more detail.' },
+      { q: 'Does my HMO need a fire risk assessment?', a: 'In most cases, yes. Councils expect one for licensed HMOs, and the fire safety duties under the Fire Safety Order cover the shared parts of many rented buildings. Our guide on <a href="/guides/do-i-need-a-fire-risk-assessment">whether you need a fire risk assessment</a> explains the rules in more detail.' },
       { q: 'What fire alarm system does an HMO need?', a: 'It depends on the number of storeys, the number of occupants and the layout. LACORS guidance sets out benchmark grades and categories of detection, and your licence may set specific conditions. The assessment records whether the existing system is suitable. If it is not, we can help with <a href="/services/fire-alarm-servicing-installation">fire alarm servicing and installation</a>.' },
       { q: 'Do bedroom doors in an HMO need to be fire doors?', a: 'Often, but not always. It depends on the size and layout of the house and the protection given to the escape route. The assessment looks at each door that opens onto the stairs and landings, and our <a href="/services/fire-door-inspections">fire door inspections</a> check their condition in detail.' },
-      { q: 'What smoke alarms does a rented home need?', a: 'In England, landlords must fit a smoke alarm on every storey used as living accommodation and a CO alarm in rooms with a fixed combustion appliance, other than a gas cooker. In Wales, the smoke alarms must be mains-powered and interlinked. In Scotland, the Tolerable Standard requires interlinked smoke and heat alarms in set locations.' },
+      { q: 'What smoke alarms does a rented home need?', a: 'In England, landlords must fit a smoke alarm on every storey used as living accommodation and a CO alarm in rooms with a fixed combustion appliance, other than a gas cooker. Your HMO licence may also set specific alarm conditions.' },
       { q: 'My council has written asking for a fire risk assessment. What should I do?', a: 'Read the letter for any deadline and the specific points it raises, then book the assessment so you have a written record to send back. Our guide to <a href="/guides/council-and-insurer-fire-safety-letters">council and insurer fire safety letters</a> explains what these letters usually mean.' },
       { q: 'How often should an HMO fire risk assessment be reviewed?', a: 'The law does not set a fixed interval. It must be kept up to date and reviewed when something significant changes, such as new tenants with different needs, building work or a change in the number of occupants. See our guide on <a href="/guides/how-often-should-a-fire-risk-assessment-be-reviewed">how often an assessment should be reviewed</a>.' },
     ],
@@ -49,12 +48,6 @@ export const extraSectors: Sector[] = [
       { label: 'Civil penalties under the Renters’ Rights Act 2025 (GOV.UK)', url: 'https://www.gov.uk/government/publications/civil-penalties-under-the-renters-rights-act-2025-and-other-housing-legislation/civil-penalties-under-the-renters-rights-act-2025-and-other-housing-legislation' },
       { label: 'Smoke and CO alarm regulations: Q&A for landlords (GOV.UK)', url: 'https://www.gov.uk/government/publications/smoke-and-carbon-monoxide-alarms-explanatory-booklet-for-landlords/the-smoke-and-carbon-monoxide-alarm-england-regulations-2015-qa-booklet-for-the-private-rented-sector-landlords-and-tenants' },
       { label: 'LACORS Housing – Fire Safety guidance (Cambridgeshire Fire and Rescue Service copy)', url: 'https://www.cambsfire.gov.uk/media/1556/housing-fire-safety-lacors-guide.pdf' },
-      { label: 'Licensing of HMOs (Prescribed Descriptions) (Wales) Order 2006 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/wsi/2006/1712/article/3/made' },
-      { label: 'Renting Homes (Fitness for Human Habitation) (Wales) Regulations 2022, reg. 5 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/wsi/2022/6/regulation/5/made' },
-      { label: 'Building Safety (Wales) Act 2026 (GOV.WALES)', url: 'https://www.gov.wales/building-safety-wales-act-2026' },
-      { label: 'Housing (Scotland) Act 2006, s.125 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/asp/2006/1/section/125' },
-      { label: 'Fire (Scotland) Act 2005, Part 3 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/asp/2005/5/part/3' },
-      { label: 'Tolerable Standard guidance: fire and CO detection (gov.scot)', url: 'https://www.gov.scot/publications/tolerable-standard-guidance-satisfactory-fire-carbon-monoxide-detection/' },
     ],
   },
   {
@@ -85,14 +78,13 @@ export const extraSectors: Sector[] = [
     ],
     contextTitle: 'Who is responsible in an office building',
     context: [
-      'In England and Wales the Regulatory Reform (Fire Safety) Order 2005 applies to offices. The employer is the responsible person for the areas they control, and the landlord or managing agent is usually responsible for common parts such as stairs, lobbies and the shared alarm system. Where more than one responsible person shares a building, the law requires them to co-operate and share information. Since 1 October 2023 every responsible person must keep a written record of the full assessment, including the name of whoever carried it out.',
-      'In Scotland, offices fall under Part 3 of the Fire (Scotland) Act 2005 and the Fire Safety (Scotland) Regulations 2006. The duty sits with the employer and anyone else with control of the premises, and the Scottish Fire and Rescue Service enforces it. A written record is required where the employer has five or more employees, which covers most offices.',
+      'In England the Regulatory Reform (Fire Safety) Order 2005 applies to offices. The employer is the responsible person for the areas they control, and the landlord or managing agent is usually responsible for common parts such as stairs, lobbies and the shared alarm system. Where more than one responsible person shares a building, the law requires them to co-operate and share information. Since 1 October 2023 every responsible person must keep a written record of the full assessment, including the name of whoever carried it out.',
     ],
     services: ['fra', 'alarms', 'lighting', 'doors'],
     ctaTitle: 'Moved offices, changed the layout or taken on more staff? Book a fresh assessment.',
     faqs: [
       { q: 'Who arranges the fire risk assessment in a shared office building?', a: 'Each responsible person arranges an assessment for the areas they control. Tenants usually cover their own office space and the landlord or managing agent covers the common parts. The two assessments should be consistent, so it helps to share them.' },
-      { q: 'We are a small office. Do we still need a written assessment?', a: 'In England and Wales, yes. Since 1 October 2023 the full assessment must be recorded whatever the number of employees. In Scotland, a written record is required where there are five or more employees. Our guide on <a href="/guides/do-i-need-a-fire-risk-assessment">whether you need a fire risk assessment</a> covers this in more detail.' },
+      { q: 'We are a small office. Do we still need a written assessment?', a: 'Yes. Since 1 October 2023 the full assessment must be recorded whatever the number of employees. Our guide on <a href="/guides/do-i-need-a-fire-risk-assessment">whether you need a fire risk assessment</a> covers this in more detail.' },
       { q: 'Does the assessment cover the fire alarm and emergency lighting?', a: 'Yes. The assessment records whether the alarm and emergency lighting suit the building and whether there is evidence of testing and maintenance. If servicing is needed, we offer <a href="/services/fire-alarm-servicing-installation">fire alarm servicing</a> and <a href="/services/emergency-lighting-servicing-installation">emergency lighting servicing</a>.' },
       { q: 'Do we need PEEPs for staff?', a: 'Where a member of staff or a regular visitor would need help to leave the building, a personal emergency evacuation plan is the usual way to record how that will happen. The assessment notes whether these plans are in place and whether they fit the building’s evacuation procedure.' },
       { q: 'Will you need access to the whole building?', a: 'We need access to the areas covered by the assessment, plus the escape routes and plant areas that serve them. For a tenant’s assessment that usually means your office, the common stairs and the final exits. Our guide to <a href="/guides/what-happens-during-a-fire-risk-assessment">what happens during an assessment</a> explains the visit.' },
@@ -104,8 +96,6 @@ export const extraSectors: Sector[] = [
       { label: 'Building Safety Act 2022, s.156 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/ukpga/2022/30/section/156' },
       { label: 'Fire safety responsibilities under section 156 of the Building Safety Act 2022 (GOV.UK)', url: 'https://www.gov.uk/government/publications/check-your-fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022/fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022' },
       { label: 'Workplace fire safety: your responsibilities (GOV.UK)', url: 'https://www.gov.uk/workplace-fire-safety-your-responsibilities/fire-risk-assessments' },
-      { label: 'Fire (Scotland) Act 2005, Part 3 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/asp/2005/5/part/3' },
-      { label: 'Fire Safety (Scotland) Regulations 2006 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/ssi/2006/456' },
     ],
   },
   {
@@ -136,8 +126,7 @@ export const extraSectors: Sector[] = [
     ],
     contextTitle: 'Who is responsible in care and healthcare premises',
     context: [
-      'In England and Wales, care homes, clinics and surgeries are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is usually the care provider or practice as employer. Where the building is leased, the landlord may hold duties for parts they control, and both must co-operate. The assessment must be suitable and sufficient, recorded in full since 1 October 2023, and reviewed regularly and whenever something significant changes, such as a new resident with higher needs or a change to staffing.',
-      'In Scotland, premises providing a care home service are relevant premises under Part 3 of the Fire (Scotland) Act 2005. The duty to carry out a fire safety risk assessment sits with the employer and anyone with control of the premises, and the Scottish Fire and Rescue Service enforces it through fire safety audits. Premises that need a licence or registration must keep a written record of the assessment.',
+      'In England, care homes, clinics and surgeries are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is usually the care provider or practice as employer. Where the building is leased, the landlord may hold duties for parts they control, and both must co-operate. The assessment must be suitable and sufficient, recorded in full since 1 October 2023, and reviewed regularly and whenever something significant changes, such as a new resident with higher needs or a change to staffing.',
     ],
     services: ['fra', 'doors', 'alarms', 'lighting'],
     ctaTitle: 'New residents, new staffing patterns or a change to the building? Get your assessment reviewed.',
@@ -154,9 +143,6 @@ export const extraSectors: Sector[] = [
       { label: 'Regulatory Reform (Fire Safety) Order 2005, art. 9 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/uksi/2005/1541/article/9' },
       { label: 'Fire safety responsibilities under section 156 of the Building Safety Act 2022 (GOV.UK)', url: 'https://www.gov.uk/government/publications/check-your-fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022/fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022' },
       { label: 'Check your fire safety responsibilities under the Fire Safety Order (GOV.UK)', url: 'https://www.gov.uk/guidance/check-your-fire-safety-responsibilities-under-the-fire-safety-order' },
-      { label: 'Fire (Scotland) Act 2005, Part 3 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/asp/2005/5/part/3' },
-      { label: 'Practical fire safety guidance for existing specialised housing (gov.scot)', url: 'https://www.gov.scot/publications/practical-fire-safety-guidance-existing-specialised-housing-similar-premises-2/pages/6/' },
-      { label: 'Fire risk assessment (Scottish Fire and Rescue Service)', url: 'https://www.firescotland.gov.uk/businesses-and-landlords/fire-risk-assessment/' },
     ],
   },
   {
@@ -187,8 +173,7 @@ export const extraSectors: Sector[] = [
     ],
     contextTitle: 'Who is responsible for fire safety in a school',
     context: [
-      'In England and Wales, schools and colleges are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is the employer. Depending on how the school is run, that may be the local authority, the governing body, an academy trust or the proprietor, and day-to-day tasks are often delegated to the head teacher or business manager. Since 1 October 2023 the full assessment must be recorded, including who carried it out, and it must be reviewed regularly and after significant changes such as new buildings or a change of layout.',
-      'In Scotland, schools fall under Part 3 of the Fire (Scotland) Act 2005 and the Fire Safety (Scotland) Regulations 2006. The duty sits with the employer and anyone else with control of the premises, and the Scottish Fire and Rescue Service enforces it. A written record is required where there are five or more employees.',
+      'In England, schools and colleges are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is the employer. Depending on how the school is run, that may be the local authority, the governing body, an academy trust or the proprietor, and day-to-day tasks are often delegated to the head teacher or business manager. Since 1 October 2023 the full assessment must be recorded, including who carried it out, and it must be reviewed regularly and after significant changes such as new buildings or a change of layout.',
     ],
     services: ['fra', 'alarms', 'lighting', 'doors'],
     ctaTitle: 'New building, new lettings or a change to the site? Book your assessment for the next holiday.',
@@ -205,8 +190,6 @@ export const extraSectors: Sector[] = [
       { label: 'Regulatory Reform (Fire Safety) Order 2005 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/uksi/2005/1541/contents' },
       { label: 'Regulatory Reform (Fire Safety) Order 2005, art. 9 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/uksi/2005/1541/article/9' },
       { label: 'Fire safety responsibilities under section 156 of the Building Safety Act 2022 (GOV.UK)', url: 'https://www.gov.uk/government/publications/check-your-fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022/fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022' },
-      { label: 'Fire (Scotland) Act 2005, Part 3 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/asp/2005/5/part/3' },
-      { label: 'Fire Safety (Scotland) Regulations 2006 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/ssi/2006/456' },
     ],
   },
   {
@@ -237,13 +220,12 @@ export const extraSectors: Sector[] = [
     ],
     contextTitle: 'Who is responsible in a shop',
     context: [
-      'In England and Wales shops are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is the employer, or whoever controls the premises in connection with the business. In a unit with flats above or in a shared parade, the landlord may control shared parts, and responsible persons who share a building must co-operate and share information. Since 1 October 2023 every shop must keep a written record of the full assessment, whatever its size. The local fire and rescue authority can inspect and serve enforcement or prohibition notices.',
-      'In Scotland, shops fall under Part 3 of the Fire (Scotland) Act 2005. The employer and anyone with control of the premises must carry out a fire safety risk assessment, and the Scottish Fire and Rescue Service enforces it. A written record is required where the employer has five or more employees.',
+      'In England shops are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is the employer, or whoever controls the premises in connection with the business. In a unit with flats above or in a shared parade, the landlord may control shared parts, and responsible persons who share a building must co-operate and share information. Since 1 October 2023 every shop must keep a written record of the full assessment, whatever its size. The local fire and rescue authority can inspect and serve enforcement or prohibition notices.',
     ],
     services: ['fra', 'alarms', 'lighting', 'doors'],
     ctaTitle: 'Opening a new shop, refitting or heading into peak season? Get your assessment booked.',
     faqs: [
-      { q: 'I run a small shop with two staff. Do I need a written assessment?', a: 'In England and Wales, yes. Since 1 October 2023 the full assessment must be recorded, whatever the number of staff. In Scotland a written record is needed where there are five or more employees, but an assessment is still required. Our guide on <a href="/guides/do-i-need-a-fire-risk-assessment">whether you need a fire risk assessment</a> explains more.' },
+      { q: 'I run a small shop with two staff. Do I need a written assessment?', a: 'Yes. Since 1 October 2023 the full assessment must be recorded, whatever the number of staff. Our guide on <a href="/guides/do-i-need-a-fire-risk-assessment">whether you need a fire risk assessment</a> explains more.' },
       { q: 'Can fire exits be locked for security?', a: 'Fire exits must be easy to open from the inside without a key whenever people are in the building. There are fittings that allow quick escape and still give some security. The assessment checks each exit and what it is fitted with.' },
       { q: 'There is a flat above my shop. Does that change anything?', a: 'It can. The people upstairs may be at risk from a fire in the shop, and their escape route may pass the shop or share a wall with it. The assessment looks at the separation between the two and at any shared routes or alarms.' },
       { q: 'What do you need from me on the day?', a: 'Access to the shop floor, stockrooms, staff areas and exits, plus any alarm, emergency lighting and extinguisher service records. Our guide to <a href="/guides/what-happens-during-a-fire-risk-assessment">what happens during an assessment</a> explains the visit.' },
@@ -256,8 +238,6 @@ export const extraSectors: Sector[] = [
       { label: 'Workplace fire safety: your responsibilities (GOV.UK)', url: 'https://www.gov.uk/workplace-fire-safety-your-responsibilities/fire-risk-assessments' },
       { label: 'Fire safety responsibilities under section 156 of the Building Safety Act 2022 (GOV.UK)', url: 'https://www.gov.uk/government/publications/check-your-fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022/fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022' },
       { label: 'Fire Safety Order enforcement and sanctions (GOV.UK)', url: 'https://www.gov.uk/government/publications/fire-safety-order-enforcement-and-sanctions-for-non-compliance/enforcement-and-sanctions-for-non-compliance-accessible' },
-      { label: 'Fire (Scotland) Act 2005, Part 3 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/asp/2005/5/part/3' },
-      { label: 'Fire risk assessment (Scottish Fire and Rescue Service)', url: 'https://www.firescotland.gov.uk/businesses-and-landlords/fire-risk-assessment/' },
     ],
   },
   {
@@ -288,13 +268,12 @@ export const extraSectors: Sector[] = [
     ],
     contextTitle: 'Who is responsible in hospitality premises',
     context: [
-      'In England and Wales, hotels, pubs, restaurants and holiday lets are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is the employer or the person who controls the premises for the business, such as the owner, operator or licensee. Self-catering holiday lets are included, so the person letting them must carry out a fire risk assessment. GOV.UK publishes a sleeping accommodation guide for larger premises and a shorter guide for small paying guest accommodation. Since 1 October 2023 the full assessment must be recorded.',
-      'In Scotland, hospitality premises fall under Part 3 of the Fire (Scotland) Act 2005, enforced by the Scottish Fire and Rescue Service. Short-term lets must also be licensed, and the licence conditions include fire and carbon monoxide detection. Premises that need a licence must keep a written record of the fire safety risk assessment.',
+      'In England, hotels, pubs, restaurants and holiday lets are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is the employer or the person who controls the premises for the business, such as the owner, operator or licensee. Self-catering holiday lets are included, so the person letting them must carry out a fire risk assessment. GOV.UK publishes a sleeping accommodation guide for larger premises and a shorter guide for small paying guest accommodation. Since 1 October 2023 the full assessment must be recorded.',
     ],
     services: ['fra', 'doors', 'alarms', 'lighting'],
     ctaTitle: 'Opening, refurbishing or taking over a hotel, pub or restaurant? Get your assessment booked.',
     faqs: [
-      { q: 'Do holiday lets and B&Bs need a fire risk assessment?', a: 'Yes. In England and Wales, paying guest accommodation, including self-catering holiday lets, is covered by the Fire Safety Order. In Scotland, short-term lets need a licence and are subject to Part 3 of the Fire (Scotland) Act 2005, which includes a fire risk assessment.' },
+      { q: 'Do holiday lets and B&Bs need a fire risk assessment?', a: 'Yes. Paying guest accommodation, including self-catering holiday lets and B&Bs, is covered by the Fire Safety Order, so the person letting it must carry out a fire risk assessment and, since 1 October 2023, record it in full.' },
       { q: 'Does the assessment cover the kitchen extraction?', a: 'The assessment looks at the canopy, filters and visible ductwork, and asks for records of cleaning. Grease in ductwork can spread a fire through the building, so missing or out-of-date records will be raised in the action plan.' },
       { q: 'Do hotel bedroom doors need to be fire doors?', a: 'Guest room doors usually form part of the protection to the corridor, so their condition and self-closers matter. The assessment checks them, and our <a href="/services/fire-door-inspections">fire door inspections</a> can look at every door in detail.' },
       { q: 'We have rooms above the pub. Are they included?', a: 'Yes, if they are part of the premises. Letting rooms and staff accommodation above trading areas are often a key risk, because a fire downstairs at night could cut off the stairs. The assessment looks at their escape route and detection.' },
@@ -308,8 +287,6 @@ export const extraSectors: Sector[] = [
       { label: 'Making your small paying guest accommodation safe from fire (GOV.UK)', url: 'https://www.gov.uk/government/publications/making-your-small-paying-guest-accommodation-safe-from-fire/making-your-small-paying-guest-accommodation-safe-from-fire-accessible' },
       { label: 'Letting out a self-catering holiday home in England (GOV.UK)', url: 'https://www.gov.uk/guidance/letting-out-a-self-catering-holiday-home-in-england-rules-and-regulations' },
       { label: 'Building Safety Act 2022, s.156 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/ukpga/2022/30/section/156' },
-      { label: 'Licensing of Short-term Lets Order 2022, Schedule 3 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/ssi/2022/32/schedule/3' },
-      { label: 'Short-term lets (Scottish Fire and Rescue Service)', url: 'https://www.firescotland.gov.uk/businesses-and-landlords/short-term-lets/' },
     ],
   },
   {
@@ -340,8 +317,7 @@ export const extraSectors: Sector[] = [
     ],
     contextTitle: 'Who is responsible on an industrial site',
     context: [
-      'In England and Wales, warehouses and industrial premises are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is the employer, or whoever controls the premises in connection with the business. On a multi-let estate the landlord may control shared roads, yards and systems, and responsible persons who share a site must co-operate. The premises and their fire safety equipment must be kept under a suitable system of maintenance, and since 1 October 2023 the full assessment must be recorded.',
-      'In Scotland, industrial premises fall under Part 3 of the Fire (Scotland) Act 2005 and the Fire Safety (Scotland) Regulations 2006. The employer and anyone with control of the premises must carry out a fire safety risk assessment, and the Scottish Fire and Rescue Service enforces it. A written record is required where there are five or more employees.',
+      'In England, warehouses and industrial premises are covered by the Regulatory Reform (Fire Safety) Order 2005. The responsible person is the employer, or whoever controls the premises in connection with the business. On a multi-let estate the landlord may control shared roads, yards and systems, and responsible persons who share a site must co-operate. The premises and their fire safety equipment must be kept under a suitable system of maintenance, and since 1 October 2023 the full assessment must be recorded.',
     ],
     services: ['fra', 'alarms', 'lighting', 'aov'],
     ctaTitle: 'New racking, new processes or more stock on site? Book a fresh assessment.',
@@ -358,8 +334,6 @@ export const extraSectors: Sector[] = [
       { label: 'Regulatory Reform (Fire Safety) Order 2005 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/uksi/2005/1541/contents' },
       { label: 'Regulatory Reform (Fire Safety) Order 2005, art. 17 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/uksi/2005/1541/article/17' },
       { label: 'Fire safety responsibilities under section 156 of the Building Safety Act 2022 (GOV.UK)', url: 'https://www.gov.uk/government/publications/check-your-fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022/fire-safety-responsibilities-under-section-156-of-the-building-safety-act-2022' },
-      { label: 'Fire (Scotland) Act 2005, Part 3 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/asp/2005/5/part/3' },
-      { label: 'Fire Safety (Scotland) Regulations 2006 (legislation.gov.uk)', url: 'https://www.legislation.gov.uk/ssi/2006/456' },
     ],
   },
 ];

@@ -11,6 +11,7 @@ import GuideCards from '../../components/GuideCards.astro';
 import { sectors, sectorUrl } from '../../data/sectors';
 import { serviceByKey } from '../../data/services';
 import type { Sector } from '../../data/types';
+import type { Art } from '../../components/PlanArt.astro';
 import { serviceSchema } from '../../lib/schema';
 
 export function getStaticPaths() {
@@ -19,6 +20,10 @@ export function getStaticPaths() {
 const { s } = Astro.props as { s: Sector };
 const crumbs = [{ name: 'Sectors', href: '/sectors' }, { name: s.name, href: sectorUrl(s) }];
 const primary = serviceByKey[s.services[0]];
+const sectorArt: Record<string, Art> = {
+  'blocks-of-flats': 'building', 'landlords-hmos': 'doors', offices: 'alarms', 'healthcare-care-homes': 'lighting',
+  education: 'alarms', retail: 'fra', hospitality: 'doors', 'industrial-warehousing': 'fra',
+};
 const others = s.services.filter((k) => k !== 'fra');
 ---
 <BaseLayout
@@ -28,7 +33,7 @@ const others = s.services.filter((k) => k !== 'fra');
   crumbs={crumbs}
   schema={[serviceSchema(Astro.site!, { name: s.h1, serviceType: 'Fire risk assessment', description: s.metaDescription, path: sectorUrl(s) })]}
 >
-  <Hero title={s.h1} sub={s.heroSub} image={s.image} imageLabel={s.imageLabel} crumbs={crumbs} />
+  <Hero title={s.h1} sub={s.heroSub} image={s.image} art={sectorArt[s.slug] ?? 'fra'} crumbs={crumbs} />
 
   <Grid3 introTitle={s.introTitle} intro={s.intro} title={s.considerTitle} items={s.consider} />
 

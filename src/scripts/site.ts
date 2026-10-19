@@ -132,7 +132,6 @@ document.querySelectorAll<HTMLFormElement>('form[data-quote-form]').forEach((for
         user_data: { email: data.get('email'), phone_number: data.get('phone') },
       };
       push(lead);
-      try { sessionStorage.setItem('tt_lead', JSON.stringify({ service: lead.service, t: Date.now() })); } catch { /* storage unavailable */ }
       // Give GTM a moment to dispatch before navigating
       setTimeout(() => { location.href = '/thank-you'; }, 350);
     } catch {
