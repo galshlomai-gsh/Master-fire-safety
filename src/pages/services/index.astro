@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import QuoteSection from '../../components/QuoteSection.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SectorTiles from '../../components/SectorTiles.astro';
+import { services, serviceUrl } from '../../data/services';
+const crumbs = [{ name: 'Services', href: '/services' }];
+---
+<BaseLayout
+  title="Fire Safety Services for Landlords & Businesses | T&T"
+  description="Fire risk assessments, fire door inspections, fire alarm and emergency lighting servicing, and AOV testing for landlords, managing agents and businesses. Free quote."
+  active="services"
+  crumbs={crumbs}
+>
+  <Hero title="Fire safety services" sub="Assessments, inspections and servicing for residential and commercial buildings across England, Wales and Scotland." image="alarmPanel" crumbs={crumbs} />
+  <section class="sec-int">
+    <div class="wrap">
+      <ul class="cards">
+        {services.map((s) => (
+          <li>
+            <a class="card" href={serviceUrl(s)}>
+              <h3>{s.name}</h3>
+              <p>{s.heroSub}</p>
+              <span class="arrowlink">View service <span class="ar" aria-hidden="true">→</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <CtaBand title="Several services due on one building? Get them quoted together." loc="services-hub" />
+  <SectorTiles />
+  <QuoteSection source="services-hub" />
+</BaseLayout>

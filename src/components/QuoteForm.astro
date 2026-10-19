@@ -1,0 +1,68 @@
+---
+/**
+ * Quote form: keeps the design's fields. Works without JS (POST → /api/quote → 303 /thank-you).
+ * With JS: inline validation, fetch submit, dataLayer `generate_lead`, then redirect.
+ */
+import { propertyTypes, serviceOptions } from '../data/nav';
+import { site } from '../config/site';
+interface Props { service?: string; propertyType?: string; source?: string; id?: string }
+const { service = 'Fire Risk Assessment', propertyType = '', source = '', id = 'qf' } = Astro.props;
+const f = (n: string) => `${id}-${n}`;
+---
+<form class="formcard quote-form" action="/api/quote" method="post" novalidate data-quote-form>
+  <p class="formtitle">Your details</p>
+  <input type="hidden" name="page" value={Astro.url.pathname} />
+  <input type="hidden" name="source" value={source} />
+  <div class="hp" aria-hidden="true"><label for={f('company')}>Company website</label><input id={f('company')} name="company_website" tabindex="-1" autocomplete="off" /></div>
+  <div class="frow">
+    <div class="field">
+      <label for={f('name')}>Name</label>
+      <input class="ctl" id={f('name')} name="name" placeholder="Your name" autocomplete="name" required />
+      <span class="errmsg" role="alert">Please enter your name</span>
+    </div>
+    <div class="field">
+      <label for={f('phone')}>Phone</label>
+      <input class="ctl" id={f('phone')} name="phone" type="tel" placeholder="Contact number" autocomplete="tel" inputmode="tel" required pattern="[0-9 +()\-]{10,}" />
+      <span class="errmsg" role="alert">Please enter a valid phone number</span>
+    </div>
+  </div>
+  <div class="frow">
+    <div class="field">
+      <label for={f('email')}>Email</label>
+      <input class="ctl" id={f('email')} name="email" type="email" placeholder="you@company.co.uk" autocomplete="email" required />
+      <span class="errmsg" role="alert">Please enter a valid email</span>
+    </div>
+    <div class="field">
+      <label for={f('postcode')}>Postcode</label>
+      <input class="ctl" id={f('postcode')} name="postcode" placeholder="Property postcode" autocomplete="postal-code" autocapitalize="characters" required pattern="[A-Za-z]{1,2}[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}" />
+      <span class="errmsg" role="alert">Please enter a UK postcode</span>
+    </div>
+  </div>
+  <div class="frow">
+    <div class="field">
+      <label for={f('ptype')}>Property type</label>
+      <span class="selwrap">
+        <select class="ctl" id={f('ptype')} name="property_type" required>
+          <option value="" selected={!propertyType} disabled>Select property type</option>
+          {propertyTypes.map((p) => <option value={p} selected={p === propertyType}>{p}</option>)}
+        </select>
+      </span>
+      <span class="errmsg" role="alert">Please choose a property type</span>
+    </div>
+    <div class="field">
+      <label for={f('service')}>Service required</label>
+      <span class="selwrap">
+        <select class="ctl" id={f('service')} name="service" required>
+          {serviceOptions.map((s) => <option value={s} selected={s === service}>{s}</option>)}
+        </select>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <label for={f('details')}>Additional details <span class="opt">(optional)</span></label>
+    <textarea class="ctl" id={f('details')} name="details" placeholder="Anything else that may help us quote" maxlength="2000"></textarea>
+  </div>
+  <button class="btn btn-block" type="submit">Get a Free Quote</button>
+  <p class="formnote">No obligation. We’ll confirm the scope and price in writing.</p>
+  <p class="formerror" role="alert" hidden>Sorry, that didn’t send. Please try again or call <a href={`tel:${site.phone.tel}`} data-loc="form-error">{site.phone.display}</a>.</p>
+</form>

@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import CtaBand from '../components/CtaBand.astro';
+import OtherServices from '../components/OtherServices.astro';
+import { confirmedCredentials, site } from '../config/site';
+const crumbs = [{ name: 'About', href: '/about' }];
+const principles = [
+  { title: 'The report is the deliverable', text: 'Significant findings and actions set out by priority, written so a landlord, agent or contractor can act on them.' },
+  { title: 'Independent of remedial work', text: 'The assessment is not a sales tool. You are not obliged to use us for any follow-on work it identifies.' },
+  { title: 'Non-destructive and honest about limits', text: 'We assess what is accessible and say plainly where concealed construction needs further investigation.' },
+  { title: 'Competence matched to the building', text: 'If a building is outside what we can assess competently, we will tell you before we quote.' },
+  { title: 'Scope and price agreed in writing', text: 'No surprises on the day. You know what is covered and what it costs before we visit.' },
+  { title: 'Help after the visit', text: 'Questions about the findings or priorities? We explain them, by phone or in writing.' },
+];
+---
+<BaseLayout
+  title="About T&T Fire Safety | Fire Risk Assessors"
+  description="T&T Fire Safety carries out fire risk assessments and related fire-safety services for landlords, managing agents and businesses across England, Wales and Scotland."
+  active="about"
+  crumbs={crumbs}
+>
+  <Hero title="About T&T Fire Safety" sub="Fire risk assessments and related fire-safety services for landlords, managing agents and businesses across England, Wales and Scotland." image="alarmPanel" crumbs={crumbs} />
+
+  <section class="sec-int reveal">
+    <div class="wrap">
+      <h2>How we work</h2>
+      <div class="grid3">{principles.map((p) => <div class="gitem"><h3>{p.title}</h3><p>{p.text}</p></div>)}</div>
+    </div>
+  </section>
+
+  <section class="credband reveal">
+    <div class="wrap">
+      <div>
+        <h2>Who carries out your assessment</h2>
+        <p>Assessments are carried out by qualified fire risk assessors, with competency appropriate to the type and complexity of the premises.</p>
+      </div>
+      {confirmedCredentials.length > 0 && (
+        <div class="credlist">
+          <p class="eyebrow">Professional credentials</p>
+          <ul>{confirmedCredentials.map((c) => <li>{c.label}<span>{c.holder}</span></li>)}</ul>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CtaBand title="Questions before you book? Talk to us." text={`Call ${site.phone.display}, ${site.hours.display}.`} loc="about-band" />
+
+  <OtherServices eyebrow="What we do" />
+
+  <QuoteSection source="about" />
+</BaseLayout>

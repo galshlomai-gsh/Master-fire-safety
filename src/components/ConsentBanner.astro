@@ -1,0 +1,34 @@
+---
+/** Minimal cookie consent wired to Google Consent Mode v2 (defaults set in BaseLayout head). */
+---
+<div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
+  <p>We use cookies to measure which pages and adverts lead to enquiries. <a href="/cookies">Cookie notice</a></p>
+  <div class="consent-acts">
+    <button type="button" class="btn btn-sm btn-ghost" data-consent="denied">Reject</button>
+    <button type="button" class="btn btn-sm" data-consent="granted">Accept</button>
+  </div>
+</div>
+<style>
+  .consent { position: fixed; z-index: 80; left: 16px; bottom: 16px; max-width: 420px; background: #fff; border: 1px solid var(--line); border-radius: 4px; box-shadow: 0 12px 40px rgba(28,32,36,.16); padding: 18px 20px; font-size: 14.5px; color: var(--slate); }
+  .consent[hidden] { display: none; }
+  .consent a { color: var(--red); text-decoration: underline; }
+  .consent-acts { display: flex; gap: 10px; margin-top: 12px; }
+  .consent-acts .btn { flex: 1; }
+  @media (max-width: 700px) { .consent { left: 8px; right: 8px; bottom: calc(76px + env(safe-area-inset-bottom)); max-width: none; } }
+</style>
+<script is:inline>
+  (function () {
+    var KEY = 'tt_consent', el = document.getElementById('consent'), v = null;
+    try { v = localStorage.getItem(KEY); } catch (e) {}
+    if (!v && el) el.hidden = false;
+    document.querySelectorAll('[data-consent]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var c = b.getAttribute('data-consent');
+        try { localStorage.setItem(KEY, c); } catch (e) {}
+        window.gtag('consent', 'update', { ad_storage: c, analytics_storage: c, ad_user_data: c, ad_personalization: c });
+        window.dataLayer.push({ event: 'consent_update', consent: c });
+        el.hidden = true;
+      });
+    });
+  })();
+</script>

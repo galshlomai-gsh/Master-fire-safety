@@ -1,0 +1,14 @@
+---
+import { sectors } from '../data/sectors';
+interface Props { title?: string; light?: boolean; exclude?: string }
+const { title = 'Fire Risk Assessments by Sector', light = false, exclude } = Astro.props;
+const list = sectors.filter((s) => s.slug !== exclude);
+---
+<section class:list={['sec-sectors', 'reveal', { 'sec-char': !light }]}>
+  <div class="wrap">
+    <h2 set:html={title.replace(' by ', '<br/>by ')} />
+    <ul class:list={['sectors', { light }]}>
+      {list.map((s) => <li><a class="tile" href={`/sectors/${s.slug}`}><h3>{s.name}</h3><p>{s.tile}</p></a></li>)}
+    </ul>
+  </div>
+</section>

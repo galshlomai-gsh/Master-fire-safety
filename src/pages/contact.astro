@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import AreasList from '../components/AreasList.astro';
+import { site, emailDisplay } from '../config/site';
+const crumbs = [{ name: 'Contact', href: '/contact' }];
+---
+<BaseLayout
+  title="Contact T&T Fire Safety | 020 8066 2499"
+  description="Call 020 8066 2499 or send the form for a free, no-obligation fire risk assessment quote. Monday to Friday, 8am to 6pm. England, Wales and Scotland."
+  active="contact"
+  crumbs={crumbs}
+>
+  <Hero variant="text-only" title="Contact us" sub="Call for a quick answer, or send the form and we’ll confirm the scope and a price in writing." crumbs={crumbs} cta={null} showCall={false} />
+  <section class="sec-int">
+    <div class="wrap contact-grid">
+      <div>
+        <h2>Talk to us</h2>
+        <ul class="contact-list">
+          <li><b>Phone</b><a href={`tel:${site.phone.tel}`} data-loc="contact-page">{site.phone.display}</a></li>
+          <li><b>Email</b>{site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span class="pending">{emailDisplay}</span>}</li>
+          <li><b>Hours</b><span>{site.hours.display}</span></li>
+          <li><b>Coverage</b><span style="font-size:16.5px;font-weight:500">England, Wales and Scotland. <a href="/areas" style="font-size:16.5px;text-decoration:underline">See areas</a></span></li>
+        </ul>
+      </div>
+      <div id="quote"><QuoteForm source="contact" id="cf" /></div>
+    </div>
+  </section>
+  <AreasList />
+</BaseLayout>

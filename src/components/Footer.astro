@@ -1,0 +1,49 @@
+---
+import Logo from './Logo.astro';
+import { site, emailDisplay } from '../config/site';
+import { navServices } from '../data/nav';
+const year = new Date().getFullYear();
+const legal = site.legal;
+---
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <Logo reversed />
+        <p class="blurb">{site.coverageLine}</p>
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <ul>
+          <li><a href={`tel:${site.phone.tel}`} data-loc="footer">{site.phone.display}</a></li>
+          <li>{site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : <span class="pending">{emailDisplay}</span>}</li>
+          <li>{site.hours.display}</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Services</h2>
+        <ul>{navServices.map((s) => <li><a href={s.href}>{s.name}</a></li>)}</ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/guides">Guides</a></li>
+          <li><a href="/areas">Areas We Cover</a></li>
+          <li><a href="/quote">Get a Quote</a></li>
+          <li><a href="/sectors">View All Sectors</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ftr-bot">
+      <p>
+        © {year} {site.brand.name}.
+        {legal.companyName
+          ? ` ${legal.companyName}${legal.companyNumber ? `, company no. ${legal.companyNumber}` : ''}${legal.registeredAddress ? `, ${legal.registeredAddress}` : ''}.`
+          : ' Company details to confirm.'}
+      </p>
+      <div class="lnks"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a></div>
+    </div>
+  </div>
+</footer>

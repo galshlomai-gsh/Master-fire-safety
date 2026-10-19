@@ -1,0 +1,28 @@
+---
+/**
+ * Review cards (design p2). HARD RULE: renders nothing until real reviews are added to
+ * site.reviews. No placeholder or invented reviews are ever shown.
+ */
+import { site } from '../config/site';
+const reviews = site.reviews.slice(0, 3);
+const fmt = (d: string) => new Date(d).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+---
+{reviews.length > 0 && (
+  <section class="sec-reviews reveal" aria-labelledby="reviews-h">
+    <div class="wrap">
+      <h2 id="reviews-h">What our customers say</h2>
+      <div class="revgrid">
+        {reviews.map((r) => (
+          <figure class="revcard">
+            <div class="stars" aria-label={`${r.rating} out of 5 stars`}>
+              {Array.from({ length: r.rating }).map(() => <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg>)}
+            </div>
+            <blockquote>{r.text}</blockquote>
+            <figcaption class="revmeta"><b>{r.name}</b><span>{fmt(r.date)} · {r.source}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+      {site.reviewsSource.url && <p class="revfoot"><a href={site.reviewsSource.url} rel="noopener" target="_blank">Read all reviews on {site.reviewsSource.name}</a></p>}
+    </div>
+  </section>
+)}

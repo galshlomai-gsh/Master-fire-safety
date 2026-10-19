@@ -1,0 +1,14 @@
+---
+import { designPropertyTypes } from '../data/nav';
+interface Props { title?: string }
+const { title = 'Property types we work with' } = Astro.props;
+---
+<section class="sec-int reveal">
+  <div class="wrap">
+    <h2>{title}</h2>
+    <ul class="linkrow">
+      {designPropertyTypes.map((s) => <li><a href={s.href}>{s.name}<span class="ar" aria-hidden="true">→</span></a></li>)}
+    </ul>
+    <a class="arrowlink" href="/sectors">View all sectors <span class="ar" aria-hidden="true">→</span></a>
+  </div>
+</section>

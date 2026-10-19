@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import QuoteSection from '../../components/QuoteSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { areas } from '../../data/areas';
+import { services, serviceUrl } from '../../data/services';
+import { navAreas, navSectors } from '../../data/nav';
+import { site } from '../../config/site';
+import type { Area } from '../../data/types';
+import { serviceSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return areas.map((a) => ({ params: { slug: a.slug }, props: { a } }));
+}
+const { a } = Astro.props as { a: Area };
+const path = `/areas/${a.slug}`;
+const crumbs = [{ name: 'Areas', href: '/areas' }, { name: a.name, href: path }];
+const nearby = a.nearby.map((s) => navAreas.find((n) => n.slug === s)).filter(Boolean) as typeof navAreas;
+const lawName = a.nation === 'Scotland' ? 'Fire safety law in Scotland' : a.nation === 'Wales' ? 'Fire safety law in Wales' : 'Fire safety law in England';
+---
+<BaseLayout
+  title={a.metaTitle}
+  description={a.metaDescription}
+  active="areas"
+  crumbs={crumbs}
+  schema={[serviceSchema(Astro.site!, { name: `Fire risk assessments in ${a.name}`, serviceType: 'Fire risk assessment', description: a.metaDescription, path, area: a.name })]}
+>
+  <Hero variant="text-only" title={`Fire risk assessments in ${a.name}`} sub={a.heroSub} crumbs={crumbs}>
+    <p slot="meta" class="meta-line">Fire safety enforced locally by <b>{a.enforcer.name}</b> · {a.nation === 'Scotland' ? 'Fire (Scotland) Act 2005' : 'Regulatory Reform (Fire Safety) Order 2005'}</p>
+  </Hero>
+
+  <section class="sec-int">
+    <div class="wrap with-aside">
+      <div class="prose">
+        {a.intro.map((p) => <p set:html={p} />)}
+        <h2>Where we work in {a.name}</h2>
+        <ul class="linkrow" style="max-width:none;margin-top:12px">
+          {a.places.map((p) => <li style="font-size:15.5px;color:var(--ink)">{p}</li>)}
+        </ul>
+        <h2>{a.housingTitle}</h2>
+        {a.housing.map((p) => <p set:html={p} />)}
+      </div>
+      <aside class="aside-card" aria-label={`Get a quote in ${a.name}`}>
+        <h2>Get a quote in {a.name}</h2>
+        <p>Tell us the property and the service you need. We’ll confirm the scope and price in writing.</p>
+        <a class="btn" href="#quote" data-cta="area-aside">Get a Free Quote</a>
+        <a class="tel" href={`tel:${site.phone.tel}`} data-loc="area-aside">{site.phone.display}</a>
+        <hr />
+        <p class="eyebrow" style="margin:0">Services in {a.name}</p>
+        <ul>{services.map((s) => <li><a href={serviceUrl(s)}>{s.name}</a></li>)}</ul>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand title={`Landlord or managing agent in ${a.name}? Get your assessment booked.`} loc="area-band" />
+
+  <section class="sec-int">
+    <div class="wrap">
+      <div class="prose">
+        <h2 style="margin-top:0">{a.licensingTitle}</h2>
+        {a.licensing.map((p) => <p set:html={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="textband reveal">
+    <div class="wrap">
+      <p class="eyebrow">{lawName}</p>
+      <h2 class="h2-sm">{a.lawTitle}</h2>
+      <div class="prose" style="margin-top:6px">{a.law.map((p) => <p set:html={p} />)}</div>
+      <p style="margin-top:18px"><a class="arrowlink" href={a.enforcer.url} rel="noopener nofollow" target="_blank">{a.enforcer.name} <span class="ar" aria-hidden="true">↗</span></a></p>
+    </div>
+  </section>
+
+  <section class="sec-int reveal">
+    <div class="wrap">
+      <h2>Fire safety services in {a.name}</h2>
+      <div class="grid3">
+        {services.map((s) => (
+          <div class="gitem">
+            <h3><a href={serviceUrl(s)}>{s.name}</a></h3>
+            <p>{s.heroSub}</p>
+          </div>
+        ))}
+        <div class="gitem">
+          <h3><a href="/sectors">Sectors we cover</a></h3>
+          <p>{navSectors.slice(0, 5).map((x, i) => <>{i > 0 && ', '}<a href={x.href} style="text-decoration:underline;text-underline-offset:2px">{x.name}</a></>)} and more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <QuoteSection source={`area:${a.slug}`} heading={`Get a free quote in ${a.name}`} />
+
+  <FAQ faqs={a.faqs} title={`Fire safety in ${a.name}: FAQs`} />
+
+  <section class="sec-int-sm sec-warm">
+    <div class="wrap">
+      <h2 class="h2-sm">Nearby areas</h2>
+      <ul class="regions">{nearby.map((n) => <li><a href={n.href}>{n.name}<span class="ar" aria-hidden="true">→</span></a></li>)}</ul>
+      <a class="arrowlink" href="/areas">All areas we cover <span class="ar" aria-hidden="true">→</span></a>
+      <div class="sources">
+        <h2>Sources</h2>
+        <ol>{a.sources.map((x) => <li><a href={x.url} rel="noopener nofollow" target="_blank">{x.label}</a></li>)}</ol>
+        <p style="margin-top:12px">Licensing schemes change. Check the current position with your council before relying on this page.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

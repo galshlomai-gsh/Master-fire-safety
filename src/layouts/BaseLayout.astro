@@ -1,0 +1,90 @@
+---
+import '@fontsource/archivo/latin-500.css';
+import '@fontsource/archivo/latin-600.css';
+import '@fontsource/archivo/latin-700.css';
+import '@fontsource/archivo/latin-800.css';
+import '@fontsource/source-sans-3/latin-400.css';
+import '@fontsource/source-sans-3/latin-600.css';
+import '../styles/global.css';
+import archivo700 from '@fontsource/archivo/files/archivo-latin-700-normal.woff2?url';
+import sans400 from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
+import Header, { type Section } from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import { site } from '../config/site';
+import { orgSchema, breadcrumbSchema, type Crumb } from '../lib/schema';
+
+interface Props {
+  title: string;
+  description: string;
+  active?: Section;
+  crumbs?: Crumb[]; // excluding Home
+  schema?: object[];
+  noindex?: boolean;
+  ogType?: 'website' | 'article';
+}
+const { title, description, active = 'none', crumbs = [], schema = [], noindex = false, ogType = 'website' } = Astro.props;
+const siteUrl = Astro.site!;
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
+const canonical = new URL(path, siteUrl).toString();
+// Previews are never indexable; only the production deploy with ALLOW_INDEXING=true is.
+const indexable = !noindex && process.env.ALLOW_INDEXING === 'true';
+const gtm = site.tracking.gtmId;
+const allSchema = [
+  orgSchema(siteUrl),
+  ...(crumbs.length ? [breadcrumbSchema(siteUrl, [{ name: 'Home', href: '/' }, ...crumbs])] : []),
+  ...schema,
+];
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={indexable ? 'index, follow, max-image-preview:large' : 'noindex, nofollow'} />
+    <meta name="theme-color" content="#1C2024" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href={archivo700} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sans400} as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.brand.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/og-default.png', siteUrl).toString()} />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="format-detection" content="telephone=no" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+      (function(){var c=null;try{c=localStorage.getItem('tt_consent');}catch(e){}var g=c==='granted'?'granted':'denied';
+      gtag('consent','default',{ad_storage:g,analytics_storage:g,ad_user_data:g,ad_personalization:g,functionality_storage:'granted',security_storage:'granted',wait_for_update:500});
+      gtag('set','ads_data_redaction',g==='denied');})();
+    </script>
+    {gtm && (
+      <script is:inline define:vars={{ gtm }}>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',gtm);
+      </script>
+    )}
+    {allSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    {gtm && <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtm}`} height="0" width="0" style="display:none;visibility:hidden" title="GTM"></iframe></noscript>}
+    <a class="skip" href="#main">Skip to content</a>
+    <Header active={active} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <MobileBar />
+    <ConsentBanner />
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>

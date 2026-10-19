@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import GuideCards from '../../components/GuideCards.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import QuoteSection from '../../components/QuoteSection.astro';
+const crumbs = [{ name: 'Guides', href: '/guides' }];
+---
+<BaseLayout
+  title="Fire Safety Guides for Landlords & Businesses | T&T Fire Safety"
+  description="Plain-English guides to fire risk assessments: who needs one, what it costs, how long it takes, the 2022 Regulations and what council letters mean. Sources cited."
+  active="guides"
+  crumbs={crumbs}
+>
+  <Hero variant="text-only" title="Fire safety guides" sub="Plain-English answers for landlords, managing agents and business owners. Every legal point is sourced to the legislation or official guidance." crumbs={crumbs} />
+  <GuideCards title="All guides" eyebrow="Guides" limit={50} />
+  <CtaBand title="Read enough? Get a fixed written quote." loc="guides-hub" />
+  <QuoteSection source="guides-hub" />
+</BaseLayout>
