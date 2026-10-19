@@ -1,0 +1,22 @@
+---
+/**
+ * The single brand lockup. Swap the brand in src/config/site.ts.
+ * Fire mark A renders only when site.brand.fireMarkApproved is true.
+ */
+import { site } from '../config/site';
+interface Props { reversed?: boolean; href?: string }
+const { reversed = false, href = '/' } = Astro.props;
+const b = site.brand;
+---
+<a href={href} class:list={['logo', { rev: reversed }]} aria-label={`${b.name}: home`}>
+  <span class="mark" aria-hidden="true">{b.wordmark}</span>
+  {b.fireMarkApproved ? (
+    <svg class="firemark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" fill="#C9232C" />
+      <path d="M16 5 l5.5 7.5 v9 L16 27 l-5.5-5.5 v-6 l3-3.5 v4 l2.5-3.5 z" fill="#fff" />
+    </svg>
+  ) : (
+    <span class="rule" aria-hidden="true"></span>
+  )}
+  <span class="desc" aria-hidden="true">{b.descriptor}</span>
+</a>

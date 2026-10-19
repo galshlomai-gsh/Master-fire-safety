@@ -1,0 +1,19 @@
+---
+/** Compact red CTA band ("approved conversion pattern 2" in the design artifact). */
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+interface Props { title: string; text?: string; dark?: boolean; light?: boolean; href?: string; label?: string; loc?: string }
+const { title, text, dark = false, light = false, href = '#quote', label = 'Get a Free Quote', loc = 'cta-band' } = Astro.props;
+---
+<aside class:list={['ctaband', { dark, light }]}>
+  <div class="wrap">
+    <div>
+      <h2>{title}</h2>
+      {text && <p>{text}</p>}
+    </div>
+    <div class="acts">
+      <a class="btn btn-white" href={href} data-cta={loc}>{label}</a>
+      <a class="btn btn-outline-dk" href={`tel:${site.phone.tel}`} data-loc={loc}><Icon name="phone" />{site.phone.display}</a>
+    </div>
+  </div>
+</aside>

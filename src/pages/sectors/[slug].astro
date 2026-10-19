@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Grid3 from '../../components/Grid3.astro';
+import Blocks from '../../components/Blocks.astro';
+import OtherServices from '../../components/OtherServices.astro';
+import QuoteSection from '../../components/QuoteSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import GuideCards from '../../components/GuideCards.astro';
+import { sectors, sectorUrl } from '../../data/sectors';
+import { serviceByKey } from '../../data/services';
+import type { Sector } from '../../data/types';
+import { serviceSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return sectors.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props as { s: Sector };
+const crumbs = [{ name: 'Sectors', href: '/sectors' }, { name: s.name, href: sectorUrl(s) }];
+const primary = serviceByKey[s.services[0]];
+const others = s.services.filter((k) => k !== 'fra');
+---
+<BaseLayout
+  title={s.metaTitle}
+  description={s.metaDescription}
+  active="sectors"
+  crumbs={crumbs}
+  schema={[serviceSchema(Astro.site!, { name: s.h1, serviceType: 'Fire risk assessment', description: s.metaDescription, path: sectorUrl(s) })]}
+>
+  <Hero title={s.h1} sub={s.heroSub} image={s.image} imageLabel={s.imageLabel} crumbs={crumbs} />
+
+  <Grid3 introTitle={s.introTitle} intro={s.intro} title={s.considerTitle} items={s.consider} />
+
+  <Blocks
+    blocks={[
+      {
+        kind: 'strip',
+        title: 'Your fire risk assessment report',
+        items: [
+          { title: 'Significant findings', text: 'The fire risks and existing precautions identified during the assessment.' },
+          { title: 'Prioritised actions', text: 'Recommended actions ranked according to priority.' },
+          { title: 'Next steps', text: 'Guidance on the findings and any further action required.' },
+        ],
+      },
+    ]}
+  />
+
+  <section class="textband reveal">
+    <div class="wrap">
+      <h2 class="h2-sm">{s.contextTitle}</h2>
+      {s.context.map((p) => <p set:html={p} />)}
+    </div>
+  </section>
+
+  <CtaBand title={s.ctaTitle} loc="sector-band" />
+
+  <OtherServices exclude="fra" only={others.length >= 2 ? others : undefined} eyebrow={`Other fire safety services for ${s.name.toLowerCase()}`} />
+
+  <QuoteSection service={primary.formValue} propertyType={s.propertyType} source={`sector:${s.slug}`} />
+
+  <FAQ faqs={s.faqs} />
+
+  <GuideCards slugs={s.relatedGuides} title="Guides for responsible persons" />
+
+  {s.sources && s.sources.length > 0 && (
+    <section class="sec-int-sm">
+      <div class="wrap">
+        <div class="sources" style="margin-top:0;max-width:72ch">
+          <h2>Sources</h2>
+          <ol>{s.sources.map((x) => <li><a href={x.url} rel="noopener nofollow" target="_blank">{x.label}</a></li>)}</ol>
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

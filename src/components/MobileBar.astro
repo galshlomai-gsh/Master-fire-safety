@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+---
+<div class="mbar" id="mbar" aria-label="Quick contact">
+  <a class="btn btn-ghost" href={`tel:${site.phone.tel}`} data-loc="mobile-bar"><Icon name="phone" />Call</a>
+  <a class="btn" href="/quote" data-cta="mobile-bar">Get a Quote</a>
+</div>

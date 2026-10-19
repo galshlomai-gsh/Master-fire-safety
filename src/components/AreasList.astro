@@ -1,0 +1,16 @@
+---
+import { navAreas } from '../data/nav';
+import { site } from '../config/site';
+interface Props { title?: string; text?: string; exclude?: string; showAll?: boolean; warm?: boolean }
+const { title = 'Areas we cover', text = site.coverageLine, exclude, showAll = true, warm = true } = Astro.props;
+---
+<section class:list={['sec-coverage', 'reveal', { 'sec-warm': warm }]}>
+  <div class="wrap">
+    <h2>{title}</h2>
+    <p class="lead" style="margin-top:14px">{text}</p>
+    <ul class="regions">
+      {navAreas.filter((a) => a.slug !== exclude).map((a) => <li><a href={a.href}>{a.name}<span class="ar" aria-hidden="true">→</span></a></li>)}
+    </ul>
+    {showAll && <a class="arrowlink" href="/areas">See All Areas We Cover <span class="ar" aria-hidden="true">→</span></a>}
+  </div>
+</section>

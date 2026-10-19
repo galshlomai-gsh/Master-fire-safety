@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import GuideCards from '../components/GuideCards.astro';
+import { site } from '../config/site';
+---
+<BaseLayout title="Thank you | T&T Fire Safety" description="Thank you. Your fire safety quote request has been received and we will confirm the scope and price in writing shortly." noindex>
+  <Hero
+    variant="text-only"
+    title="Thank you, we’ve got your request"
+    sub={`We’ll be in touch shortly to confirm the scope and price in writing. If it’s urgent, call us on ${site.phone.display} (${site.hours.display}).`}
+    cta={{ label: `Call ${site.phone.display}`, href: `tel:${site.phone.tel}` }}
+    showCall={false}
+  />
+  <section class="sec-int">
+    <div class="wrap">
+      <h2 class="h2-sm">While you wait, have these ready</h2>
+      <div class="grid3">
+        <div class="gitem"><h3>Your previous assessment</h3><p>If there is one, even if it’s out of date.</p></div>
+        <div class="gitem"><h3>Servicing records</h3><p>Fire alarm, emergency lighting and AOV logs or certificates.</p></div>
+        <div class="gitem"><h3>Any letters</h3><p>From the council, fire service, insurer or freeholder, with their deadlines.</p></div>
+      </div>
+    </div>
+  </section>
+  <GuideCards slugs={['what-happens-during-a-fire-risk-assessment', 'how-long-does-a-fire-risk-assessment-take', 'council-and-insurer-fire-safety-letters']} title="What to expect" eyebrow="Guides" />
+  <script is:inline>
+    // No-JS submissions arrive here with ?nojs=1. JS submissions already pushed generate_lead.
+    (function(){var q=new URLSearchParams(location.search);if(q.get('nojs')==='1'){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'generate_lead',form_id:'quote',submit_mode:'nojs'});history.replaceState(null,'',location.pathname);}})();
+  </script>
+</BaseLayout>

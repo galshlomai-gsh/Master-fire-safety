@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import QuoteSection from '../../components/QuoteSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import GuideCards from '../../components/GuideCards.astro';
+import { guides } from '../../data/guides';
+import { serviceByKey, serviceUrl } from '../../data/services';
+import { site } from '../../config/site';
+import type { Guide } from '../../data/types';
+import { articleSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return guides.map((g) => ({ params: { slug: g.slug }, props: { g } }));
+}
+const { g } = Astro.props as { g: Guide };
+const path = `/guides/${g.slug}`;
+const crumbs = [{ name: 'Guides', href: '/guides' }, { name: g.title, href: path }];
+const svc = serviceByKey[g.service];
+const updated = new Date(g.updated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<BaseLayout
+  title={g.metaTitle}
+  description={g.metaDescription}
+  active="guides"
+  crumbs={crumbs}
+  ogType="article"
+  schema={[articleSchema(Astro.site!, { title: g.title, description: g.metaDescription, path, updated: g.updated })]}
+>
+  <Hero variant="text-only" title={g.title} sub={g.summary} crumbs={crumbs} cta={{ label: 'Get a Free Quote', href: '#quote' }}>
+    <p slot="meta" class="meta-line">Updated <b>{updated}</b> · {g.readingMinutes} min read · Sources cited below</p>
+  </Hero>
+
+  <section class="sec-int">
+    <div class="wrap with-aside">
+      <article class="prose">
+        <Fragment set:html={g.body} />
+        <div class="sources">
+          <h2>Sources</h2>
+          <ol>{g.sources.map((x, i) => <li id={`s${i + 1}`}><a href={x.url} rel="noopener nofollow" target="_blank">{x.label}</a></li>)}</ol>
+        </div>
+      </article>
+      <aside class="aside-card" aria-label="Book a fire risk assessment">
+        <h2>Need this sorted?</h2>
+        <p>{svc.heroSub} Tell us about the property and we’ll confirm the scope and price in writing.</p>
+        <a class="btn" href="#quote" data-cta="guide-aside">Get a Free Quote</a>
+        <a class="tel" href={`tel:${site.phone.tel}`} data-loc="guide-aside">{site.phone.display}</a>
+        <hr />
+        <p class="eyebrow" style="margin:0">Related service</p>
+        <ul><li><a href={serviceUrl(svc)}>{svc.name} →</a></li></ul>
+      </aside>
+    </div>
+  </section>
+
+  <FAQ faqs={g.faqs} />
+
+  <QuoteSection service={svc.formValue} source={`guide:${g.slug}`} />
+
+  <GuideCards slugs={g.related} title="Keep reading" eyebrow="Related guides" exclude={g.slug} />
+</BaseLayout>

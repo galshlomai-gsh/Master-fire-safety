@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import QuoteSection from '../../components/QuoteSection.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { areas } from '../../data/areas';
+const crumbs = [{ name: 'Areas', href: '/areas' }];
+const nations = ['England', 'Wales', 'Scotland'] as const;
+const law: Record<string, string> = {
+  England: 'Regulatory Reform (Fire Safety) Order 2005, plus the Fire Safety (England) Regulations 2022 for blocks of flats.',
+  Wales: 'Regulatory Reform (Fire Safety) Order 2005. Housing duties come from the Renting Homes (Wales) Act 2016, and England’s 2022 Regulations do not apply.',
+  Scotland: 'Fire (Scotland) Act 2005 and the Fire Safety (Scotland) Regulations 2006. The Fire Safety Order does not apply.',
+};
+---
+<BaseLayout
+  title="Areas We Cover | Fire Risk Assessments UK-Wide | T&T Fire Safety"
+  description="Fire risk assessments and fire safety services across London, the South East, the Midlands, the North, South Wales and Central Scotland. Find your area. Free quote."
+  active="areas"
+  crumbs={crumbs}
+>
+  <Hero variant="text-only" title="Areas we cover" sub="Fire risk assessments and related fire-safety services across England, Wales and Scotland. Each area page covers local housing, council licensing and the law that applies there." crumbs={crumbs} />
+  {nations.map((n) => {
+    const list = areas.filter((a) => a.nation === n);
+    return list.length > 0 && (
+      <section class="sec-int reveal">
+        <div class="wrap">
+          <p class="eyebrow">{n}</p>
+          <p class="lead" style="max-width:70ch">{law[n]}</p>
+          <ul class="cards">
+            {list.map((a) => (
+              <li>
+                <a class="card" href={`/areas/${a.slug}`}>
+                  <h3>{a.name}</h3>
+                  <p>{a.heroSub}</p>
+                  <span class="arrowlink">Fire safety in {a.name} <span class="ar" aria-hidden="true">→</span></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    );
+  })}
+  <CtaBand title="Your area not listed? We may still cover it. Ask us." loc="areas-hub" />
+  <QuoteSection source="areas-hub" />
+</BaseLayout>

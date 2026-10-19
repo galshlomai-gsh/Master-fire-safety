@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import OtherServices from '../components/OtherServices.astro';
+---
+<BaseLayout title="Page not found | T&T Fire Safety" description="The page you were looking for could not be found." noindex>
+  <Hero variant="text-only" title="Page not found" sub="That page doesn’t exist or has moved. Try one of our services below, or get in touch." cta={{ label: 'Get a Free Quote', href: '/quote' }} />
+  <OtherServices exclude="" eyebrow="Our services" />
+</BaseLayout>

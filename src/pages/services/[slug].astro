@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Grid3 from '../../components/Grid3.astro';
+import Blocks from '../../components/Blocks.astro';
+import PropertyTypes from '../../components/PropertyTypes.astro';
+import OtherServices from '../../components/OtherServices.astro';
+import QuoteSection from '../../components/QuoteSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import GuideCards from '../../components/GuideCards.astro';
+import AreasList from '../../components/AreasList.astro';
+import { services, serviceUrl } from '../../data/services';
+import type { Service } from '../../data/types';
+import { serviceSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props as { s: Service };
+const crumbs = [{ name: 'Services', href: '/services' }, { name: s.name, href: serviceUrl(s) }];
+---
+<BaseLayout
+  title={s.metaTitle}
+  description={s.metaDescription}
+  active="services"
+  crumbs={crumbs}
+  schema={[serviceSchema(Astro.site!, { name: s.name, serviceType: s.schemaServiceType, description: s.metaDescription, path: serviceUrl(s) })]}
+>
+  <Hero title={s.h1} sub={s.heroSub} image={s.image} crumbs={crumbs} />
+
+  <Grid3 introTitle={s.introTitle} intro={s.intro} title={s.gridTitle} items={s.grid} note={s.gridNote} />
+
+  <Blocks blocks={s.blocks} />
+
+  <CtaBand title={s.ctaTitle} loc="service-band" />
+
+  <PropertyTypes />
+
+  <OtherServices exclude={s.key} />
+
+  <QuoteSection service={s.formValue} source={`service:${s.key}`} />
+
+  <FAQ faqs={s.faqs} />
+
+  <GuideCards slugs={s.relatedGuides} title="Guides for responsible persons" />
+
+  <AreasList title={`${s.name} across the UK`} text="We work across England, Wales and Scotland. Choose your area for local licensing and fire-safety information." warm />
+</BaseLayout>

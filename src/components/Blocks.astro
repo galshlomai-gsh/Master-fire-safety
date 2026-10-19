@@ -1,0 +1,68 @@
+---
+/** Renders the shared editorial components: grid, strip, text band, list band, credentials band. */
+import type { Block, Item } from '../data/types';
+import { confirmedCredentials } from '../config/site';
+
+interface Props { blocks: Block[] }
+const { blocks } = Astro.props;
+const isWarm = (b: Block) => 'warm' in b && b.warm;
+---
+{blocks.map((b) => {
+  if (b.kind === 'grid') return (
+    <section class="sec-int reveal">
+      <div class="wrap">
+        <h2>{b.title}</h2>
+        <div class="grid3">{b.items.map((i: Item) => <div class="gitem"><h3>{i.title}</h3><p>{i.text}</p></div>)}</div>
+        {b.note && <p class="note">{b.note}</p>}
+      </div>
+    </section>
+  );
+  if (b.kind === 'strip') return (
+    <section class:list={['sec-int', 'reveal', { 'sec-warm': isWarm(b) }]}>
+      <div class="wrap">
+        <h2 class="strip-head">{b.title}</h2>
+        <div class="features">
+          <div class:list={['featgrid', { three: b.items.length === 3, two: b.items.length === 2 }]}>
+            {b.items.map((i: Item, n: number) => (
+              <div>{b.numbered && <span class="num">{String(n + 1).padStart(2, '0')}</span>}<h3>{i.title}</h3><p>{i.text}</p></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+  if (b.kind === 'text') return (
+    <section class:list={[isWarm(b) ? 'textband' : 'sec-int', 'reveal']}>
+      <div class="wrap">
+        <h2 class="h2-sm">{b.title}</h2>
+        <p class="lead" style="margin-top:14px" set:html={b.text} />
+      </div>
+    </section>
+  );
+  if (b.kind === 'list') return (
+    <section class:list={[isWarm(b) ? 'textband' : 'sec-int', 'reveal']}>
+      <div class="wrap">
+        <h2 class="h2-sm">{b.title}</h2>
+        {b.intro && <p class="lead" style="margin-top:14px">{b.intro}</p>}
+        <div class="grid3">{b.items.map((t: string) => <div class="gitem"><p style="margin:0;color:var(--ink)">{t}</p></div>)}</div>
+      </div>
+    </section>
+  );
+  if (b.kind === 'credentials') return (
+    <section class="credband reveal">
+      <div class="wrap">
+        <div>
+          <h2>{b.title}</h2>
+          {b.paragraphs.map((p: string) => <p>{p}</p>)}
+        </div>
+        {confirmedCredentials.length > 0 && (
+          <div class="credlist">
+            <p class="eyebrow">Professional credentials</p>
+            <ul>{confirmedCredentials.map((c) => <li>{c.label}<span>{c.holder}</span></li>)}</ul>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+  return null;
+})}

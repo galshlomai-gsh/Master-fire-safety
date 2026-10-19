@@ -1,0 +1,78 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+import { navServices, navSectors } from '../data/nav';
+
+export type Section = 'home' | 'services' | 'sectors' | 'guides' | 'about' | 'contact' | 'areas' | 'quote' | 'none';
+interface Props { active?: Section; path?: string }
+const { active = 'none', path = Astro.url.pathname } = Astro.props;
+const here = (href: string) => path.replace(/\.html$/, '') === href;
+---
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <Logo />
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="/" class:list={{ here: active === 'home' }} aria-current={active === 'home' ? 'page' : undefined}>Home</a></li>
+        <li class="dd">
+          <a href="/services" class:list={['ddbtn', { here: active === 'services' }]} aria-haspopup="true">Services<span class="caret" aria-hidden="true"></span></a>
+          <ul class="ddmenu">
+            {navServices.map((s) => <li><a href={s.href} class:list={{ here: here(s.href) }}>{s.name}</a></li>)}
+          </ul>
+        </li>
+        <li class="dd">
+          <a href="/sectors" class:list={['ddbtn', { here: active === 'sectors' }]} aria-haspopup="true">Sectors<span class="caret" aria-hidden="true"></span></a>
+          <ul class="ddmenu">
+            {navSectors.map((s) => <li><a href={s.href} class:list={{ here: here(s.href) }}>{s.name}</a></li>)}
+            <li><a href="/sectors" class="all">View all sectors →</a></li>
+          </ul>
+        </li>
+        <li><a href="/guides" class:list={{ here: active === 'guides' }}>Guides</a></li>
+        <li><a href="/about" class:list={{ here: active === 'about' }}>About</a></li>
+        <li><a href="/contact" class:list={{ here: active === 'contact' }}>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hdr-right">
+      <a class="tel" href={`tel:${site.phone.tel}`} data-loc="header">{site.phone.display}</a>
+      <a class="btn btn-sm" href="/quote" data-cta="header">Get a Quote</a>
+      <div class="mobtools">
+        <a class="iconbtn solid" href={`tel:${site.phone.tel}`} data-loc="header-mobile" aria-label={`Call ${site.phone.display}`}><Icon name="phone" /></a>
+        <button class="iconbtn" type="button" id="navtoggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu">
+          <Icon name="menu" class="ic-open" /><Icon name="close" class="ic-close" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="drawer" id="drawer" hidden>
+    <div class="wrap">
+      <a class="btn btn-ghost" href={`tel:${site.phone.tel}`} data-loc="drawer"><Icon name="phone" />Call {site.phone.display}</a>
+      <a class="btn" href="/quote" data-cta="drawer">Get a Quote</a>
+      <ul class="drawernav">
+        <li><a href="/">Home</a></li>
+        <li>
+          <details>
+            <summary>Services<span class="caret" aria-hidden="true"></span></summary>
+            <ul>
+              <li><a href="/services">All services</a></li>
+              {navServices.map((s) => <li><a href={s.href}>{s.name}</a></li>)}
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>Sectors<span class="caret" aria-hidden="true"></span></summary>
+            <ul>
+              <li><a href="/sectors">All sectors</a></li>
+              {navSectors.map((s) => <li><a href={s.href}>{s.name}</a></li>)}
+            </ul>
+          </details>
+        </li>
+        <li><a href="/guides">Guides</a></li>
+        <li><a href="/areas">Areas We Cover</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</header>

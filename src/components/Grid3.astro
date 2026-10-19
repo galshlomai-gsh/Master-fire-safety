@@ -1,0 +1,18 @@
+---
+import type { Item } from '../data/types';
+interface Props { title: string; items: Item[]; note?: string; intro?: string[]; introTitle?: string }
+const { title, items, note, intro, introTitle } = Astro.props;
+---
+<section class="sec-int reveal">
+  <div class="wrap">
+    {introTitle && (
+      <div style="margin-bottom:64px">
+        <h2>{introTitle}</h2>
+        <div style="margin-top:22px">{intro?.map((p) => <p class="lead" set:html={p} />)}</div>
+      </div>
+    )}
+    <h2>{title}</h2>
+    <div class="grid3">{items.map((i) => <div class="gitem"><h3>{i.title}</h3><p>{i.text}</p></div>)}</div>
+    {note && <p class="note">{note}</p>}
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import QuoteForm from './QuoteForm.astro';
+import Icon from './Icon.astro';
+import { images } from '../config/images';
+import { site } from '../config/site';
+interface Props { service?: string; propertyType?: string; heading?: string; text?: string; source?: string; asH1?: boolean }
+const { service = 'Fire Risk Assessment', propertyType = '', heading = 'Get a free quote', text, source, asH1 = false } = Astro.props;
+const H = asH1 ? 'h1' : 'h2';
+const bg = images.smokeDetector.src!;
+---
+<section class="sec-red" id="quote" aria-labelledby="quote-h">
+  <Image src={bg} alt="" class="bgimg" widths={[640, 1100]} sizes="100vw" loading="lazy" decoding="async" />
+  <div class="wrap">
+    <div class="quote-grid">
+      <div>
+        <H id="quote-h" class="qh">{heading}</H>
+        {text && <p class="body">{text}</p>}
+        <div class="quote-alt">
+          <span>Prefer to talk it through?</span>
+          <a href={`tel:${site.phone.tel}`} data-loc="quote-section"><Icon name="phone" />{site.phone.display}</a>
+          <span>{site.hours.display}</span>
+        </div>
+      </div>
+      <QuoteForm service={service} propertyType={propertyType} source={source} />
+    </div>
+  </div>
+</section>

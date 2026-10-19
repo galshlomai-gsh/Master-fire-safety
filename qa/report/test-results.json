@@ -1,0 +1,352 @@
+[
+  {
+    "name": "sitemap lists pages",
+    "pass": true,
+    "detail": "43 URLs"
+  },
+  {
+    "name": "page /",
+    "pass": true,
+    "detail": "ProfessionalService+Service+FAQPage"
+  },
+  {
+    "name": "page /about",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /areas",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /areas/berkshire",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/central-scotland",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/essex",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/greater-london",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/greater-manchester",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/hampshire",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/hertfordshire",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/kent",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/south-wales",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/surrey",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/west-midlands",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/west-yorkshire",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /contact",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /cookies",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /guides",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /guides/council-and-insurer-fire-safety-letters",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Article+FAQPage"
+  },
+  {
+    "name": "page /guides/do-i-need-a-fire-risk-assessment",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Article+FAQPage"
+  },
+  {
+    "name": "page /guides/fire-risk-assessment-cost",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Article+FAQPage"
+  },
+  {
+    "name": "page /guides/fire-safety-england-regulations-2022",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Article+FAQPage"
+  },
+  {
+    "name": "page /guides/how-long-does-a-fire-risk-assessment-take",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Article+FAQPage"
+  },
+  {
+    "name": "page /guides/how-often-should-a-fire-risk-assessment-be-reviewed",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Article+FAQPage"
+  },
+  {
+    "name": "page /guides/what-happens-during-a-fire-risk-assessment",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Article+FAQPage"
+  },
+  {
+    "name": "page /privacy",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /quote",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /sectors",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /sectors/blocks-of-flats",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /sectors/education",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /sectors/healthcare-care-homes",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /sectors/hospitality",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /sectors/industrial-warehousing",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /sectors/landlords-hmos",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /sectors/offices",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /sectors/retail",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /services",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /services/aov-smoke-control-servicing",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /services/emergency-lighting-servicing-installation",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /services/fire-alarm-servicing-installation",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /services/fire-door-inspections",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /services/fire-risk-assessments",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /terms",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList"
+  },
+  {
+    "name": "page /thank-you",
+    "pass": true,
+    "detail": "ProfessionalService"
+  },
+  {
+    "name": "all pages: status, single H1, title/description, canonical, valid JSON-LD, tel links, no fake reviews, no unconfirmed credentials",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "all internal links resolve",
+    "pass": true,
+    "detail": "43 unique links"
+  },
+  {
+    "name": "home schema: ProfessionalService + FAQPage",
+    "pass": true,
+    "detail": "ProfessionalService,Service,FAQPage"
+  },
+  {
+    "name": "service schema: Service + BreadcrumbList + FAQPage",
+    "pass": true,
+    "detail": "ProfessionalService,BreadcrumbList,Service,FAQPage"
+  },
+  {
+    "name": "area schema: Service + BreadcrumbList + FAQPage",
+    "pass": true,
+    "detail": "ProfessionalService,BreadcrumbList,Service,FAQPage"
+  },
+  {
+    "name": "guide schema: Article + BreadcrumbList + FAQPage",
+    "pass": true,
+    "detail": "ProfessionalService,BreadcrumbList,Article,FAQPage"
+  },
+  {
+    "name": "tel: click pushes phone_click",
+    "pass": true,
+    "detail": "{\"event\":\"phone_click\",\"phone_number\":\"+442080662499\",\"link_location\":\"header\",\"page_path\":\"/services/fire-door-inspections\"} (9 tel links on page)"
+  },
+  {
+    "name": "FAQ accordion opens/closes",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "quote form Service field pre-selected per page",
+    "pass": true,
+    "detail": "{\"/services/fire-risk-assessments\":\"Fire Risk Assessment\",\"/services/fire-door-inspections\":\"Fire Door Inspection\",\"/services/fire-alarm-servicing-installation\":\"Fire Alarm Servicing / Installation\",\"/services/emergency-lighting-servicing-installation\":\"Emergency Lighting Servicing / Installation\",\"/services/aov-smoke-control-servicing\":\"AOV / Smoke Control Servicing\",\"/sectors/landlords-hmos\":\"Fire Risk Assessment\"}"
+  },
+  {
+    "name": "sector page pre-selects property type",
+    "pass": true,
+    "detail": "HMO / Residential"
+  },
+  {
+    "name": "empty submit shows inline errors",
+    "pass": true,
+    "detail": "5 fields flagged"
+  },
+  {
+    "name": "valid submit redirects to /thank-you",
+    "pass": true,
+    "detail": "http://localhost:4321/thank-you"
+  },
+  {
+    "name": "submit pushes generate_lead with service & property type",
+    "pass": true,
+    "detail": "{\"event\":\"generate_lead\",\"service\":\"Fire Risk Assessment\",\"property_type\":\"Office / Workplace\",\"form_id\":\"quote\"}"
+  },
+  {
+    "name": "form_start fires on first input",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "form works without JavaScript (POST → thank-you)",
+    "pass": true,
+    "detail": "http://localhost:4321/thank-you?nojs=1"
+  },
+  {
+    "name": "mobile: phone icon button in header",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile: hamburger opens drawer",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile: hamburger closes drawer",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile: bottom bar visible with Call + Get a Quote",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile: header stays sticky on scroll",
+    "pass": true,
+    "detail": "top=0"
+  },
+  {
+    "name": "mobile: no horizontal overflow on home",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "hero CTA scrolls to quote form",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop: sticky header keeps phone + Get a Quote visible after scroll",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "desktop: Services dropdown opens on hover",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile: no horizontal overflow on any page",
+    "pass": true,
+    "detail": ""
+  }
+]

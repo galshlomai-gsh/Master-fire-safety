@@ -1,0 +1,28 @@
+---
+import { guides } from '../data/guides';
+interface Props { slugs?: string[]; title?: string; eyebrow?: string; exclude?: string; limit?: number }
+const { slugs, title = 'Guides', eyebrow = 'Useful reading', exclude, limit = 3 } = Astro.props;
+const list = (slugs ? slugs.map((s) => guides.find((g) => g.slug === s)).filter(Boolean) : guides)
+  .filter((g) => g!.slug !== exclude)
+  .slice(0, limit) as typeof guides;
+---
+{list.length > 0 && (
+  <section class="sec-int reveal">
+    <div class="wrap">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2-sm">{title}</h2>
+      <ul class="cards">
+        {list.map((g) => (
+          <li>
+            <a class="card" href={`/guides/${g.slug}`}>
+              <p class="eyebrow">{g.readingMinutes} min read</p>
+              <h3>{g.title}</h3>
+              <p>{g.summary}</p>
+              <span class="arrowlink">Read the guide <span class="ar" aria-hidden="true">→</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}

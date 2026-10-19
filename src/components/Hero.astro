@@ -1,0 +1,66 @@
+---
+import { Picture } from 'astro:assets';
+import { images, type ImageKey } from '../config/images';
+import { site } from '../config/site';
+import type { Crumb } from '../lib/schema';
+
+interface Props {
+  title: string;
+  sub?: string;
+  variant?: 'home' | 'int' | 'text-only';
+  image?: ImageKey | null;
+  imageLabel?: string;
+  crumbs?: Crumb[]; // excluding Home; last item = current page
+  cta?: { label: string; href: string } | null;
+  showCall?: boolean;
+}
+const { title, sub, variant = 'int', image = null, imageLabel = 'Photo to come', crumbs = [], cta = { label: 'Get a Free Quote', href: '#quote' }, showCall = true } = Astro.props;
+const img = image ? images[image] : null;
+---
+<section class:list={['hero', { int: variant !== 'home', 'text-only': variant === 'text-only' }]}>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div>
+        {crumbs.length > 0 && (
+          <nav class="crumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Home</a></li>
+              {crumbs.map((c, i) => (
+                <li>{i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <a href={c.href}>{c.name}</a>}</li>
+              ))}
+            </ol>
+          </nav>
+        )}
+        <h1>{title}</h1>
+        {sub && <p class="sub">{sub}</p>}
+        <slot name="meta" />
+        {cta && (
+          <div class="cta">
+            <a class="btn" href={cta.href} data-cta="hero">{cta.label}</a>
+          </div>
+        )}
+        {showCall && (
+          <p class="reassure">No obligation. Prefer to talk? Call <a href={`tel:${site.phone.tel}`} data-loc="hero">{site.phone.display}</a></p>
+        )}
+      </div>
+    </div>
+    {variant !== 'text-only' && (
+      <div class="hero-visual">
+        {img && img.src ? (
+          <Picture
+            src={img.src}
+            alt={img.alt}
+            formats={['avif', 'webp']}
+            widths={[480, 800, 1100]}
+            sizes="(max-width: 700px) 100vw, 43vw"
+            loading="eager"
+            fetchpriority="high"
+            style={`object-position:${img.position ?? '50% 50%'}`}
+          />
+        ) : (
+          <div class="ph" role="img" aria-label={imageLabel}><span>{imageLabel}</span></div>
+        )}
+      </div>
+    )}
+  </div>
+</section>

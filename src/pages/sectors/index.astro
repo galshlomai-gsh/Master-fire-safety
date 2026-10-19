@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import QuoteSection from '../../components/QuoteSection.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import SectorTiles from '../../components/SectorTiles.astro';
+import OtherServices from '../../components/OtherServices.astro';
+const crumbs = [{ name: 'Sectors', href: '/sectors' }];
+---
+<BaseLayout
+  title="Fire Risk Assessments by Sector | T&T Fire Safety"
+  description="Fire risk assessments for blocks of flats, HMOs, offices, care homes, schools, shops, hotels and warehouses. Find the right assessment for your premises. Free quote."
+  active="sectors"
+  crumbs={crumbs}
+>
+  <Hero title="Fire risk assessments by sector" sub="Every type of premises has its own fire risks and legal duties. Choose yours to see what the assessment covers." image="corridor" crumbs={crumbs} />
+  <SectorTiles title="Choose your sector" light />
+  <CtaBand title="Mixed-use building or a portfolio across sectors? One quote covers it." loc="sectors-hub" />
+  <OtherServices eyebrow="Fire safety services" />
+  <QuoteSection source="sectors-hub" />
+</BaseLayout>

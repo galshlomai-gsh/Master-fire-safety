@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import OtherServices from '../components/OtherServices.astro';
+import Reviews from '../components/Reviews.astro';
+import SectorTiles from '../components/SectorTiles.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import AreasList from '../components/AreasList.astro';
+import FAQ from '../components/FAQ.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { serviceSchema } from '../lib/schema';
+import type { FAQ as F } from '../data/types';
+
+const trust = [
+  { title: 'Qualified fire risk assessors', text: 'Recognised fire risk assessment qualifications, with competency appropriate to the type and complexity of the premises.' },
+  { title: 'Prioritised reporting', text: 'Significant findings and recommended actions set out by priority.' },
+  { title: 'Single sites & portfolios', text: 'Consistent assessment and reporting for individual properties and multi-site portfolios.' },
+  { title: 'Post-assessment guidance', text: 'Guidance on findings, priorities and the next steps required.' },
+];
+
+const faqs: F[] = [
+  { q: 'What is a fire risk assessment?', a: 'A fire risk assessment identifies fire hazards, people at risk and the measures needed to control that risk. It considers both prevention (reducing the likelihood of a fire starting) and protection, including means of escape, fire detection, fire doors, emergency lighting and fire-safety management. Significant findings and required actions are recorded in the report.' },
+  { q: 'Is a fire risk assessment a legal requirement?', a: 'Yes. In England and Wales, the Regulatory Reform (Fire Safety) Order 2005 requires the Responsible Person to ensure a suitable and sufficient fire risk assessment is carried out for premises within its scope and kept under review. Scotland has separate fire-safety legislation, the Fire (Scotland) Act 2005. See <a href="/guides/do-i-need-a-fire-risk-assessment">do I need a fire risk assessment?</a>' },
+  { q: 'Who is responsible for arranging a fire risk assessment?', a: 'Responsibility normally rests with the person or organisation in control of the premises, such as an employer, landlord, freeholder or business operator. A managing agent may arrange the assessment on a client’s behalf.' },
+  { q: 'What does a fire risk assessment look at?', a: 'Depending on the premises, the assessment considers ignition sources, combustible materials, people at risk, means of escape, fire doors, accessible compartmentation, fire detection and alarm, emergency lighting, firefighting equipment and fire-safety management.' },
+  { q: 'Who should carry out a fire risk assessment?', a: 'The Responsible Person may carry out the assessment if they have the necessary competence. Where professional assistance is required, the assessor should have the knowledge, training, experience and competence appropriate to the type and complexity of the premises.' },
+  { q: 'What happens if the assessment identifies actions?', a: 'Required actions are prioritised in the report. We can clarify the findings and next steps and, where required, assist with related fire-safety services. You are not obliged to use T&T for follow-on work.' },
+];
+---
+<BaseLayout
+  title="Fire Risk Assessments for Landlords & Businesses | T&T Fire Safety"
+  description="Fire risk assessments for landlords, managing agents and businesses across England, Wales and Scotland. Written report and prioritised action plan. Free quote."
+  active="home"
+  schema={[serviceSchema(Astro.site!, { name: 'Fire risk assessments', serviceType: 'Fire risk assessment', description: 'On-site fire risk assessments with written reports and prioritised action plans.', path: '/services/fire-risk-assessments' })]}
+>
+  <Hero
+    variant="home"
+    title="Fire risk assessments for landlords, managing agents & businesses"
+    sub="On-site fire risk assessments with written reports and prioritised action plans across England, Wales and Scotland."
+    image="corridor"
+  />
+
+  <section class="sec-features reveal" aria-label="Why T&T">
+    <div class="wrap">
+      <h2 class="vh">Why choose T&amp;T Fire Safety</h2>
+      <div class="features">
+        <div class="featgrid">{trust.map((t) => <div><h3>{t.title}</h3><p>{t.text}</p></div>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <OtherServices exclude="fra" />
+
+  <Reviews />
+
+  <CtaBand
+    title="Council letter, insurer request or licence condition? Get it booked."
+    text="Tell us about the property and we’ll confirm the scope and a fixed price in writing."
+    loc="home-band-1"
+  />
+
+  <SectorTiles />
+
+  <QuoteSection service="Fire Risk Assessment" source="home" />
+
+  <AreasList />
+
+  <FAQ faqs={faqs} />
+
+  <CtaBand light title="Not sure what you need? Talk to us." text="Call us and we’ll tell you which assessment or service your building needs." loc="home-band-2" />
+</BaseLayout>

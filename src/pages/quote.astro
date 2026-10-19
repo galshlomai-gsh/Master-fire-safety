@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+---
+<BaseLayout
+  title="Get a Free Fire Risk Assessment Quote | T&T Fire Safety"
+  description="Request a free, no-obligation quote for a fire risk assessment, fire door inspection, alarm, emergency lighting or AOV service. Scope and price confirmed in writing."
+  active="quote"
+  crumbs={[{ name: 'Get a Quote', href: '/quote' }]}
+>
+  <QuoteSection
+    asH1
+    heading="Get a free quote"
+    text="Tell us about the property. We’ll confirm the scope and a fixed price in writing, with no obligation."
+    source="quote-page"
+  />
+  <section class="sec-int">
+    <div class="wrap">
+      <h2 class="h2-sm">What happens next</h2>
+      <div class="features" style="margin-top:24px">
+        <div class="featgrid three">
+          <div><span class="num" style="font-family:var(--ff-head);font-size:12px;font-weight:700;letter-spacing:.15em;color:var(--red)">01</span><h3>We review your request</h3><p>We check the property type, size and service, and call if anything needs clarifying.</p></div>
+          <div><span class="num" style="font-family:var(--ff-head);font-size:12px;font-weight:700;letter-spacing:.15em;color:var(--red)">02</span><h3>Scope and price in writing</h3><p>You receive what’s covered and the price before anything is booked.</p></div>
+          <div><span class="num" style="font-family:var(--ff-head);font-size:12px;font-weight:700;letter-spacing:.15em;color:var(--red)">03</span><h3>Visit and report</h3><p>We agree a date, carry out the visit and send the written report with prioritised actions.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script is:inline>
+    // Pre-select service from ?service= (used by links from guides/ads)
+    (function(){var p=new URLSearchParams(location.search).get('service');if(!p)return;var s=document.querySelector('select[name=service]');if(!s)return;for(var i=0;i<s.options.length;i++){if(s.options[i].value.toLowerCase().indexOf(p.toLowerCase())===0){s.selectedIndex=i;break;}}})();
+    (function(){if(new URLSearchParams(location.search).get('error')){var e=document.querySelector('.formerror');if(e)e.hidden=false;}})();
+  </script>
+</BaseLayout>

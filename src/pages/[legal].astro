@@ -1,0 +1,46 @@
+---
+/** Privacy, terms and cookies. DRAFTS: need the trading entity and a solicitor/DPO review before launch. */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import { site, emailDisplay } from '../config/site';
+
+export function getStaticPaths() {
+  return [{ params: { legal: 'privacy' } }, { params: { legal: 'terms' } }, { params: { legal: 'cookies' } }];
+}
+const { legal } = Astro.params as { legal: 'privacy' | 'terms' | 'cookies' };
+const entity = site.legal.companyName ?? `${site.brand.name} (trading entity to be confirmed)`;
+const contact = site.email ?? emailDisplay;
+const pages = {
+  privacy: {
+    title: 'Privacy notice',
+    body: `
+<p><strong>Draft. To be confirmed before launch.</strong></p>
+<h2>Who we are</h2><p>${entity} is the data controller for personal information collected through this website. Contact: ${site.phone.display}, ${contact}.</p>
+<h2>What we collect</h2><p>When you request a quote we collect your name, phone number, email address, the property postcode, the property type, the service you need and any details you add. We also collect basic usage data through analytics cookies if you accept them (see our <a href="/cookies">cookie notice</a>).</p>
+<h2>Why we use it</h2><p>To respond to your enquiry, prepare a quote and, if you go ahead, deliver the service (lawful basis: steps prior to entering a contract, and legitimate interests). We do not sell your data.</p>
+<h2>Who we share it with</h2><p>Our email delivery provider and website host, which process data on our behalf. We may share information where the law requires it.</p>
+<h2>How long we keep it</h2><p>Enquiries that do not become work are deleted after 24 months. Records relating to work carried out are kept for as long as we need them for legal and insurance purposes.</p>
+<h2>Your rights</h2><p>You can ask for a copy of your data, ask us to correct or delete it, or object to how we use it. You can complain to the Information Commissioner’s Office (ico.org.uk).</p>`,
+  },
+  terms: {
+    title: 'Website terms',
+    body: `
+<p><strong>Draft. To be confirmed before launch.</strong></p>
+<p>This website is operated by ${entity}. The information on it, including our guides, is general information and not legal advice. Legislation and guidance change; check the current position for your premises or ask us.</p>
+<p>Quotes are confirmed in writing and set out the scope of the work. Our terms of business for assessments and servicing are provided with each quote.</p>
+<p>We link to official sources such as legislation.gov.uk and GOV.UK. We are not responsible for the content of external websites.</p>`,
+  },
+  cookies: {
+    title: 'Cookie notice',
+    body: `
+<p><strong>Draft. To be confirmed before launch.</strong></p>
+<p>We use a small number of cookies. Strictly necessary cookies keep the site working. If you consent, analytics and advertising cookies (Google Analytics and Google Ads, loaded through Google Tag Manager) help us understand which pages and adverts lead to enquiries.</p>
+<p>Consent is managed through Google Consent Mode: analytics and advertising storage stay denied until you accept. You can change your choice at any time by clearing cookies for this site.</p>`,
+  },
+} as const;
+const p = pages[legal];
+---
+<BaseLayout title={`${p.title} | ${site.brand.name}`} description={`${p.title} for ${site.brand.name}: how we handle enquiries, personal data and cookies on this website. Draft pending confirmation.`} crumbs={[{ name: p.title, href: `/${legal}` }]} noindex>
+  <Hero variant="text-only" title={p.title} crumbs={[{ name: p.title, href: `/${legal}` }]} cta={null} showCall={false} />
+  <section class="sec-int"><div class="wrap"><div class="prose" set:html={p.body} /></div></section>
+</BaseLayout>
