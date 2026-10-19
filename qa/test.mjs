@@ -51,7 +51,7 @@ for (const p of pages) {
   if (info.quoteAnchors && !info.hasQuote) pageIssues.push(`${p} #quote link without target`);
   if (info.reviews) pageIssues.push(`${p} shows review cards (none are real yet)`);
   if (info.imgsNoAlt) pageIssues.push(`${p} images without alt`);
-  if (!p.startsWith('/guides/fire-risk-assessment-cost') && /FireQual|IFE Registered|BS 8674/i.test(info.text)) pageIssues.push(`${p} mentions unconfirmed credential`);
+  if (/FireQual|IFE Registered|Philip Roberts/i.test(info.text)) pageIssues.push(`${p} mentions unconfirmed credential`);
   if (/—/.test(info.text.replace(/enquiries@[^\n]*/g, ''))) pageIssues.push(`${p} contains an em dash`);
   info.links.forEach((l) => internal.add(l.split('#')[0]));
   results.push({ name: `page ${p}`, pass: true, detail: `${info.ld.join('+')}` });

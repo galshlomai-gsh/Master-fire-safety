@@ -2,7 +2,7 @@
   {
     "name": "sitemap lists pages",
     "pass": true,
-    "detail": "42 URLs"
+    "detail": "44 URLs"
   },
   {
     "name": "page /",
@@ -20,7 +20,27 @@
     "detail": "ProfessionalService+BreadcrumbList"
   },
   {
+    "name": "page /areas/barnet",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
     "name": "page /areas/berkshire",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/brent",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/buckinghamshire",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
+    "name": "page /areas/camden",
     "pass": true,
     "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
   },
@@ -35,12 +55,12 @@
     "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
   },
   {
-    "name": "page /areas/greater-manchester",
+    "name": "page /areas/haringey",
     "pass": true,
     "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
   },
   {
-    "name": "page /areas/hampshire",
+    "name": "page /areas/harrow",
     "pass": true,
     "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
   },
@@ -50,27 +70,17 @@
     "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
   },
   {
+    "name": "page /areas/islington",
+    "pass": true,
+    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
+  },
+  {
     "name": "page /areas/kent",
     "pass": true,
     "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
   },
   {
-    "name": "page /areas/south-wales",
-    "pass": true,
-    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
-  },
-  {
     "name": "page /areas/surrey",
-    "pass": true,
-    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
-  },
-  {
-    "name": "page /areas/west-midlands",
-    "pass": true,
-    "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
-  },
-  {
-    "name": "page /areas/west-yorkshire",
     "pass": true,
     "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
   },
@@ -227,7 +237,7 @@
   {
     "name": "all internal links resolve",
     "pass": true,
-    "detail": "42 unique links"
+    "detail": "44 unique links"
   },
   {
     "name": "home schema: ProfessionalService + FAQPage",

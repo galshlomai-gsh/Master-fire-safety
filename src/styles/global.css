@@ -583,3 +583,7 @@ button, input, select, textarea { font: inherit; }
   .mbar.hide { transform: translateY(110%); }
   .mbar .btn { height: 50px; width: 100%; padding: 0 12px; }
 }
+
+/* Grids of links/places inside prose: no bullets or list spacing */
+.prose ul.linkrow, .prose ul.regions { padding-left: 0; list-style: none; }
+.prose ul.linkrow li + li, .prose ul.regions li + li { margin-top: 0; }
