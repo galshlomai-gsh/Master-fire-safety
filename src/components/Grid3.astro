@@ -1,5 +1,6 @@
 ---
 import type { Item } from '../data/types';
+import FIcon from './FIcon.astro';
 interface Props { title: string; items: Item[]; note?: string; intro?: string[]; introTitle?: string }
 const { title, items, note, intro, introTitle } = Astro.props;
 ---
@@ -12,7 +13,7 @@ const { title, items, note, intro, introTitle } = Astro.props;
       </div>
     )}
     <h2>{title}</h2>
-    <div class="grid3">{items.map((i) => <div class="gitem"><h3>{i.title}</h3><p>{i.text}</p></div>)}</div>
+    <div class="grid3">{items.map((i) => <div class="gitem"><FIcon for={i.title} /><h3>{i.title}</h3><p>{i.text}</p></div>)}</div>
     {note && <p class="note">{note}</p>}
   </div>
 </section>

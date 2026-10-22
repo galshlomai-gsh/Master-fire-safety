@@ -5,6 +5,9 @@ import QuoteSection from '../components/QuoteSection.astro';
 import CtaBand from '../components/CtaBand.astro';
 import OtherServices from '../components/OtherServices.astro';
 import { confirmedCredentials, site } from '../config/site';
+import FIcon from '../components/FIcon.astro';
+import Process from '../components/Process.astro';
+import { credentialIcon } from '../lib/icons';
 const crumbs = [{ name: 'About', href: '/about' }];
 const principles = [
   { title: 'Prompt, responsive scheduling', text: 'We work around your building, residents and deadlines, and keep you updated from enquiry to report.' },
@@ -21,12 +24,12 @@ const principles = [
   active="about"
   crumbs={crumbs}
 >
-  <Hero title="About T&T Fire Safety" sub="Fire risk assessments and related fire-safety services for landlords, managing agents and businesses across London and the Home Counties." image="alarmPanel" crumbs={crumbs} />
+  <Hero title="About T&T Fire Safety" sub="Fire risk assessments and related fire-safety services for landlords, managing agents and businesses across London and the Home Counties." image="report" crumbs={crumbs} />
 
   <section class="sec-int reveal">
     <div class="wrap">
       <h2>How we work</h2>
-      <div class="grid3">{principles.map((p) => <div class="gitem"><h3>{p.title}</h3><p>{p.text}</p></div>)}</div>
+      <div class="grid3">{principles.map((p) => <div class="gitem"><FIcon for={p.title} /><h3>{p.title}</h3><p>{p.text}</p></div>)}</div>
     </div>
   </section>
 
@@ -39,11 +42,13 @@ const principles = [
       {confirmedCredentials.length > 0 && (
         <div class="credlist">
           <p class="eyebrow">Competence &amp; cover</p>
-          <ul>{confirmedCredentials.map((c) => <li>{c.label}<span>{c.detail}</span></li>)}</ul>
+          <ul>{confirmedCredentials.map((c) => <li><FIcon name={credentialIcon(c.label)} /><div>{c.label}<span>{c.detail}</span></div></li>)}</ul>
         </div>
       )}
     </div>
   </section>
+
+  <Process />
 
   <CtaBand title="Questions before you book? Talk to us." text={`Call ${site.phone.display}, ${site.hours.display}.`} loc="about-band" />
 

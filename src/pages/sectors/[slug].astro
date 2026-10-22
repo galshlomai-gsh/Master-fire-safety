@@ -1,4 +1,5 @@
 ---
+import { sectorImage } from '../../config/images';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Grid3 from '../../components/Grid3.astro';
@@ -33,7 +34,7 @@ const others = s.services.filter((k) => k !== 'fra');
   crumbs={crumbs}
   schema={[serviceSchema(Astro.site!, { name: s.h1, serviceType: 'Fire risk assessment', description: s.metaDescription, path: sectorUrl(s) })]}
 >
-  <Hero title={s.h1} sub={s.heroSub} image={s.image} art={sectorArt[s.slug] ?? 'fra'} crumbs={crumbs} />
+  <Hero title={s.h1} sub={s.heroSub} image={sectorImage[s.slug]} art={sectorArt[s.slug] ?? 'fra'} crumbs={crumbs} />
 
   <Grid3 introTitle={s.introTitle} intro={s.intro} title={s.considerTitle} items={s.consider} />
 

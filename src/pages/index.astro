@@ -8,6 +8,8 @@ import QuoteSection from '../components/QuoteSection.astro';
 import AreasList from '../components/AreasList.astro';
 import FAQ from '../components/FAQ.astro';
 import CtaBand from '../components/CtaBand.astro';
+import FIcon from '../components/FIcon.astro';
+import Process from '../components/Process.astro';
 import { serviceSchema } from '../lib/schema';
 import type { FAQ as F } from '../data/types';
 
@@ -37,7 +39,7 @@ const faqs: F[] = [
     variant="home"
     title="Fire risk assessments for landlords, managing agents & businesses"
     sub="On-site fire risk assessments with clear written reports and practical, prioritised action plans across London and the Home Counties."
-    image="corridor"
+    image="fra"
     art="fra"
   />
 
@@ -45,12 +47,14 @@ const faqs: F[] = [
     <div class="wrap">
       <h2 class="vh">Why choose T&amp;T Fire Safety</h2>
       <div class="features">
-        <div class="featgrid">{trust.map((t) => <div><h3>{t.title}</h3><p>{t.text}</p></div>)}</div>
+        <div class="featgrid">{trust.map((t) => <div><FIcon for={t.title} class="lg" /><h3>{t.title}</h3><p>{t.text}</p></div>)}</div>
       </div>
     </div>
   </section>
 
   <OtherServices exclude="fra" />
+
+  <Process />
 
   <Reviews />
 

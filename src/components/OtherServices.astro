@@ -1,5 +1,7 @@
 ---
 import { navServices } from '../data/nav';
+import FIcon from './FIcon.astro';
+import { serviceIcon } from '../lib/icons';
 interface Props { exclude?: string; eyebrow?: string; only?: readonly string[] }
 const { exclude, eyebrow = 'Other fire safety services', only } = Astro.props;
 const list = navServices.filter((s) => s.key !== exclude && (!only || only.includes(s.key)));
@@ -8,7 +10,7 @@ const list = navServices.filter((s) => s.key !== exclude && (!only || only.inclu
   <div class="wrap">
     <p class="eyebrow">{eyebrow}</p>
     <ul class="svclist">
-      {list.map((s) => <li><a href={s.href}>{s.name}<span class="ar" aria-hidden="true">→</span></a></li>)}
+      {list.map((s) => <li><a href={s.href}><span class="svcname"><FIcon name={serviceIcon[s.key]} />{s.name}</span><span class="ar" aria-hidden="true">→</span></a></li>)}
     </ul>
   </div>
 </section>

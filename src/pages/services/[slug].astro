@@ -27,7 +27,7 @@ const crumbs = [{ name: 'Services', href: '/services' }, { name: s.name, href: s
   crumbs={crumbs}
   schema={[serviceSchema(Astro.site!, { name: s.name, serviceType: s.schemaServiceType, description: s.metaDescription, path: serviceUrl(s) })]}
 >
-  <Hero title={s.h1} sub={s.heroSub} image={s.image} art={s.key} crumbs={crumbs} />
+  <Hero title={s.h1} sub={s.heroSub} image={s.key} art={s.key} crumbs={crumbs} />
 
   <Grid3 introTitle={s.introTitle} intro={s.intro} title={s.gridTitle} items={s.grid} note={s.gridNote} />
 

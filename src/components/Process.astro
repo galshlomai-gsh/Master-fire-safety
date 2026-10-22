@@ -1,0 +1,28 @@
+---
+/** "How it works" strip: four steps from enquiry to report, each with an icon. */
+import FIcon from './FIcon.astro';
+import type { IconName } from '../lib/icons';
+interface Props { title?: string; warm?: boolean }
+const { title = 'How it works', warm = true } = Astro.props;
+const steps: { icon: IconName; title: string; text: string }[] = [
+  { icon: 'phone', title: 'Tell us about the building', text: 'Call or send the short form with the property type, size and postcode.' },
+  { icon: 'fileCheck', title: 'Scope and price in writing', text: 'We confirm what is covered and what it costs before anyone visits.' },
+  { icon: 'clipboard', title: 'On-site assessment', text: 'A competent assessor or engineer inspects the accessible areas at a time that suits you.' },
+  { icon: 'list', title: 'Report and next steps', text: 'A clear written report with findings and actions set out by priority.' },
+];
+---
+<section class:list={['sec-int', 'reveal', { 'sec-warm': warm }]}>
+  <div class="wrap">
+    <h2 class="strip-head">{title}</h2>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li>
+          <span class="stepnum">{String(i + 1).padStart(2, '0')}</span>
+          <FIcon name={s.icon} class="lg" />
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

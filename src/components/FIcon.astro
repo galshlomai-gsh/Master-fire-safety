@@ -1,0 +1,6 @@
+---
+import { iconFor, iconSvg, type IconName } from '../lib/icons';
+interface Props { name?: IconName; for?: string; class?: string }
+const { name, for: title = '', class: cls } = Astro.props;
+---
+<span class:list={['ficon', cls]} set:html={iconSvg(name ?? iconFor(title))} />
