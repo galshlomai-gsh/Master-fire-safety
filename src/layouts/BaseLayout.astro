@@ -1,13 +1,13 @@
 ---
-import '@fontsource/archivo/latin-500.css';
-import '@fontsource/archivo/latin-600.css';
-import '@fontsource/archivo/latin-700.css';
-import '@fontsource/archivo/latin-800.css';
-import '@fontsource/source-sans-3/latin-400.css';
-import '@fontsource/source-sans-3/latin-600.css';
+import '@fontsource/plus-jakarta-sans/latin-400.css';
+import '@fontsource/plus-jakarta-sans/latin-500.css';
+import '@fontsource/plus-jakarta-sans/latin-600.css';
+import '@fontsource/plus-jakarta-sans/latin-700.css';
+import '@fontsource/plus-jakarta-sans/latin-800.css';
 import '../styles/global.css';
-import archivo700 from '@fontsource/archivo/files/archivo-latin-700-normal.woff2?url';
-import sans400 from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
+import '../styles/friendly.css';
+import jakarta700 from '@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-700-normal.woff2?url';
+import sans400 from '@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-400-normal.woff2?url';
 import Header, { type Section } from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
@@ -46,11 +46,11 @@ const allSchema = [
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta name="robots" content={indexable ? 'index, follow, max-image-preview:large' : 'noindex, nofollow'} />
-    <meta name="theme-color" content="#1C2024" />
+    <meta name="theme-color" content="#FFFFFF" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preload" href={archivo700} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={jakarta700} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={sans400} as="font" type="font/woff2" crossorigin />
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.brand.name} />
