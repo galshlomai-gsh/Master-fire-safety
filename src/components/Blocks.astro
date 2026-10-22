@@ -2,6 +2,8 @@
 /** Renders the shared editorial components: grid, strip, text band, list band, credentials band. */
 import type { Block, Item } from '../data/types';
 import { confirmedCredentials } from '../config/site';
+import FIcon from './FIcon.astro';
+import { credentialIcon } from '../lib/icons';
 
 interface Props { blocks: Block[] }
 const { blocks } = Astro.props;
@@ -12,7 +14,7 @@ const isWarm = (b: Block) => 'warm' in b && b.warm;
     <section class="sec-int reveal">
       <div class="wrap">
         <h2>{b.title}</h2>
-        <div class="grid3">{b.items.map((i: Item) => <div class="gitem"><h3>{i.title}</h3><p>{i.text}</p></div>)}</div>
+        <div class="grid3">{b.items.map((i: Item) => <div class="gitem"><FIcon for={i.title} /><h3>{i.title}</h3><p>{i.text}</p></div>)}</div>
         {b.note && <p class="note">{b.note}</p>}
       </div>
     </section>
@@ -24,7 +26,7 @@ const isWarm = (b: Block) => 'warm' in b && b.warm;
         <div class="features">
           <div class:list={['featgrid', { three: b.items.length === 3, two: b.items.length === 2 }]}>
             {b.items.map((i: Item, n: number) => (
-              <div>{b.numbered && <span class="num">{String(n + 1).padStart(2, '0')}</span>}<h3>{i.title}</h3><p>{i.text}</p></div>
+              <div>{b.numbered ? <span class="num">{String(n + 1).padStart(2, '0')}</span> : <FIcon for={i.title} />}<h3>{i.title}</h3><p>{i.text}</p></div>
             ))}
           </div>
         </div>
@@ -58,7 +60,7 @@ const isWarm = (b: Block) => 'warm' in b && b.warm;
         {confirmedCredentials.length > 0 && (
           <div class="credlist">
             <p class="eyebrow">Competence &amp; cover</p>
-            <ul>{confirmedCredentials.map((c) => <li>{c.label}<span>{c.detail}</span></li>)}</ul>
+            <ul>{confirmedCredentials.map((c) => <li><FIcon name={credentialIcon(c.label)} /><div>{c.label}<span>{c.detail}</span></div></li>)}</ul>
           </div>
         )}
       </div>

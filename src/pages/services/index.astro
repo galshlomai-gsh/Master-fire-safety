@@ -1,4 +1,8 @@
 ---
+import FIcon from '../../components/FIcon.astro';
+import { serviceIcon } from '../../lib/icons';
+import { Picture } from 'astro:assets';
+import { images, type ImageKey } from '../../config/images';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import QuoteSection from '../../components/QuoteSection.astro';
@@ -19,7 +23,9 @@ const crumbs = [{ name: 'Services', href: '/services' }];
       <ul class="cards">
         {services.map((s) => (
           <li>
-            <a class="card" href={serviceUrl(s)}>
+            <a class:list={['card', { hasimg: !!images[s.key as ImageKey].src }]} href={serviceUrl(s)}>
+              {images[s.key as ImageKey].src && <Picture class="cardimg" src={images[s.key as ImageKey].src!} alt="" formats={['avif', 'webp']} widths={[400, 700]} sizes="(max-width: 700px) 100vw, 33vw" />}
+              <FIcon name={serviceIcon[s.key]} class="lg" />
               <h3>{s.name}</h3>
               <p>{s.heroSub}</p>
               <span class="arrowlink">View service <span class="ar" aria-hidden="true">→</span></span>
