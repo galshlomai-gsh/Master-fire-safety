@@ -11,7 +11,7 @@
     "qa:serve": "node qa/serve.mjs .vercel/output/static 4321",
     "qa:test": "node qa/test.mjs",
     "qa:shots": "node qa/shoot.mjs qa/report/screens /",
-    "photos": "node scripts/fetch-photos.mjs"
+    "photos": "NODE_USE_ENV_PROXY=1 node scripts/fetch-photos.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
