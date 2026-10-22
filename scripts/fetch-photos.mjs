@@ -13,7 +13,7 @@ const photos = {
   building: 'hf_20261022_083607_8443a40a-5153-4f1e-938a-71658f6d5e21.png',
   hmo: 'hf_20261022_083752_56e72463-ff51-49fc-83ff-34d857d72675.png',
   offices: 'hf_20261022_083754_118cfa6d-abce-44c1-9a48-0f8f93d7f001.png',
-  care: 'hf_20261022_083753_9ce6152d-4a40-464a-96f0-ff87fe8f3970.png',
+  care: 'hf_20261022_085856_84cf349a-c944-4532-8d44-cede419404bf.png',
   education: 'hf_20261022_083930_af7810da-c0b8-4b2b-9dab-5eed0e5760fc.png',
   retail: 'hf_20261022_083931_a2ca063c-e4f1-40b1-a7ee-ddafc7d17960.png',
   hospitality: 'hf_20261022_083931_f0746803-8fe6-4b0d-b344-ccc3beac820c.png',

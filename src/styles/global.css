@@ -630,5 +630,6 @@ button, input, select, textarea { font: inherit; }
   .featgrid .ficon.lg { width: 44px; height: 44px; }
 }
 .card.hasimg { padding-top: 0; overflow: hidden; }
-.card .cardimg, .card .cardimg img { display: block; width: calc(100% + 52px); margin: 0 -26px 22px; aspect-ratio: 16 / 10; object-fit: cover; }
+.card picture { display: block; margin: 0 -26px 22px; }
+.card .cardimg { display: block; width: 100%; max-width: none; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
 .card.hasimg .ficon { margin-top: -48px; position: relative; border: 3px solid #fff; background: #FBEDEC; }
