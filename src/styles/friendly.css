@@ -1,0 +1,236 @@
+/*
+ * "Friendly" redesign test (Oct 2026): same copy and structure, softer presentation.
+ * Rounded pill buttons, rounded cards and panels, light hero, sentence-case headings,
+ * Plus Jakarta Sans throughout. Layered on top of global.css; delete this import in
+ * BaseLayout.astro (and restore the Archivo/Source Sans imports) to go back.
+ */
+
+:root {
+  --ff-head: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ff-body: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --red: #D7262F;
+  --red-deep: #B91F28;
+  --red-press: #9C1A22;
+  --red-soft: #FDEEEC;
+  --red-tint: #FFF6F4;
+  --cream: #FFF8F3;
+  --warm: #F7F4F1;
+  --warm-band: #F7F4F1;
+  --navy: #1F2A37;
+  --char: #1F2A37;
+  --ink: #1F2A37;
+  --slate: #586472;
+  --line: #ECE6E1;
+  --r-sm: 12px;
+  --r: 20px;
+  --r-lg: 28px;
+  --shadow: 0 10px 30px rgba(31, 42, 55, .07);
+  --shadow-hi: 0 18px 44px rgba(31, 42, 55, .12);
+}
+
+body { font-size: 16.5px; line-height: 1.7; }
+h1, h2, h3, h4 { letter-spacing: -0.02em; font-weight: 800; }
+h3 { font-weight: 700; }
+.eyebrow { letter-spacing: .08em; font-weight: 700; font-size: 12.5px; display: inline-block; background: var(--red-soft); color: var(--red); padding: 6px 14px; border-radius: 999px; }
+
+/* ── Buttons: pills ── */
+.btn { border-radius: 999px; height: 52px; padding: 0 28px; font-weight: 700; box-shadow: 0 8px 20px rgba(215, 38, 47, .22); }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(215, 38, 47, .28); }
+.btn:active { transform: translateY(0); }
+.btn-white, .btn-ghost, .btn-outline-dk { box-shadow: none; }
+.btn-white:hover, .btn-ghost:hover, .btn-outline-dk:hover { box-shadow: none; }
+.btn-sm { height: 44px; }
+.iconbtn { border-radius: 999px; }
+.arrowlink { font-weight: 700; }
+
+/* ── Header ── */
+.hdr { border-bottom-color: transparent; }
+.hdr.scrolled { box-shadow: 0 8px 30px rgba(31, 42, 55, .08); }
+.hdr nav a, .hdr nav .ddbtn { font-weight: 600; padding: 8px 14px; border-radius: 999px; transition: background-color .15s ease, color .15s ease; }
+.hdr nav > ul { gap: 4px; }
+.hdr nav a:hover, .hdr nav .ddbtn:hover { background: var(--red-tint); }
+.hdr nav a.here, .hdr nav .ddbtn.here { background: var(--red-soft); color: var(--red); }
+.hdr nav a.here::after, .hdr nav .ddbtn.here::after { display: none; }
+.ddmenu { border-radius: var(--r); border: 0; box-shadow: var(--shadow-hi); padding: 10px; }
+.ddmenu a { border-radius: var(--r-sm); padding: 10px 14px !important; }
+.ddmenu a:hover { background: var(--red-tint); }
+.ddmenu .all { border-top: 0; margin-top: 4px; background: var(--warm); }
+.tel { font-weight: 700; }
+.drawernav > li > a, .drawernav summary { font-weight: 700; }
+
+/* ── Hero: light, photo in a rounded frame ── */
+.hero { background: linear-gradient(180deg, var(--cream) 0%, #FFFFFF 100%); color: var(--ink); position: relative; }
+.hero::before { content: ""; position: absolute; width: 520px; height: 520px; right: -140px; top: -180px; border-radius: 50%; background: radial-gradient(circle, rgba(215, 38, 47, .10), rgba(215, 38, 47, 0) 68%); pointer-events: none; }
+.hero-grid { grid-template-columns: 54% 46%; min-height: 540px; position: relative; }
+.hero h1 { color: var(--ink); text-transform: none; font-size: 46px; line-height: 1.12; letter-spacing: -0.025em; }
+.hero.int h1 { font-size: 40px; }
+.hero .sub { color: var(--slate); }
+.hero .reassure { color: var(--slate); }
+.hero .reassure a { color: var(--ink); }
+.hero .reassure a:hover { color: var(--red); }
+.hero-visual { margin: 40px max(40px, calc((100vw - 1240px) / 2 + 40px)) 40px 0; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-hi); background: var(--warm); }
+.hero.int .hero-visual { margin-top: 32px; margin-bottom: 32px; }
+.hero-visual::after { display: none; }
+.hero.text-only { background: var(--cream); }
+.crumb { color: var(--slate); }
+.crumb li + li::before { color: #B8B0A8; }
+.crumb a:hover { color: var(--red); }
+.meta-line { color: var(--slate); }
+.meta-line b { color: var(--ink); }
+
+/* ── Trust strip → soft cards ── */
+.features { border-top: 0; }
+.featgrid { margin: 0; gap: 20px; }
+.featgrid > div, .featgrid > div:first-child { border: 0; background: #fff; border-radius: var(--r); padding: 26px 24px; box-shadow: var(--shadow); }
+.sec-warm .featgrid > div { box-shadow: none; }
+.features h3 { font-weight: 700; }
+
+/* ── Content grids → rounded cards ── */
+.grid3 { gap: 20px; }
+.gitem { background: var(--warm); border-radius: var(--r); padding: 24px 24px 26px; }
+.gitem::before, .gitem::after { display: none; }
+.gitem .ficon { background: #fff; }
+.sec-warm .gitem, .textband .gitem { background: #fff; }
+
+/* ── Bands become rounded panels inside the page ── */
+.band, .credband, .textband { background: transparent; border: 0; }
+.band > .wrap, .credband > .wrap, .textband > .wrap { background: var(--warm); border-radius: var(--r-lg); padding: 36px 40px; }
+.credband .wrap { padding: 36px 40px; }
+.credlist { border-left: 0; background: #fff; border-radius: var(--r); padding: 22px 24px; box-shadow: var(--shadow); }
+.sec-warm { background: transparent; }
+.sec-warm > .wrap { background: var(--warm); border-radius: var(--r-lg); padding: 44px 40px; }
+
+/* ── Service list → pill rows ── */
+.svclist { gap: 12px; max-width: none; }
+.svclist a, .svclist li:nth-child(even) a { background: #fff; border: 0; border-radius: 999px; padding: 12px 22px 12px 12px; box-shadow: var(--shadow); }
+.svclist a:hover { box-shadow: var(--shadow-hi); transform: translateY(-1px); }
+.svclist .ficon { background: var(--red-soft); }
+
+/* ── Link rows ── */
+.linkrow a { background: var(--warm); border-radius: 999px; padding: 8px 16px 8px 8px; }
+.linkrow a:hover { background: var(--red-soft); }
+.linkrow .ficon { background: #fff; border-radius: 50%; }
+.linkrow a .ar { display: none; }
+.regions a { background: var(--warm); border-radius: 999px; padding: 8px 16px; }
+.regions a:hover { background: var(--red-soft); }
+.regions a .ar { display: none; }
+
+/* ── Sector tiles → light cards ── */
+.sec-sectors.sec-char { background: var(--warm); color: var(--ink); }
+.sec-sectors h2 { color: var(--ink); }
+.tile { background: #fff; border-radius: var(--r); padding: 24px; box-shadow: var(--shadow); transition: transform .18s ease, box-shadow .18s ease; }
+.tile::before, .tile::after { display: none; }
+.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-hi); }
+.tile h3, .sectors.light .tile h3 { color: var(--ink); }
+.tile p, .sectors.light .tile p { color: var(--slate); }
+.tile:hover h3 { color: var(--red); text-decoration: none; }
+.tile .ficon, .sectors.light .tile .ficon { background: var(--red-soft); }
+.tile .ficon .ico { color: var(--red); }
+.sectors { gap: 20px; }
+
+/* ── Cards ── */
+.card { border: 0; border-radius: var(--r); box-shadow: var(--shadow); }
+.card:hover { box-shadow: var(--shadow-hi); }
+.card.hasimg .ficon { border-color: #fff; }
+.aside-card { border: 0; border-radius: var(--r); box-shadow: var(--shadow); }
+.lawbox { border: 0; border-radius: var(--r); background: var(--warm); }
+.revcard { border: 0; border-radius: var(--r); box-shadow: var(--shadow); }
+
+/* ── How it works ── */
+.steps { gap: 20px; }
+.steps li { border-top: 0; background: #fff; border-radius: var(--r); padding: 26px 24px; }
+.steps li::after { display: none; }
+.steps .ficon { background: var(--red-soft); }
+.steps .stepnum { top: 26px; right: 24px; color: var(--red); background: var(--red-soft); border-radius: 999px; padding: 3px 10px; letter-spacing: .05em; }
+
+/* ── Quote section → rounded red panel ── */
+.sec-red { margin: 24px max(16px, calc((100vw - 1320px) / 2)); border-radius: var(--r-lg); background: linear-gradient(135deg, #DE3038 0%, #C21F28 100%); }
+.sec-red::before { background: radial-gradient(700px 400px at 12% 20%, rgba(255, 255, 255, .14), rgba(255, 255, 255, 0) 60%); }
+.sec-red .qh { text-transform: none; font-size: 44px; letter-spacing: -0.025em; text-shadow: none; }
+.sec-red .body, .quote-alt { text-shadow: none; }
+.formcard { border-radius: var(--r-lg); padding: 34px; box-shadow: 0 24px 60px rgba(120, 14, 20, .25); }
+.field .ctl { border-radius: var(--r-sm); border-color: #E2DCD6; background: #FCFAF8; }
+.field .ctl:focus { background: #fff; }
+.field label { font-weight: 700; }
+
+/* ── CTA bands → rounded panels ── */
+.ctaband { background: transparent; padding: 24px 0; }
+.ctaband > .wrap { background: var(--red); color: #fff; border-radius: var(--r-lg); padding: 36px 44px; }
+.ctaband.dark > .wrap { background: var(--navy); }
+.ctaband.light > .wrap { background: var(--warm); color: var(--ink); }
+.ctaband.light { border-top: 0; }
+.ctaband .btn-outline-dk { border-color: rgba(255, 255, 255, .6); }
+.ctaband .btn-white { box-shadow: 0 8px 20px rgba(0, 0, 0, .12); }
+
+/* ── FAQ → rounded accordions ── */
+.faqs { border-top: 0; display: grid; gap: 12px; }
+.faqs details { border: 0; background: var(--warm); border-radius: var(--r); padding: 0 24px; transition: background-color .15s ease; }
+.faqs details[open] { background: #fff; box-shadow: var(--shadow); }
+.faqs summary { font-weight: 700; }
+.faqs .pm { width: 28px; height: 28px; border-radius: 50%; background: var(--red-soft); }
+.faqs .pm::before { left: 8px; right: 8px; top: 13px; }
+.faqs .pm::after { top: 8px; bottom: 8px; left: 13px; }
+.faqs .ans { padding-right: 24px; }
+
+/* ── Prose ── */
+.prose blockquote, .prose .callout { border-left: 0; border-radius: var(--r); background: var(--red-tint); }
+.note { border-left: 0; background: var(--warm); border-radius: var(--r-sm); padding: 10px 14px; }
+
+/* ── Footer ── */
+.ftr { background: var(--navy); border-radius: var(--r-lg) var(--r-lg) 0 0; margin-top: 40px; }
+.ftr h2 { letter-spacing: .08em; }
+
+/* ── Mobile ── */
+@media (max-width: 1080px) {
+  .hdr nav a, .hdr nav .ddbtn { padding: 8px 10px; }
+}
+@media (min-width: 701px) and (max-width: 1023px) {
+  .featgrid > div:nth-child(n+3) { margin-top: 0; padding-top: 26px; }
+}
+@media (max-width: 700px) {
+  .hero h1, .hero.int h1 { font-size: 30px; line-height: 1.18; }
+  .hero-visual, .hero.int .hero-visual { margin: 0 20px 28px; height: 220px; border-radius: var(--r); }
+  .hero-copy, .hero.int .hero-copy { padding-bottom: 24px; }
+  .featgrid > div { padding: 22px 20px; }
+  .featgrid > div + div { border-top: 0; }
+  .grid3 { gap: 12px; }
+  .gitem { padding: 20px; }
+  .band > .wrap, .credband > .wrap, .textband > .wrap, .credband .wrap, .sec-warm > .wrap { margin: 0 12px; padding: 28px 20px; border-radius: var(--r); }
+  .sectors { gap: 12px; }
+  .steps { gap: 12px; }
+  .steps li { padding: 20px; }
+  .steps .stepnum { top: 20px; right: 20px; }
+  .sec-red { margin: 12px; border-radius: var(--r); }
+  .sec-red .qh { font-size: 32px; }
+  .formcard { padding: 24px 20px; border-radius: var(--r); }
+  .ctaband { padding: 12px 0; }
+  .ctaband > .wrap { margin: 0 12px; padding: 28px 22px; border-radius: var(--r); }
+  .faqs details { padding: 0 18px; }
+  .linkrow a, .regions a { padding: 7px 12px 7px 7px; font-size: 14.5px; }
+  .regions a { padding: 7px 12px; }
+  .svclist a, .svclist li:nth-child(even) a { padding: 10px 18px 10px 10px; font-size: 15.5px; }
+  .ftr { border-radius: var(--r) var(--r) 0 0; }
+  .mbar .btn { box-shadow: none; }
+}
+
+/* ── Fixes after first review ── */
+.ctaband.light, .ctaband.dark { background: transparent; border: 0; }
+.sec-sectors.sec-char { background: transparent; }
+.sec-sectors > .wrap { background: var(--warm); border-radius: var(--r-lg); padding: 44px 40px; }
+.regions { gap: 10px; max-width: none; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+.regions a { display: flex; align-items: center; gap: 10px; background: #fff; padding: 7px 16px 7px 7px; font-weight: 600; box-shadow: 0 4px 14px rgba(31, 42, 55, .05); }
+.regions .ficon { width: 30px; height: 30px; background: var(--red-soft); }
+.regions .ficon .ico { width: 16px; height: 16px; }
+.sec-coverage:not(.sec-warm) .regions a { background: var(--warm); box-shadow: none; }
+@media (max-width: 700px) {
+  .sec-sectors > .wrap { margin: 0 12px; padding: 28px 20px; border-radius: var(--r); }
+  .regions { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .regions a { padding: 6px 10px 6px 6px; font-size: 14px; }
+  .regions .ficon { width: 26px; height: 26px; }
+}
+@media (max-width: 700px) {
+  .hero-grid, .hero.int .hero-grid { grid-template-columns: 1fr; min-height: 0; }
+  .steps h3 { padding-right: 48px; }
+}
+.sec-int:not(.sec-warm) .steps li { background: var(--warm); }
+.sec-reviews .revgrid { gap: 20px; }

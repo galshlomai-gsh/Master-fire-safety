@@ -1,28 +1,72 @@
 ---
 /**
- * Review cards (design p2). HARD RULE: renders nothing until real reviews are added to
- * site.reviews. No placeholder or invented reviews are ever shown.
+ * Slow, continuously moving row of real Google reviews of Certify Services Ltd (see
+ * src/data/reviews.ts). Always labelled as Certify reviews. Pauses on hover/focus; static and
+ * swipeable when the visitor prefers reduced motion. Renders nothing below MIN_REVIEWS.
  */
-import { site } from '../config/site';
-const reviews = site.reviews.slice(0, 3);
-const fmt = (d: string) => new Date(d).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+import { reviews, reviewsAbout, MIN_REVIEWS } from '../data/reviews';
+const show = reviews.length >= MIN_REVIEWS;
+const duration = `${Math.max(30, reviews.length * 6)}s`;
+const star = 'M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z';
 ---
-{reviews.length > 0 && (
+{show && (
   <section class="sec-reviews reveal" aria-labelledby="reviews-h">
-    <div class="wrap">
-      <h2 id="reviews-h">What our customers say</h2>
-      <div class="revgrid">
-        {reviews.map((r) => (
-          <figure class="revcard">
-            <div class="stars" aria-label={`${r.rating} out of 5 stars`}>
-              {Array.from({ length: r.rating }).map(() => <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 14.9l-5.2 2.8 1-5.9L1.5 7.7l5.9-.8z"/></svg>)}
-            </div>
-            <blockquote>{r.text}</blockquote>
-            <figcaption class="revmeta"><b>{r.name}</b><span>{fmt(r.date)} · {r.source}</span></figcaption>
-          </figure>
+    <div class="wrap revhead">
+      <div>
+        <h2 id="reviews-h">What our customers say</h2>
+        <p class="revsub">5-star {reviewsAbout.source} reviews of {reviewsAbout.business}, the company behind T&amp;T Fire Safety.</p>
+      </div>
+      <a class="arrowlink" href={reviewsAbout.url} target="_blank" rel="noopener" data-cta="reviews_google">Read them on {reviewsAbout.source} <span class="ar" aria-hidden="true">→</span></a>
+    </div>
+    <div class="revviewport" style={`--duration:${duration}`}>
+      <div class="revtrack">
+        {[0, 1].map((copy) => (
+          <ul class="revlist" aria-hidden={copy === 1 ? 'true' : undefined}>
+            {reviews.map((r) => (
+              <li class="revcard">
+                <span class="stars" role="img" aria-label={`${r.rating} out of 5 stars`}>
+                  {Array.from({ length: 5 }, (_, i) => <svg viewBox="0 0 20 20" class={i < r.rating ? 'on' : 'off'} aria-hidden="true"><path d={star} /></svg>)}
+                </span>
+                <blockquote><p>{r.text}</p></blockquote>
+                <footer class="revmeta">
+                  <span class="revavatar" aria-hidden="true" style={r.color ? `background:${r.color}` : undefined}>{r.name.trim().charAt(0).toUpperCase()}</span>
+                  <span class="revwho"><b>{r.name}</b><span>{r.detail ?? `${reviewsAbout.source} review`}</span></span>
+                  <svg class="gmark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M22.5 12.3c0-.8-.1-1.5-.2-2.2H12v4.2h5.9a5 5 0 0 1-2.2 3.3v2.7h3.5c2.1-1.9 3.3-4.7 3.3-8z"/><path fill="#34A853" d="M12 23c3 0 5.4-1 7.2-2.7l-3.5-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.2v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.2a11 11 0 0 0 0 9.8l3.6-2.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.1-3.1A11 11 0 0 0 2.2 7.1l3.6 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg>
+                </footer>
+              </li>
+            ))}
+          </ul>
         ))}
       </div>
-      {site.reviewsSource.url && <p class="revfoot"><a href={site.reviewsSource.url} rel="noopener" target="_blank">Read all reviews on {site.reviewsSource.name}</a></p>}
     </div>
   </section>
 )}
+
+<style>
+  .revhead { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 32px; margin-bottom: 28px; }
+  .revsub { margin-top: 8px; color: var(--slate); font-size: 15.5px; }
+  .revviewport { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .revtrack { display: flex; width: max-content; animation: revscroll var(--duration) linear infinite; }
+  .revviewport:hover .revtrack, .revviewport:focus-within .revtrack { animation-play-state: paused; }
+  .revlist { display: flex; gap: 20px; padding: 0 20px 0 0; margin: 0; list-style: none; }
+  @keyframes revscroll { to { transform: translateX(-50%); } }
+  .revcard { display: flex; flex-direction: column; gap: 14px; width: min(360px, 80vw); padding: 24px 24px 20px; margin: 0; background: #fff; border: 1px solid var(--line); border-radius: var(--r, 4px); }
+  .stars { display: flex; gap: 2px; margin: 0; }
+  .stars svg { width: 18px; height: 18px; }
+  .stars .on { fill: #F5B301; }
+  .stars .off { fill: var(--line); }
+  .revcard blockquote { flex: 1; margin: 0; }
+  .revcard blockquote p { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; font-size: 15.5px; line-height: 1.6; color: var(--ink); }
+  .revmeta { display: flex; flex-direction: row; align-items: center; gap: 12px; margin: 0; padding-top: 14px; border-top: 1px solid var(--line); }
+  .revavatar { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--slate); color: #fff; font-weight: 700; font-size: 16px; }
+  .revwho { flex: 1; min-width: 0; display: grid; }
+  .revwho b { font-family: var(--ff-head); font-size: 14.5px; font-weight: 700; }
+  .revwho span { font-size: 13px; color: var(--meta); }
+  .gmark { flex: none; width: 20px; height: 20px; }
+  @media (prefers-reduced-motion: reduce) {
+    .revviewport { overflow-x: auto; scroll-snap-type: x mandatory; mask-image: none; -webkit-mask-image: none; padding: 0 20px; }
+    .revtrack { animation: none; }
+    .revlist[aria-hidden='true'] { display: none; }
+    .revcard { scroll-snap-align: start; }
+  }
+</style>

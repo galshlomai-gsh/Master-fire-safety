@@ -32,7 +32,7 @@ export function orgSchema(siteUrl: URL) {
       opens: h.opens,
       closes: h.closes,
     })),
-    // No aggregateRating until real reviews exist (see site.reviews).
+    // No aggregateRating: the reviews shown are of Certify Services Ltd, not T&T (src/data/reviews.ts).
   };
 }
 

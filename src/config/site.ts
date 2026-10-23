@@ -10,14 +10,6 @@ export type Credential = {
   status: 'confirmed' | 'pending';
 };
 
-export type Review = {
-  text: string;
-  name: string;
-  date: string; // ISO date
-  rating: 1 | 2 | 3 | 4 | 5;
-  source: 'Google' | 'Trustpilot' | 'Other';
-};
-
 export const site = {
   brand: {
     name: 'T&T Fire Safety',
@@ -74,9 +66,7 @@ export const site = {
     { label: 'Public liability insurance', detail: '£2 million.', status: 'confirmed' },
   ] as Credential[],
 
-  /** HARD RULE: real reviews only. While empty, the reviews section does not render. */
-  reviews: [] as Review[],
-  reviewsSource: { name: 'Google', url: null as string | null },
+  /** Reviews: real Google reviews of Certify Services Ltd, always labelled as such. See src/data/reviews.ts. */
 
   tracking: {
     /** Certify Services Ltd container for the fire safety site (Gal has Publish access). */

@@ -21,6 +21,7 @@ export type SiteImage = {
 };
 
 const slots = {
+  home: { art: 'fra', alt: 'Fire risk assessor checking a communal fire door and its self-closer in a London block of flats' },
   fra: { art: 'fra', alt: 'Communal stairwell in a London mansion block with a fire door, emergency light and exit sign' },
   doors: { art: 'doors', alt: 'Communal corridor in a block of flats with a self-closing fire door and “Fire door keep shut” sign' },
   alarms: { art: 'alarms', alt: 'Fire alarm control panel and manual call point in the entrance lobby of a block of flats' },

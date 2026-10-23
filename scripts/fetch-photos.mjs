@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 
 const base = 'https://d8j0ntlcm91z4.cloudfront.net/user_39hS8NZhRzSYZ2gEwcTTZNcN8zo/';
 const photos = {
+  home: 'hf_20261022_215829_8591f6cc-84ea-4b4c-9209-070d296808de.png',
   doors: 'hf_20261022_083406_aa346af9-375c-4249-bc43-2ec5086609c6.png',
   fra: 'hf_20261022_083608_ecd78e86-3974-48ac-8bad-e714078c8a53.png',
   alarms: 'hf_20261022_083753_8aabc857-0c81-4f0f-a18d-c22a5df84d9d.png',

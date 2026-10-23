@@ -39,7 +39,7 @@ const faqs: F[] = [
     variant="home"
     title="Fire risk assessments for landlords, managing agents & businesses"
     sub="On-site fire risk assessments with clear written reports and practical, prioritised action plans across London and the Home Counties."
-    image="fra"
+    image="home"
     art="fra"
   />
 
@@ -52,10 +52,6 @@ const faqs: F[] = [
     </div>
   </section>
 
-  <OtherServices exclude="fra" />
-
-  <Process />
-
   <Reviews />
 
   <CtaBand
@@ -65,6 +61,10 @@ const faqs: F[] = [
   />
 
   <SectorTiles />
+
+  <Process warm={false} />
+
+  <OtherServices exclude="fra" />
 
   <QuoteSection service="Fire Risk Assessment" source="home" />
 
