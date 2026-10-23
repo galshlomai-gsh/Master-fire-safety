@@ -14,7 +14,8 @@ npm run qa:serve     # serve the build locally (in another terminal: npm run qa:
 ## Where things live
 | What | File |
 |---|---|
-| Brand, phone, email, hours, credentials, reviews, GTM | `src/config/site.ts` |
+| Brand, phone, email, hours, credentials, GTM | `src/config/site.ts` |
+| Reviews (real Google reviews of Certify Services Ltd) | `src/data/reviews.ts` |
 | Hero photos (one per slot, `src/assets/photos/{slot}.jpg`; line illustration fallback) | `src/config/images.ts`, `scripts/fetch-photos.mjs` |
 | Icons (Lucide, ISC) and the per-heading icon rules | `src/lib/icons.ts`, `src/components/FIcon.astro` |
 | Service, sector, area and guide content | `src/data/{services,sectors,sectors.extra,areas,guides}.ts` |
@@ -24,7 +25,7 @@ npm run qa:serve     # serve the build locally (in another terminal: npm run qa:
 | Schema (LocalBusiness/Service/FAQ/Breadcrumb/Article) | `src/lib/schema.ts` |
 
 ## Trust rules built into the code
-- `site.reviews` is empty, so the reviews section does not render.
+- Reviews are real Google reviews of Certify Services Ltd, copied word for word and always labelled as Certify's (Philip approved this, Oct 2026). No aggregateRating schema, since they are not reviews of T&T.
 - Trust points are only those Philip confirmed: assessors are IFSM members; competence follows BS 8674:2025 (individual assessor standard, not a company accreditation); PI £500k per claim; PL £2m. No individual assessors are named.
 - Certify Services Ltd appears only in the footer small print and the legal pages (trading disclosure). It is not in the schema or the body copy.
 - No unlicensed photos. The current photos are AI-generated, people-free UK scenes (Higgsfield, GPT Image 2.5) standing in until Philip's own site photos arrive: drop a file named after the slot into `src/assets/photos/` to replace one.

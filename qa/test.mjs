@@ -36,8 +36,9 @@ for (const p of pages) {
       links: [...document.querySelectorAll('a[href^="/"]')].map((a) => a.getAttribute('href')),
       quoteAnchors: [...document.querySelectorAll('a[href="#quote"]')].length,
       hasQuote: !!document.getElementById('quote'),
-      text: document.body.innerText,
+      text: (() => { const c = document.body.cloneNode(true); c.querySelectorAll('.sec-reviews').forEach((n) => n.remove()); return c.textContent; })(), // customer reviews may name Philip
       reviews: !!document.querySelector('.revcard'),
+      reviewsLabelled: !document.querySelector('.revcard') || /Certify Services Ltd/.test(document.querySelector('.sec-reviews')?.textContent || ''),
       imgsNoAlt: [...document.querySelectorAll('img:not([alt])')].length,
     };
   });
@@ -49,7 +50,7 @@ for (const p of pages) {
   if (info.ld.includes('INVALID')) pageIssues.push(`${p} invalid JSON-LD`);
   if (info.tels.some((t) => t !== 'tel:+442080662499')) pageIssues.push(`${p} bad tel ${info.tels.join(',')}`);
   if (info.quoteAnchors && !info.hasQuote) pageIssues.push(`${p} #quote link without target`);
-  if (info.reviews) pageIssues.push(`${p} shows review cards (none are real yet)`);
+  if (info.reviews && !info.reviewsLabelled) pageIssues.push(`${p} shows review cards not labelled as Certify Services reviews`);
   if (info.imgsNoAlt) pageIssues.push(`${p} images without alt`);
   if (/FireQual|IFE Registered|Philip Roberts/i.test(info.text)) pageIssues.push(`${p} mentions unconfirmed credential`);
   if (/—/.test(info.text.replace(/enquiries@[^\n]*/g, ''))) pageIssues.push(`${p} contains an em dash`);

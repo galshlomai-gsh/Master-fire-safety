@@ -8,7 +8,7 @@ Answered and built in:
 - Coverage: London first, plus Hertfordshire and the accessible Home Counties. Scotland and Wales removed.
 - Remedial works quoted separately.
 - Hours, GTM container and email plan.
-- Reviews and testimonials stay off for now.
+- Reviews: Certify Services' Google reviews are shown on the home page, clearly labelled as Certify's (approved by Philip).
 - Logo: wordmark + flame (fire mark A), now live in the header, favicon and share image.
 - Brand spelling: T&T (the domain stays tntfiresafety.co.uk).
 
