@@ -167,7 +167,7 @@ button, input, select, textarea { font: inherit; }
 /* ── Heroes ── */
 .hero { background: var(--char); color: #fff; overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 57% 43%; align-items: stretch; min-height: 560px; }
-.hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 64px 56px 64px max(40px, calc((100vw - 1240px) / 2 + 40px)); }
+.hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 64px 56px 64px max(40px, calc((100vw / var(--z, 1) - 1240px) / 2 + 40px)); }
 .hero h1 { font-size: 36px; line-height: 1.16; color: #fff; text-transform: uppercase; letter-spacing: 0; max-width: 820px; text-wrap: wrap; }
 .hero .sub { margin-top: 22px; font-size: 19px; line-height: 1.6; color: #C7CCD0; max-width: 600px; }
 .hero .cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
