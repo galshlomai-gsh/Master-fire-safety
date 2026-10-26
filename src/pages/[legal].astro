@@ -8,12 +8,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import { site } from '../config/site';
+import { legalApproved } from '../config/indexing.mjs';
 
 export function getStaticPaths() {
   return [{ params: { legal: 'privacy' } }, { params: { legal: 'terms' } }, { params: { legal: 'cookies' } }];
 }
 const { legal } = Astro.params as { legal: 'privacy' | 'terms' | 'cookies' };
-const legalApproved = false;
+
 const updated = '19 October 2026';
 const L = site.legal;
 const brand = site.brand.name;
