@@ -13,6 +13,7 @@ const f = (n: string) => `${id}-${n}`;
   <p class="formtitle">Your details</p>
   <input type="hidden" name="page" value={Astro.url.pathname} />
   <input type="hidden" name="source" value={source} />
+  {['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid', 'landing_page', 'referrer'].map((n) => <input type="hidden" name={n} value="" data-attr={n} />)}
   <div class="hp" aria-hidden="true"><label for={f('company')}>Company website</label><input id={f('company')} name="company_website" tabindex="-1" autocomplete="off" /></div>
   <div class="frow">
     <div class="field">
