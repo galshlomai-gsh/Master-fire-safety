@@ -10,11 +10,11 @@ Answered and built in:
 - Hours, GTM container and email plan.
 - Reviews: Certify Services' Google reviews are shown on the home page, clearly labelled as Certify's (approved by Philip).
 - Logo: wordmark + flame (fire mark A), now live in the header, favicon and share image.
-- Brand spelling: T&T (the domain stays tntfiresafety.co.uk).
+- Brand spelling: T&T (the domain stays tandtfiresafety.co.uk).
 
 Still open:
-1. **Domain**: buy tntfiresafety.co.uk. We need it for the site, the hello@ mailbox, the GA4 data stream and the Resend sending domain.
-2. **Email**: create hello@tntfiresafety.co.uk (Google Workspace or Microsoft 365 mailbox, or a forwarder) and confirm which Certify inbox receives quote forms.
+1. **Domain**: buy tandtfiresafety.co.uk. We need it for the site, the hello@ mailbox, the GA4 data stream and the Resend sending domain.
+2. **Email**: create hello@tandtfiresafety.co.uk (Google Workspace or Microsoft 365 mailbox, or a forwarder) and confirm which Certify inbox receives quote forms.
 3. **Report turnaround**: confirm whether "typically 3–5 working days" is consistently achievable. It is ready to switch on (`reportTurnaround` in `src/config/site.ts`).
 4. **Photos**: real photos of fire doors, alarm panels, emergency lighting, AOVs and building areas (no people). Until then the site uses original line illustrations.
 5. **Separate phone number**: decide after reading the recommendation (tracking number, about £5–15/month).
