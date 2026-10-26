@@ -68,7 +68,7 @@ h3 { font-weight: 700; }
 .hero .reassure { color: var(--slate); }
 .hero .reassure a { color: var(--ink); }
 .hero .reassure a:hover { color: var(--red); }
-.hero-visual { margin: 40px max(40px, calc((100vw - 1240px) / 2 + 40px)) 40px 0; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-hi); background: var(--warm); }
+.hero-visual { margin: 40px max(40px, calc((100vw / var(--z, 1) - 1240px) / 2 + 40px)) 40px 0; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-hi); background: var(--warm); }
 .hero.int .hero-visual { margin-top: 32px; margin-bottom: 32px; }
 .hero-visual::after { display: none; }
 .hero.text-only { background: var(--cream); }
@@ -144,7 +144,7 @@ h3 { font-weight: 700; }
 .steps .stepnum { top: 26px; right: 24px; color: var(--red); background: var(--red-soft); border-radius: 999px; padding: 3px 10px; letter-spacing: .05em; }
 
 /* ── Quote section → rounded red panel ── */
-.sec-red { margin: 24px max(16px, calc((100vw - 1320px) / 2)); border-radius: var(--r-lg); background: linear-gradient(135deg, #DE3038 0%, #C21F28 100%); }
+.sec-red { margin: 24px max(16px, calc((100vw / var(--z, 1) - 1320px) / 2)); border-radius: var(--r-lg); background: linear-gradient(135deg, #DE3038 0%, #C21F28 100%); }
 .sec-red::before { background: radial-gradient(700px 400px at 12% 20%, rgba(255, 255, 255, .14), rgba(255, 255, 255, 0) 60%); }
 .sec-red .qh { text-transform: none; font-size: 44px; letter-spacing: -0.025em; text-shadow: none; }
 .sec-red .body, .quote-alt { text-shadow: none; }
@@ -234,3 +234,37 @@ h3 { font-weight: 700; }
 }
 .sec-int:not(.sec-warm) .steps li { background: var(--warm); }
 .sec-reviews .revgrid { gap: 20px; }
+
+/* ── Wide screens: scale the whole layout up so it fills large monitors ──
+ * `zoom` scales every size together (type, spacing, cards). Viewport-width calcs divide
+ * by --z because 100vw is not affected by zoom. */
+@media (min-width: 1600px) { html { --z: 1.1; zoom: 1.1; } }
+@media (min-width: 1800px) { html { --z: 1.2; zoom: 1.2; } }
+@media (min-width: 2100px) { html { --z: 1.32; zoom: 1.32; } }
+@media (min-width: 2400px) { html { --z: 1.45; zoom: 1.45; } }
+@media (min-width: 2800px) { html { --z: 1.65; zoom: 1.65; } }
+
+/* ── Alternating backgrounds: full-width white / light red tint sections ── */
+:root { --tint: #FFF3F0; }
+.band, .credband, .textband, .sec-warm, .sec-sectors, .sec-reviews { background: var(--tint); }
+.band > .wrap, .credband > .wrap, .textband > .wrap, .credband .wrap, .sec-warm > .wrap, .sec-sectors > .wrap { background: transparent; border-radius: 0; padding: 0 40px; }
+.sec-int.sec-warm, .sec-warm + .sec-int { padding-top: 60px; }
+.band, .credband, .textband { padding: 56px 0; }
+.sec-sectors { padding: 64px 0; }
+.sec-reviews { padding: 60px 0; }
+/* cards sit white on the tint, warm on white */
+.sec-warm .gitem, .textband .gitem, .band .gitem { background: #fff; }
+.sec-warm .featgrid > div { box-shadow: var(--shadow); }
+.sec-warm .steps li { background: #fff; box-shadow: var(--shadow); }
+.sec-warm .regions a, .band .linkrow a { background: #fff; }
+.sec-coverage:not(.sec-warm) .regions a { background: var(--tint); }
+.ctaband.light > .wrap { background: var(--tint); }
+.faqs details { background: var(--tint); }
+.sec-reviews .revcard { border-color: transparent; }
+.sec-reviews .revviewport { mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+@media (max-width: 700px) {
+  .band > .wrap, .credband > .wrap, .textband > .wrap, .credband .wrap, .sec-warm > .wrap, .sec-sectors > .wrap { margin: 0; padding: 0 20px; }
+  .band, .credband, .textband, .sec-int.sec-warm, .sec-sectors, .sec-reviews { padding: 40px 0; }
+  .sec-warm + .sec-int { padding-top: 40px; }
+}
+.sec-sectors.sec-char { background: var(--tint); }
