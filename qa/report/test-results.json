@@ -2,7 +2,7 @@
   {
     "name": "sitemap lists pages",
     "pass": true,
-    "detail": "44 URLs"
+    "detail": "41 URLs"
   },
   {
     "name": "page /",
@@ -90,11 +90,6 @@
     "detail": "ProfessionalService+BreadcrumbList"
   },
   {
-    "name": "page /cookies",
-    "pass": true,
-    "detail": "ProfessionalService+BreadcrumbList"
-  },
-  {
     "name": "page /guides",
     "pass": true,
     "detail": "ProfessionalService+BreadcrumbList"
@@ -133,11 +128,6 @@
     "name": "page /guides/what-happens-during-a-fire-risk-assessment",
     "pass": true,
     "detail": "ProfessionalService+BreadcrumbList+Article+FAQPage"
-  },
-  {
-    "name": "page /privacy",
-    "pass": true,
-    "detail": "ProfessionalService+BreadcrumbList"
   },
   {
     "name": "page /quote",
@@ -218,11 +208,6 @@
     "name": "page /services/fire-risk-assessments",
     "pass": true,
     "detail": "ProfessionalService+BreadcrumbList+Service+FAQPage"
-  },
-  {
-    "name": "page /terms",
-    "pass": true,
-    "detail": "ProfessionalService+BreadcrumbList"
   },
   {
     "name": "page /thank-you",
