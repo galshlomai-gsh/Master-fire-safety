@@ -98,6 +98,28 @@ function validate(form: HTMLFormElement): boolean {
   return !firstBad;
 }
 
+// Ad attribution (gclid/UTMs) for Google Ads offline conversions. Read from the URL on every page;
+// carried across pages in sessionStorage only once the visitor has accepted cookies.
+const ATTR_KEY = 'tt_attribution';
+const ATTR_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid'];
+function attribution(): Record<string, string> {
+  const fromUrl: Record<string, string> = {};
+  const params = new URLSearchParams(location.search);
+  for (const k of ATTR_PARAMS) { const v = params.get(k); if (v) fromUrl[k] = v.slice(0, 200); }
+  let stored: Record<string, string> = {};
+  try { stored = JSON.parse(sessionStorage.getItem(ATTR_KEY) || '{}'); } catch { stored = {}; }
+  const fresh = Object.keys(fromUrl).length > 0;
+  const attr = fresh || !stored.landing_page
+    ? { ...fromUrl, landing_page: location.pathname, referrer: document.referrer.slice(0, 300) }
+    : stored;
+  let consent = false;
+  try { consent = localStorage.getItem('tt_consent') === 'granted'; } catch { /* storage blocked */ }
+  if (consent && (fresh || !stored.landing_page)) { try { sessionStorage.setItem(ATTR_KEY, JSON.stringify(attr)); } catch { /* ignore */ } }
+  return attr;
+}
+const attr = attribution();
+document.querySelectorAll<HTMLInputElement>('input[data-attr]').forEach((el) => { el.value = attr[el.dataset.attr!] || ''; });
+
 document.querySelectorAll<HTMLFormElement>('form[data-quote-form]').forEach((form) => {
   let started = false;
   form.addEventListener('input', (e) => {

@@ -20,7 +20,7 @@ npm run qa:serve     # serve the build locally (in another terminal: npm run qa:
 | Icons (Lucide, ISC) and the per-heading icon rules | `src/lib/icons.ts`, `src/components/FIcon.astro` |
 | Service, sector, area and guide content | `src/data/{services,sectors,sectors.extra,areas,guides}.ts` |
 | Design tokens and components CSS | `src/styles/global.css` |
-| Quote form handler (email via Resend) | `src/pages/api/quote.ts` |
+| Quote form handler (Resend email + Supabase `tandt_leads` table) | `src/pages/api/quote.ts`, `supabase/migrations/` |
 | Tracking (dataLayer events) | `src/scripts/site.ts` |
 | Schema (LocalBusiness/Service/FAQ/Breadcrumb/Article) | `src/lib/schema.ts` |
 
@@ -40,6 +40,9 @@ The GTM container `GTM-K5HWQDK9` (Certify Services Ltd) is the default; `PUBLIC_
 
 Google Consent Mode v2 defaults to *denied* until the visitor accepts the cookie banner.
 In GTM: create GA4 event tags for `generate_lead` and `phone_click`, and Google Ads conversion tags fired by the same custom events.
+
+## Leads
+Each quote request is emailed via Resend from `leads@tandtfiresafety.co.uk` and saved to the `tandt_leads` table in the **Certi Sprint** Supabase project (same client, separate table from Certi Sprint's `enquiries`). If the email fails, the lead is still saved with `email_sent = false`. The table has RLS on with no policies, so only the server-side secret key can read or write it. `status` and `quote_value` columns, plus captured `gclid`/`gbraid`/`wbraid` and UTMs, support Google Ads offline conversion imports.
 
 ## Environment variables
 See `.env.example`. Previews are **always noindex** unless `ALLOW_INDEXING=true`, which should be set on the production deployment only, after launch sign-off.

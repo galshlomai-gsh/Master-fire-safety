@@ -31,7 +31,7 @@ const pages = {
 
 <h2>Information we collect</h2>
 <h3>When you request a quote</h3>
-<p>The quote form asks for your name, phone number, email address, the property postcode, the property type, the service you need and any extra details you choose to add. We also record the page you sent the form from. A hidden field is used to filter out automated spam.</p>
+<p>The quote form asks for your name, phone number, email address, the property postcode, the property type, the service you need and any extra details you choose to add. We also record the page you sent the form from and, if you arrived from one of our adverts or a tracked link, the advert click reference and campaign details in the link. A hidden field is used to filter out automated spam.</p>
 <h3>When you call or email us</h3>
 <p>We keep the details you give us so that we can quote, book and carry out the work: usually your name, contact details, the property address and information about the building.</p>
 <h3>When you use the website</h3>
@@ -45,6 +45,7 @@ const pages = {
 <tr><td>Booking and carrying out assessments, inspections, servicing or remedial works</td><td>Performance of a contract</td></tr>
 <tr><td>Keeping records of work carried out and invoices</td><td>Legal obligation (tax and accounting) and our legitimate interest in defending claims</td></tr>
 <tr><td>Measuring how the website is used and which adverts lead to enquiries</td><td>Your consent, given through the cookie banner</td></tr>
+<tr><td>Recording which advert or campaign an enquiry came from, so we can tell Google Ads which adverts led to work</td><td>Our legitimate interest in understanding which advertising works</td></tr>
 <tr><td>Measuring advert conversions with Google Ads, including enhanced conversions (see below)</td><td>Your consent, given through the cookie banner</td></tr>
 <tr><td>Keeping the website secure and preventing spam</td><td>Our legitimate interest in running a secure website</td></tr>
 </tbody>
@@ -59,6 +60,7 @@ const pages = {
 <ul>
 <li><strong>Vercel Inc.</strong>: website hosting and the server that receives the quote form.</li>
 <li><strong>Resend</strong>: delivering quote form submissions to our inbox by email.</li>
+<li><strong>Supabase</strong>: a secure database (hosted in the EU, Ireland) where quote form submissions are stored so we can follow them up.</li>
 <li><strong>Our email provider</strong>: storing the emails we send and receive.</li>
 <li><strong>Google</strong> (Google Tag Manager, Google Analytics 4 and Google Ads): website analytics and advertising measurement, only if you give consent.</li>
 </ul>
