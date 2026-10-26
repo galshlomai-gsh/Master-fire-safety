@@ -29,13 +29,13 @@ export const site = {
     registeredIn: 'England and Wales',
     registeredAddress: '2nd Floor Parkgates, Bury New Road, Prestwich, Manchester M25 0TL' as string | null,
   },
-  domain: 'tntfiresafety.co.uk',
+  domain: 'tandtfiresafety.co.uk',
   phone: {
     display: '020 8066 2499',
     tel: '+442080662499',
   },
   /** Branded address agreed with Philip. Must exist (domain + mailbox/forwarder) before launch. */
-  email: 'hello@tntfiresafety.co.uk' as string | null,
+  email: 'hello@tandtfiresafety.co.uk' as string | null,
   hours: {
     display: 'Mon–Thu 8:30am–6pm, Fri 8:30am–3pm',
     schema: [
