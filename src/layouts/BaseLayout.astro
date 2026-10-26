@@ -28,8 +28,10 @@ const { title, description, active = 'none', crumbs = [], schema = [], noindex =
 const siteUrl = Astro.site!;
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
 const canonical = new URL(path, siteUrl).toString();
-// Previews are never indexable; only the production deploy with ALLOW_INDEXING=true is.
-const indexable = !noindex && process.env.ALLOW_INDEXING === 'true';
+// The live production deploy (www.tandtfiresafety.co.uk) is indexable; previews never are.
+// ALLOW_INDEXING=false switches indexing off in production, =true forces it on elsewhere.
+const allow = process.env.ALLOW_INDEXING;
+const indexable = !noindex && (allow === 'true' || (process.env.VERCEL_ENV === 'production' && allow !== 'false'));
 const gtm = site.tracking.gtmId;
 const allSchema = [
   orgSchema(siteUrl),

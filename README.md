@@ -45,7 +45,7 @@ In GTM: create GA4 event tags for `generate_lead` and `phone_click`, and Google 
 Each quote request is emailed via Resend from `leads@tandtfiresafety.co.uk` and saved to the `tandt_leads` table in the **Certi Sprint** Supabase project (same client, separate table from Certi Sprint's `enquiries`). If the email fails, the lead is still saved with `email_sent = false`. The table has RLS on with no policies, so only the server-side secret key can read or write it. `status` and `quote_value` columns, plus captured `gclid`/`gbraid`/`wbraid` and UTMs, support Google Ads offline conversion imports.
 
 ## Environment variables
-See `.env.example`. Previews are **always noindex** unless `ALLOW_INDEXING=true`, which should be set on the production deployment only, after launch sign-off.
+See `.env.example`. The production deployment (www.tandtfiresafety.co.uk) is indexable by default; previews are **always noindex**. Set `ALLOW_INDEXING=false` in Production to switch indexing off. The legal pages stay noindex until Philip approves them.
 
 ## Deploy (preview only)
 Import the repo into Vercel and set the production branch to an unused name, so pushes create previews only. Do not attach a custom domain until Philip signs off. See `QA-REPORT.md` §5.
