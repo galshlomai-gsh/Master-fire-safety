@@ -71,6 +71,8 @@ export const site = {
   tracking: {
     /** Certify Services Ltd container for the fire safety site (Gal has Publish access). */
     gtmId: (import.meta.env.PUBLIC_GTM_ID as string | undefined) || 'GTM-K5HWQDK9',
+    /** Microsoft Clarity project (session recordings + heatmaps). */
+    clarityId: (import.meta.env.PUBLIC_CLARITY_ID as string | undefined) || 'z4h9y6imdj',
   },
 } as const;
 

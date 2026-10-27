@@ -1,5 +1,5 @@
 ---
-/** Minimal cookie consent wired to Google Consent Mode v2 (defaults set in BaseLayout head). */
+/** Minimal cookie consent wired to Google Consent Mode v2 and Microsoft Clarity's consent API (defaults set in BaseLayout head). */
 ---
 <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
   <p>We use cookies to measure which pages and adverts lead to enquiries. <a href="/cookies">Cookie notice</a></p>
@@ -33,6 +33,7 @@
         var c = b.getAttribute('data-consent');
         try { localStorage.setItem(KEY, c); } catch (e) {}
         window.gtag('consent', 'update', { ad_storage: c, analytics_storage: c, ad_user_data: c, ad_personalization: c });
+        if (window.clarity) window.clarity('consentv2', { ad_Storage: c, analytics_Storage: c });
         window.dataLayer.push({ event: 'consent_update', consent: c });
         el.hidden = true;
       });
