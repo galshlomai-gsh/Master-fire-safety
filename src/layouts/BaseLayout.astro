@@ -33,6 +33,7 @@ const canonical = new URL(path, siteUrl).toString();
 const allow = process.env.ALLOW_INDEXING;
 const indexable = !noindex && (allow === 'true' || (process.env.VERCEL_ENV === 'production' && allow !== 'false'));
 const gtm = site.tracking.gtmId;
+const clarity = site.tracking.clarityId;
 const allSchema = [
   orgSchema(siteUrl),
   ...(crumbs.length ? [breadcrumbSchema(siteUrl, [{ name: 'Home', href: '/' }, ...crumbs])] : []),
@@ -73,6 +74,19 @@ const allSchema = [
     {gtm && (
       <script is:inline define:vars={{ gtm }}>
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',gtm);
+      </script>
+    )}
+    {clarity && (
+      <script is:inline define:vars={{ clarity }}>
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window,document,"clarity","script",clarity);
+        // Clarity runs cookieless until the visitor accepts in the consent banner.
+        var c=null;try{c=localStorage.getItem('tt_consent');}catch(e){}
+        var g=c==='granted'?'granted':'denied';
+        window.clarity('consentv2',{ad_Storage:g,analytics_Storage:g});
       </script>
     )}
     {allSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
