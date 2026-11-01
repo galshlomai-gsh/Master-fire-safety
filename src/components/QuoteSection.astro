@@ -3,7 +3,7 @@ import QuoteForm from './QuoteForm.astro';
 import Icon from './Icon.astro';
 import { site } from '../config/site';
 interface Props { service?: string; propertyType?: string; heading?: string; text?: string; source?: string; asH1?: boolean }
-const { service = 'Fire Risk Assessment', propertyType = '', heading = 'Get a free quote', text, source, asH1 = false } = Astro.props;
+const { service = '', propertyType = '', heading = 'Get a free quote', text, source, asH1 = false } = Astro.props;
 const H = asH1 ? 'h1' : 'h2';
 ---
 <section class="sec-red" id="quote" aria-labelledby="quote-h">

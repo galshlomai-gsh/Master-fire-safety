@@ -93,39 +93,39 @@ await first.locator('summary').click();
 const firstClosed = !(await first.evaluate((d) => d.open));
 ok('FAQ accordion opens/closes', before === false && after === true && firstClosed);
 
-// 6. Service pre-selected per page
+// 6. Service recorded per page (hidden field; the form no longer asks)
 const pre = {};
 for (const [p, v] of [['/services/fire-risk-assessments', 'Fire Risk Assessment'], ['/services/fire-door-inspections', 'Fire Door Inspection'], ['/services/fire-alarm-servicing-installation', 'Fire Alarm Servicing / Installation'], ['/services/emergency-lighting-servicing-installation', 'Emergency Lighting Servicing / Installation'], ['/services/aov-smoke-control-servicing', 'AOV / Smoke Control Servicing'], ['/sectors/landlords-hmos', 'Fire Risk Assessment']]) {
   await page.goto(BASE + p);
-  pre[p] = await page.locator('#quote select[name=service]').inputValue();
+  pre[p] = await page.locator('#quote input[name=service]').inputValue();
   if (pre[p] !== v) pre[p] += ` (expected ${v})`;
 }
-ok('quote form Service field pre-selected per page', Object.entries(pre).every(([p, v]) => !v.includes('expected')), JSON.stringify(pre));
+ok('quote form records the page service', Object.entries(pre).every(([p, v]) => !v.includes('expected')), JSON.stringify(pre));
 await page.goto(BASE + '/sectors/landlords-hmos');
-const pt = await page.locator('#quote select[name=property_type]').inputValue();
-ok('sector page pre-selects property type', pt === 'HMO / Residential', pt);
+const pt = await page.locator('#quote input[name=property_type]').inputValue();
+ok('sector page records property type', pt === 'HMO / Residential', pt);
 
 // 7. Form validation + successful submit → generate_lead → /thank-you
 await page.goto(BASE + '/services/fire-risk-assessments');
 await page.locator('#quote button[type=submit]').click();
 const errs = await page.locator('#quote .field.err').count();
-ok('empty submit shows inline errors', errs === 5, `${errs} fields flagged`);
+const asked = await page.locator('#quote .field').count();
+ok('form asks only name, phone, email and postcode', asked === 4 && (await page.locator('#quote select, #quote textarea').count()) === 0, `${asked} fields`);
+ok('empty submit shows inline errors', errs === 4, `${errs} fields flagged`);
 await page.fill('#quote [name=name]', 'QA Tester');
 await page.fill('#quote [name=phone]', '020 8066 2499');
 await page.fill('#quote [name=email]', 'qa@example.co.uk');
 await page.fill('#quote [name=postcode]', 'NW2 7AX');
-await page.selectOption('#quote [name=property_type]', 'Block of Flats');
-await page.fill('#quote [name=details]', 'Automated QA submission');
 await page.evaluate(() => { window.__nav = []; });
 const [nav] = await Promise.all([page.waitForURL('**/thank-you', { timeout: 5000 }).then(() => true).catch(() => false), page.locator('#quote button[type=submit]').click()]);
 ok('valid submit redirects to /thank-you', nav, page.url());
 // dataLayer is lost on navigation; check via a fresh run with navigation blocked
 await page.goto(BASE + '/services/fire-risk-assessments');
-await page.fill('#quote [name=name]', 'QA Tester'); await page.fill('#quote [name=phone]', '07700 900123'); await page.fill('#quote [name=email]', 'qa@example.co.uk'); await page.fill('#quote [name=postcode]', 'SW1A 1AA'); await page.selectOption('#quote [name=property_type]', 'Office / Workplace');
+await page.fill('#quote [name=name]', 'QA Tester'); await page.fill('#quote [name=phone]', '07700 900123'); await page.fill('#quote [name=email]', 'qa@example.co.uk'); await page.fill('#quote [name=postcode]', 'SW1A 1AA');
 await page.locator('#quote button[type=submit]').click();
 await page.waitForFunction(() => window.dataLayer.some((e) => e.event === 'generate_lead'), null, { timeout: 4000 }).catch(() => {});
 const lead = await page.evaluate(() => window.dataLayer.find((e) => e.event === 'generate_lead'));
-ok('submit pushes generate_lead with service & property type', !!lead && lead.service === 'Fire Risk Assessment' && lead.property_type === 'Office / Workplace', JSON.stringify(lead && { event: lead.event, service: lead.service, property_type: lead.property_type, form_id: lead.form_id }));
+ok('submit pushes generate_lead with the page service and contact details', !!lead && lead.service === 'Fire Risk Assessment' && lead.user_data?.email === 'qa@example.co.uk', JSON.stringify(lead && { event: lead.event, service: lead.service, property_type: lead.property_type, form_id: lead.form_id }));
 const formStart = await page.evaluate(() => window.dataLayer.some((e) => e.event === 'form_start'));
 ok('form_start fires on first input', formStart);
 
@@ -133,7 +133,7 @@ ok('form_start fires on first input', formStart);
 const nojs = await browser.newContext({ javaScriptEnabled: false });
 const pj = await nojs.newPage();
 await pj.goto(BASE + '/quote');
-await pj.fill('[name=name]', 'No JS'); await pj.fill('[name=phone]', '02080662499'); await pj.fill('[name=email]', 'nojs@example.co.uk'); await pj.fill('[name=postcode]', 'NW2 7AX'); await pj.selectOption('[name=property_type]', 'Other');
+await pj.fill('[name=name]', 'No JS'); await pj.fill('[name=phone]', '02080662499'); await pj.fill('[name=email]', 'nojs@example.co.uk'); await pj.fill('[name=postcode]', 'NW2 7AX');
 await Promise.all([pj.waitForURL('**/thank-you**'), pj.click('button[type=submit]')]);
 ok('form works without JavaScript (POST → thank-you)', pj.url().includes('/thank-you'), pj.url());
 await nojs.close();
