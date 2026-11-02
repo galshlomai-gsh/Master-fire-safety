@@ -1,13 +1,10 @@
 ---
-import '@fontsource/plus-jakarta-sans/latin-400.css';
-import '@fontsource/plus-jakarta-sans/latin-500.css';
-import '@fontsource/plus-jakarta-sans/latin-600.css';
-import '@fontsource/plus-jakarta-sans/latin-700.css';
-import '@fontsource/plus-jakarta-sans/latin-800.css';
 import '../styles/global.css';
 import '../styles/friendly.css';
-import jakarta700 from '@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-700-normal.woff2?url';
-import sans400 from '@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-400-normal.woff2?url';
+// One variable font file (27 KB) covers every weight the site uses (400–800), instead of four
+// static files (~48 KB, the 600/800 ones discovered late). It is preloaded below.
+import jakartaVar from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
+const fontFace = `@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-display:swap;font-weight:200 800;src:url(${jakartaVar}) format('woff2');}`;
 import Header, { type Section } from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
@@ -53,8 +50,8 @@ const allSchema = [
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preload" href={jakarta700} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={sans400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={jakartaVar} as="font" type="font/woff2" crossorigin />
+    <style is:inline set:html={fontFace}></style>
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.brand.name} />
     <meta property="og:title" content={title} />
@@ -71,22 +68,30 @@ const allSchema = [
       gtag('consent','default',{ad_storage:g,analytics_storage:g,ad_user_data:g,ad_personalization:g,functionality_storage:'granted',security_storage:'granted',wait_for_update:500});
       gtag('set','ads_data_redaction',g==='denied');})();
     </script>
-    {gtm && (
-      <script is:inline define:vars={{ gtm }}>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',gtm);
-      </script>
-    )}
-    {clarity && (
-      <script is:inline define:vars={{ clarity }}>
-        (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window,document,"clarity","script",clarity);
-        // Clarity runs cookieless until the visitor accepts in the consent banner.
-        var c=null;try{c=localStorage.getItem('tt_consent');}catch(e){}
-        var g=c==='granted'?'granted':'denied';
-        window.clarity('consentv2',{ad_Storage:g,analytics_Storage:g});
+    {(gtm || clarity) && (
+      <script is:inline define:vars={{ gtm, clarity }}>
+        // Page speed: GTM and Clarity are third-party scripts that compete with the hero for
+        // bandwidth and CPU. They load once the page has rendered (window load + idle), or at the
+        // first tap/scroll/keypress, whichever comes first. dataLayer and the clarity() queue
+        // exist from the start, so nothing pushed before then is lost.
+        if(clarity){window.clarity=window.clarity||function(){(window.clarity.q=window.clarity.q||[]).push(arguments)};
+          // Clarity runs cookieless until the visitor accepts in the consent banner.
+          var c=null;try{c=localStorage.getItem('tt_consent');}catch(e){}
+          var g=c==='granted'?'granted':'denied';
+          window.clarity('consentv2',{ad_Storage:g,analytics_Storage:g});}
+        (function(){
+          var done=false,evs=['pointerdown','keydown','touchstart','scroll'];
+          function add(src){var s=document.createElement('script');s.async=true;s.src=src;document.head.appendChild(s);}
+          function load(){
+            if(done)return;done=true;
+            evs.forEach(function(e){removeEventListener(e,load,{passive:true});});
+            if(gtm){dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});add('https://www.googletagmanager.com/gtm.js?id='+gtm);}
+            if(clarity)add('https://www.clarity.ms/tag/'+clarity);
+          }
+          evs.forEach(function(e){addEventListener(e,load,{passive:true});});
+          function idle(){(window.requestIdleCallback||function(f){setTimeout(f,1);})(load,{timeout:1500});}
+          if(document.readyState==='complete')idle();else addEventListener('load',idle);
+        })();
       </script>
     )}
     {allSchema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
