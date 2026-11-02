@@ -1,42 +1,147 @@
 ---
-/** Minimal cookie consent wired to Google Consent Mode v2 and Microsoft Clarity's consent API (defaults set in BaseLayout head). */
+/**
+ * Cookie consent bar (Nov 2026). Google Consent Mode v2 + Microsoft Clarity consent API.
+ * The defaults (everything denied) are set in BaseLayout's <head> and are not changed here.
+ *
+ * Rules kept (ICO / PECR): nothing non-essential runs until the visitor says yes; Accept and Reject
+ * are the same size, same style, same step; Settings toggles start unticked; no cookie wall; the
+ * footer "Cookie settings" link ([data-consent-reset]) reopens it.
+ *
+ * Storage (all for the consent mechanism itself):
+ *   localStorage   tt_consent       'granted' | 'denied' | 'custom' (read by the <head> defaults)
+ *   localStorage   tt_consent_meta  {ads, analytics, at}; the choice expires after 6 months
+ *   sessionStorage tt_consent_rec   {ads, analytics, at}; copied into the quote form for the lead row
+ *   sessionStorage tt_consent_seen  bar already shown this session (shown once per session until a choice)
+ *
+ * dataLayer: consent_banner_shown, consent_choice {consent_choice: accept_all|reject_all|custom},
+ * consent_update {consent, consent_ads, consent_analytics}.
+ */
 ---
-<div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
-  <p>We use cookies to measure which pages and adverts lead to enquiries. <a href="/cookies">Cookie notice</a></p>
-  <div class="consent-acts">
-    <button type="button" class="btn btn-sm btn-ghost" data-consent="denied">Reject</button>
-    <button type="button" class="btn btn-sm" data-consent="granted">Accept</button>
+<div class="cbar" id="consent" role="region" aria-label="Cookie choices" hidden>
+  <div class="cbar-in">
+    <div class="cbar-txt">
+      <p class="cbar-h" id="consent-h">Can we use cookies?</p>
+      <p>We use cookies to see which of our ads bring customers, so we can keep prices down. No tracking is on until you say yes. <a href="/cookies">Cookie policy</a></p>
+    </div>
+    <div class="cbar-acts">
+      <button type="button" class="btn btn-sm cbar-btn" data-consent="granted">Accept</button>
+      <button type="button" class="btn btn-sm cbar-btn" data-consent="denied">Reject</button>
+      <button type="button" class="cbar-set" data-consent-settings aria-expanded="false" aria-controls="consent-panel">Settings</button>
+    </div>
   </div>
+  <form class="cbar-panel" id="consent-panel" hidden aria-label="Cookie settings">
+    <label class="cbar-opt"><input type="checkbox" name="analytics" /> <span><strong>Analytics</strong>: how people use the site (Google Analytics, Microsoft Clarity)</span></label>
+    <label class="cbar-opt"><input type="checkbox" name="ads" /> <span><strong>Advertising</strong>: which of our Google ads lead to enquiries (Google Ads)</span></label>
+    <p class="cbar-note">Storage needed for the site to work (such as remembering this choice) is always on.</p>
+    <button type="submit" class="btn btn-sm cbar-btn">Save choices</button>
+  </form>
 </div>
 <style>
-  .consent { position: fixed; z-index: 80; left: 16px; bottom: 16px; max-width: 420px; background: #fff; border: 1px solid var(--line); border-radius: 4px; box-shadow: 0 12px 40px rgba(28,32,36,.16); padding: 18px 20px; font-size: 14.5px; color: var(--slate); }
-  .consent[hidden] { display: none; }
-  .consent a { color: var(--red); text-decoration: underline; }
-  .consent-acts { display: flex; gap: 10px; margin-top: 12px; }
-  .consent-acts .btn { flex: 1; }
-  @media (max-width: 700px) { .consent { left: 8px; right: 8px; bottom: calc(76px + env(safe-area-inset-bottom)); max-width: none; } }
+  .cbar { position: fixed; z-index: 80; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid var(--line); box-shadow: 0 -8px 30px rgba(31, 42, 55, .10); font-size: 14.5px; line-height: 1.5; color: var(--slate); padding-bottom: env(safe-area-inset-bottom); }
+  .cbar[hidden] { display: none; }
+  .cbar-in, .cbar-panel { max-width: 1240px; margin: 0 auto; padding: 14px 40px; }
+  .cbar-in { display: flex; align-items: center; gap: 28px; }
+  .cbar-txt { flex: 1; min-width: 0; }
+  .cbar-h { font-family: var(--ff-head); font-weight: 700; color: var(--ink); font-size: 15px; margin-bottom: 2px; }
+  .cbar a { color: var(--red); text-decoration: underline; }
+  .cbar-acts { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .cbar-btn { min-width: 112px; }
+  .cbar-set { background: none; border: 0; padding: 8px 4px; color: var(--slate); text-decoration: underline; cursor: pointer; font-size: 14px; }
+  .cbar-panel { display: grid; gap: 10px; padding-top: 0; }
+  .cbar-panel[hidden] { display: none; }
+  .cbar-opt { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); }
+  .cbar-opt input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--red); flex-shrink: 0; }
+  .cbar-note { font-size: 13px; color: var(--meta, #8C9298); }
+  .cbar-panel .btn { justify-self: start; }
+  @media (max-width: 700px) {
+    /* Sits above the mobile call/quote bar so neither covers the other */
+    .cbar { bottom: calc(76px + env(safe-area-inset-bottom)); padding-bottom: 0; font-size: 13.5px; }
+    .cbar-in, .cbar-panel { padding: 12px 16px; }
+    .cbar-in { flex-direction: column; align-items: stretch; gap: 10px; }
+    .cbar-acts .cbar-btn { flex: 1; min-width: 0; }
+  }
 </style>
 <script is:inline>
   (function () {
-    var KEY = 'tt_consent', el = document.getElementById('consent'), v = null;
-    try { v = localStorage.getItem(KEY); } catch (e) {}
-    if (!v && el) el.hidden = false;
+    var KEY = 'tt_consent', META = 'tt_consent_meta', REC = 'tt_consent_rec', SEEN = 'tt_consent_seen';
+    var MAX_AGE = 182 * 864e5; // 6 months
+    var el = document.getElementById('consent');
+    if (!el) return;
+    var panel = document.getElementById('consent-panel');
+    var setBtn = el.querySelector('[data-consent-settings]');
+    function get(s, k) { try { return s.getItem(k); } catch (e) { return null; } }
+    function set(s, k, v) { try { s.setItem(k, v); } catch (e) {} }
+    function del(s, k) { try { s.removeItem(k); } catch (e) {} }
+    function parse(v) { try { return v ? JSON.parse(v) : null; } catch (e) { return null; } }
+    function dl(o) { window.dataLayer = window.dataLayer || []; window.dataLayer.push(o); }
+    function g(b) { return b ? 'granted' : 'denied'; }
+    function update(ads, analytics) {
+      window.gtag('consent', 'update', { ad_storage: g(ads), ad_user_data: g(ads), ad_personalization: g(ads), analytics_storage: g(analytics) });
+      if (window.clarity) window.clarity('consentv2', { ad_Storage: g(ads), analytics_Storage: g(analytics) });
+    }
+
+    var choice = get(localStorage, KEY), meta = parse(get(localStorage, META));
+    if (choice && !meta) {
+      // Choice made before Nov 2026: keep it, start its 6-month clock now.
+      meta = { ads: choice === 'granted', analytics: choice === 'granted', at: Date.now() };
+      set(localStorage, META, JSON.stringify(meta));
+    }
+    if (choice && meta && Date.now() - meta.at > MAX_AGE) {
+      del(localStorage, KEY); del(localStorage, META);
+      if (choice !== 'denied') update(false, false); // <head> granted it for this page; withdraw
+      choice = null; meta = null;
+    }
+    if (choice === 'custom' && meta) update(meta.ads, meta.analytics); // <head> only knows all-or-nothing
+    if (meta) set(sessionStorage, REC, JSON.stringify({ ads: g(meta.ads), analytics: g(meta.analytics), at: new Date(meta.at).toISOString() }));
+
+    function open(withSettings) {
+      el.hidden = false;
+      if (withSettings) {
+        panel.hidden = false; setBtn.setAttribute('aria-expanded', 'true');
+        panel.analytics.checked = !!(meta && meta.analytics);
+        panel.ads.checked = !!(meta && meta.ads);
+      }
+    }
+    if (!choice && !get(sessionStorage, SEEN)) {
+      open(false);
+      set(sessionStorage, SEEN, '1');
+      dl({ event: 'consent_banner_shown', page_path: location.pathname });
+    }
+
+    function choose(ads, analytics, how) {
+      var value = ads && analytics ? 'granted' : !ads && !analytics ? 'denied' : 'custom';
+      meta = { ads: ads, analytics: analytics, at: Date.now() };
+      set(localStorage, KEY, value);
+      set(localStorage, META, JSON.stringify(meta));
+      set(sessionStorage, REC, JSON.stringify({ ads: g(ads), analytics: g(analytics), at: new Date(meta.at).toISOString() }));
+      update(ads, analytics);
+      dl({ event: 'consent_choice', consent_choice: how, consent_ads: g(ads), consent_analytics: g(analytics), page_path: location.pathname });
+      dl({ event: 'consent_update', consent: value, consent_ads: g(ads), consent_analytics: g(analytics) });
+      if (window.clarity) window.clarity('event', 'consent_' + how);
+      el.hidden = true; panel.hidden = true; setBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    el.querySelectorAll('[data-consent]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var yes = b.getAttribute('data-consent') === 'granted';
+        choose(yes, yes, yes ? 'accept_all' : 'reject_all');
+      });
+    });
+    setBtn.addEventListener('click', function () {
+      var show = panel.hidden;
+      if (show) open(true); else { panel.hidden = true; setBtn.setAttribute('aria-expanded', 'false'); }
+    });
+    panel.addEventListener('submit', function (e) {
+      e.preventDefault();
+      choose(panel.ads.checked, panel.analytics.checked, 'custom');
+    });
+    // Footer "Cookie settings" link: reopen with the toggles showing the current choice
     document.addEventListener('click', function (e) {
       var r = e.target.closest && e.target.closest('[data-consent-reset]');
-      if (!r || !el) return;
+      if (!r) return;
       e.preventDefault();
-      el.hidden = false;
-      var first = el.querySelector('button'); if (first) first.focus();
-    });
-    document.querySelectorAll('[data-consent]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var c = b.getAttribute('data-consent');
-        try { localStorage.setItem(KEY, c); } catch (e) {}
-        window.gtag('consent', 'update', { ad_storage: c, analytics_storage: c, ad_user_data: c, ad_personalization: c });
-        if (window.clarity) window.clarity('consentv2', { ad_Storage: c, analytics_Storage: c });
-        window.dataLayer.push({ event: 'consent_update', consent: c });
-        el.hidden = true;
-      });
+      open(true);
+      panel.querySelector('input').focus();
     });
   })();
 </script>
