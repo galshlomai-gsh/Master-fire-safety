@@ -20,7 +20,14 @@ export const prerender = false;
 const REQUIRED = ['name', 'phone', 'email', 'postcode'] as const;
 // The form no longer asks for these; tandt_leads still requires them, so unknown ones are stored as this.
 const UNKNOWN = 'Not specified';
-const ATTRIBUTION = ['landing_page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid'] as const;
+const ATTRIBUTION = ['landing_page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid', 'gad_source', 'gad_campaignid'] as const;
+const ATTR_MAX: Record<string, number> = { referrer: 300, gad_source: 20, gad_campaignid: 40 };
+/** ISO timestamp from the browser, or null if missing / implausible (over 6 months off). */
+const isoOrNull = (v: string) => {
+  const t = Date.parse(v);
+  return v && !Number.isNaN(t) && Math.abs(Date.now() - t) < 864e5 * 183 ? new Date(t).toISOString() : null;
+};
+const choice = (v: string) => (v === 'granted' || v === 'denied' ? v : null);
 const POSTCODE = /^[A-Za-z]{1,2}[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}$/;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const DEFAULT_FROM = 'T&T Fire Safety <leads@tandtfiresafety.co.uk>';
@@ -65,7 +72,7 @@ async function sendEmail(lead: Lead, id: string): Promise<boolean | null> {
   return true;
 }
 
-async function saveToSupabase(lead: Lead, id: string, emailSent: boolean): Promise<boolean | null> {
+async function saveToSupabase(lead: Lead, id: string, emailSent: boolean, extra: Record<string, string | null>): Promise<boolean | null> {
   // New projects issue an sb_secret_ key; older ones a service_role JWT. Either works.
   const key = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!key) return null;
@@ -78,6 +85,7 @@ async function saveToSupabase(lead: Lead, id: string, emailSent: boolean): Promi
     email_sent: emailSent,
   };
   for (const k of ATTRIBUTION) row[k] = lead[k] || null;
+  Object.assign(row, extra);
   const headers: Record<string, string> = { apikey: key, 'Content-Type': 'application/json', Prefer: 'return=minimal' };
   // Only a legacy JWT key may also go in Authorization; an sb_ key there is rejected as "Invalid JWT".
   if (key.startsWith('eyJ')) headers.Authorization = `Bearer ${key}`;
@@ -109,7 +117,17 @@ export const POST: APIRoute = async ({ request }) => {
     property_type: get('property_type', 60), service: get('service', 80), details: get('details', 2000),
     page: get('page', 200), source: get('source', 80),
   };
-  for (const k of ATTRIBUTION) lead[k] = get(k, k === 'referrer' ? 300 : 200);
+  for (const k of ATTRIBUTION) lead[k] = get(k, ATTR_MAX[k] ?? 200);
+  // Offline-conversion context (see README): when it was sent, the browser, and the visitor's
+  // cookie-banner choice at the time (null when they made none).
+  const consentAds = choice(get('consent_ads', 10));
+  const extra: Record<string, string | null> = {
+    submitted_at: new Date().toISOString(), // server clock (UTC); the browser's own time can be wrong
+    user_agent: (request.headers.get('user-agent') || '').slice(0, 500) || null,
+    consent_ads: consentAds,
+    consent_analytics: choice(get('consent_analytics', 10)),
+    consent_at: consentAds ? isoOrNull(get('consent_at', 40)) : null,
+  };
 
   const missing = REQUIRED.filter((k) => !lead[k]);
   if (missing.length || !EMAIL.test(lead.email) || !POSTCODE.test(lead.postcode) || lead.phone.replace(/\D/g, '').length < 10) {
@@ -122,7 +140,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   // Email first, then save (recording whether the email went out).
   const email = await sendEmail(lead, id).then((v) => ({ ok: v, err: null as unknown }), (err) => ({ ok: false as boolean | null, err }));
-  const save = await saveToSupabase(lead, id, email.ok === true).then((v) => ({ ok: v, err: null as unknown }), (err) => ({ ok: false as boolean | null, err }));
+  const save = await saveToSupabase(lead, id, email.ok === true, extra).then((v) => ({ ok: v, err: null as unknown }), (err) => ({ ok: false as boolean | null, err }));
   if (email.err) console.error('[quote] email failed', { id, error: String(email.err) });
   if (save.err) console.error('[quote] database save failed', { id, error: String(save.err) });
 

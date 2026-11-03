@@ -42,6 +42,8 @@ Google Consent Mode v2 defaults to *denied* until the visitor accepts the cookie
 In GTM: create GA4 event tags for `generate_lead` and `phone_click`, and Google Ads conversion tags fired by the same custom events.
 
 ## Leads
+Offline conversions (click IDs → Google Ads), the cookie bar and the uploader: see `OFFLINE-CONVERSIONS.md`.
+
 Each quote request is emailed via Resend from `leads@tandtfiresafety.co.uk` and saved to the `tandt_leads` table in the **Certi Sprint** Supabase project (same client, separate table from Certi Sprint's `enquiries`). If the email fails, the lead is still saved with `email_sent = false`. The table has RLS on with no policies, so only the server-side secret key can read or write it. `status` and `quote_value` columns, plus captured `gclid`/`gbraid`/`wbraid` and UTMs, support Google Ads offline conversion imports.
 
 ## Environment variables

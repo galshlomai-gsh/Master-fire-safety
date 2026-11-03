@@ -17,7 +17,7 @@ const f = (n: string) => `${id}-${n}`;
   <input type="hidden" name="source" value={source} />
   <input type="hidden" name="service" value={service} />
   <input type="hidden" name="property_type" value={propertyType} />
-  {['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid', 'landing_page', 'referrer'].map((n) => <input type="hidden" name={n} value="" data-attr={n} />)}
+  {['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid', 'gad_source', 'gad_campaignid', 'landing_page', 'referrer'].map((n) => <input type="hidden" name={n} value="" data-attr={n} />)}
   <div class="hp" aria-hidden="true"><label for={f('company')}>Company website</label><input id={f('company')} name="company_website" tabindex="-1" autocomplete="off" /></div>
   <div class="frow">
     <div class="field">

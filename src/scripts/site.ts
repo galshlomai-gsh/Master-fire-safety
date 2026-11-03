@@ -98,10 +98,12 @@ function validate(form: HTMLFormElement): boolean {
   return !firstBad;
 }
 
-// Ad attribution (gclid/UTMs) for Google Ads offline conversions. Read from the URL on every page;
-// carried across pages in sessionStorage only once the visitor has accepted cookies.
+// Ad attribution for Google Ads offline conversions (see README "Offline conversions").
+// Click IDs and UTMs are read from the landing URL and kept in sessionStorage (no cookie; gone when
+// the tab closes) so they survive landing page -> /quote -> submit. They are only ever used to
+// attribute the visitor's own enquiry. A new ad click in the same tab replaces the stored values.
 const ATTR_KEY = 'tt_attribution';
-const ATTR_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid'];
+const ATTR_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid', 'gad_source', 'gad_campaignid'];
 function attribution(): Record<string, string> {
   const fromUrl: Record<string, string> = {};
   const params = new URLSearchParams(location.search);
@@ -109,15 +111,20 @@ function attribution(): Record<string, string> {
   let stored: Record<string, string> = {};
   try { stored = JSON.parse(sessionStorage.getItem(ATTR_KEY) || '{}'); } catch { stored = {}; }
   const fresh = Object.keys(fromUrl).length > 0;
-  const attr = fresh || !stored.landing_page
-    ? { ...fromUrl, landing_page: location.pathname, referrer: document.referrer.slice(0, 300) }
-    : stored;
-  let consent = false;
-  try { consent = localStorage.getItem('tt_consent') === 'granted'; } catch { /* storage blocked */ }
-  if (consent && (fresh || !stored.landing_page)) { try { sessionStorage.setItem(ATTR_KEY, JSON.stringify(attr)); } catch { /* ignore */ } }
+  if (!fresh && stored.landing_page) return stored;
+  const attr = { ...fromUrl, landing_page: location.pathname, referrer: document.referrer.slice(0, 300) };
+  try { sessionStorage.setItem(ATTR_KEY, JSON.stringify(attr)); } catch { /* storage blocked: this page still has it */ }
   return attr;
 }
 const attr = attribution();
+/** Cookie-banner choice for this visit (written by ConsentBanner), sent with the lead. */
+function consentRecord(): Record<string, string> {
+  try {
+    const r = JSON.parse(sessionStorage.getItem('tt_consent_rec') || 'null');
+    if (r && (r.ads === 'granted' || r.ads === 'denied')) return { consent_ads: r.ads, consent_analytics: r.analytics, consent_at: r.at };
+  } catch { /* none */ }
+  return {};
+}
 document.querySelectorAll<HTMLInputElement>('input[data-attr]').forEach((el) => { el.value = attr[el.dataset.attr!] || ''; });
 
 document.querySelectorAll<HTMLFormElement>('form[data-quote-form]').forEach((form) => {
@@ -139,6 +146,7 @@ document.querySelectorAll<HTMLFormElement>('form[data-quote-form]').forEach((for
     const label = btn.textContent;
     btn.disabled = true; btn.textContent = 'Sending…'; err.hidden = true;
     const data = new FormData(form);
+    for (const [k, v] of Object.entries(consentRecord())) data.set(k, v);
     try {
       const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
       const json = await res.json().catch(() => ({}));

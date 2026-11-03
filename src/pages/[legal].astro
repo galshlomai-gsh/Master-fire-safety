@@ -15,7 +15,7 @@ export function getStaticPaths() {
 }
 const { legal } = Astro.params as { legal: 'privacy' | 'terms' | 'cookies' };
 
-const updated = '19 October 2026';
+const updated = '2 November 2026';
 const L = site.legal;
 const brand = site.brand.name;
 const who = `${brand} is a trading name of ${L.companyName}, a company registered in ${L.registeredIn} (company number ${L.companyNumber}), registered office ${L.registeredAddress}`;
@@ -55,6 +55,9 @@ const pages = {
 
 <h2>Enhanced conversions</h2>
 <p>If you have accepted advertising cookies and you submit the quote form, the email address and phone number you entered may be converted into a one-way hashed code in your browser and shared with Google, so that Google Ads can tell us which adverts led to enquiries without us seeing your Google account. Google matches the hashed code against signed-in Google accounts and does not receive your details in readable form. If you reject advertising cookies, this does not happen.</p>
+
+<h2>Telling Google Ads which adverts led to enquiries</h2>
+<p>If you reach this website by clicking one of our Google adverts, the link includes a click reference created by Google (for example a “gclid”). We keep that reference, and which page you landed on, in your browser tab’s session storage until you close the tab, so it can be saved with your quote request if you send one. We later send Google Ads that reference with the date and time of your enquiry, so Google can count it against the advert you clicked. We do not send your name, email address, phone number or the details of your enquiry with it, and we tell Google whether you accepted or rejected advertising cookies, if you made a choice. If you would rather we did not do this, email us and we will not send it.</p>
 
 <h2>Who we share it with</h2>
 <p>We use these service providers, who process information on our behalf and only on our instructions:</p>
@@ -127,7 +130,16 @@ const pages = {
 <table>
 <thead><tr><th>Name</th><th>Type</th><th>Purpose</th><th>Kept for</th></tr></thead>
 <tbody>
-<tr><td>tt_consent</td><td>Local storage</td><td>Remembers whether you accepted or rejected analytics and advertising cookies</td><td>Until you clear it or change your choice</td></tr>
+<tr><td>tt_consent, tt_consent_meta</td><td>Local storage</td><td>Remembers whether you accepted or rejected analytics and advertising cookies, and when</td><td>6 months, then we ask again</td></tr>
+<tr><td>tt_consent_seen, tt_consent_rec</td><td>Session storage</td><td>Avoids showing the banner on every page, and records your choice with a quote request you send</td><td>Until you close the tab</td></tr>
+</tbody>
+</table>
+
+<h2>Advert click reference</h2>
+<table>
+<thead><tr><th>Name</th><th>Type</th><th>Purpose</th><th>Kept for</th></tr></thead>
+<tbody>
+<tr><td>tt_attribution</td><td>Session storage</td><td>If you arrived from one of our adverts, keeps the advert’s click reference and campaign tags so they can be saved with a quote request you send. Not shared with anyone unless you send a quote request (see our <a href="/privacy">privacy policy</a>).</td><td>Until you close the tab</td></tr>
 </tbody>
 </table>
 
