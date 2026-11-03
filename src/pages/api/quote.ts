@@ -17,7 +17,9 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-const REQUIRED = ['name', 'phone', 'email', 'postcode', 'property_type', 'service'] as const;
+const REQUIRED = ['name', 'phone', 'email', 'postcode'] as const;
+// The form no longer asks for these; tandt_leads still requires them, so unknown ones are stored as this.
+const UNKNOWN = 'Not specified';
 const ATTRIBUTION = ['landing_page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid', 'gad_source', 'gad_campaignid'] as const;
 const ATTR_MAX: Record<string, number> = { referrer: 300, gad_source: 20, gad_campaignid: 40 };
 /** ISO timestamp from the browser, or null if missing / implausible (over 6 months off). */
@@ -42,14 +44,14 @@ async function sendEmail(lead: Lead, id: string): Promise<boolean | null> {
 
   const rows = [
     ['Name', lead.name], ['Phone', lead.phone], ['Email', lead.email], ['Postcode', lead.postcode],
-    ['Property type', lead.property_type], ['Service', lead.service], ['Details', lead.details || '(none)'],
+    ['Property type', lead.property_type], ['Service', lead.service], ['Details', lead.details],
     ['Page', lead.page], ['Reference', id],
     ['Landing page', lead.landing_page], ['Referrer', lead.referrer],
     ['UTM source / medium', [lead.utm_source, lead.utm_medium].filter(Boolean).join(' / ')],
     ['UTM campaign', lead.utm_campaign], ['UTM term', lead.utm_term],
     ['Google click ID', lead.gclid || lead.gbraid || lead.wbraid],
   ].filter(([, v]) => v);
-  const html = `<div style="font-family:Arial,sans-serif;font-size:15px;color:#1F2A37"><h2 style="margin:0 0 12px">New quote request: ${esc(lead.service)}</h2><table cellpadding="6" style="border-collapse:collapse">${rows
+  const html = `<div style="font-family:Arial,sans-serif;font-size:15px;color:#1F2A37"><h2 style="margin:0 0 12px">New quote request${lead.service ? `: ${esc(lead.service)}` : ''}</h2><table cellpadding="6" style="border-collapse:collapse">${rows
     .map(([k, v]) => `<tr><td style="font-weight:bold;vertical-align:top;border-bottom:1px solid #ECE6E1">${esc(k)}</td><td style="border-bottom:1px solid #ECE6E1">${esc(v).replace(/\n/g, '<br>')}</td></tr>`)
     .join('')}</table><p style="margin-top:16px">Reply to this email to respond to ${esc(lead.name)} directly.</p></div>`;
   const text = rows.map(([k, v]) => `${k}: ${v}`).join('\n');
@@ -61,7 +63,7 @@ async function sendEmail(lead: Lead, id: string): Promise<boolean | null> {
       from,
       to: to.split(',').map((s) => s.trim()),
       reply_to: lead.email,
-      subject: `Quote request: ${lead.service} – ${lead.postcode} (${lead.name})`,
+      subject: `Quote request${lead.service ? `: ${lead.service}` : ''} – ${lead.postcode} (${lead.name})`,
       html,
       text,
     }),
@@ -78,7 +80,7 @@ async function saveToSupabase(lead: Lead, id: string, emailSent: boolean, extra:
   const row: Record<string, string | boolean | null> = {
     reference: id,
     name: lead.name, phone: lead.phone, email: lead.email, postcode: lead.postcode,
-    property_type: lead.property_type, service: lead.service, details: lead.details || null,
+    property_type: lead.property_type || UNKNOWN, service: lead.service || UNKNOWN, details: lead.details || null,
     page_path: lead.page || null, form_source: lead.source || null,
     email_sent: emailSent,
   };

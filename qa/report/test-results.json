@@ -255,19 +255,24 @@
     "detail": ""
   },
   {
-    "name": "quote form Service field pre-selected per page",
+    "name": "quote form records the page service",
     "pass": true,
     "detail": "{\"/services/fire-risk-assessments\":\"Fire Risk Assessment\",\"/services/fire-door-inspections\":\"Fire Door Inspection\",\"/services/fire-alarm-servicing-installation\":\"Fire Alarm Servicing / Installation\",\"/services/emergency-lighting-servicing-installation\":\"Emergency Lighting Servicing / Installation\",\"/services/aov-smoke-control-servicing\":\"AOV / Smoke Control Servicing\",\"/sectors/landlords-hmos\":\"Fire Risk Assessment\"}"
   },
   {
-    "name": "sector page pre-selects property type",
+    "name": "sector page records property type",
     "pass": true,
     "detail": "HMO / Residential"
   },
   {
+    "name": "form asks only name, phone, email and postcode",
+    "pass": true,
+    "detail": "4 fields"
+  },
+  {
     "name": "empty submit shows inline errors",
     "pass": true,
-    "detail": "5 fields flagged"
+    "detail": "4 fields flagged"
   },
   {
     "name": "valid submit redirects to /thank-you",
@@ -275,9 +280,9 @@
     "detail": "http://localhost:4321/thank-you"
   },
   {
-    "name": "submit pushes generate_lead with service & property type",
+    "name": "submit pushes generate_lead with the page service and contact details",
     "pass": true,
-    "detail": "{\"event\":\"generate_lead\",\"service\":\"Fire Risk Assessment\",\"property_type\":\"Office / Workplace\",\"form_id\":\"quote\"}"
+    "detail": "{\"event\":\"generate_lead\",\"service\":\"Fire Risk Assessment\",\"property_type\":\"\",\"form_id\":\"quote\"}"
   },
   {
     "name": "form_start fires on first input",
